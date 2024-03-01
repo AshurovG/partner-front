@@ -1,0 +1,147 @@
+@import "../../styles/variables.scss";
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: $brand-color;
+
+  text-align: center;
+  background: $background-color;
+  z-index: 9999;
+  transition: all 300ms ease-in-out;
+  border-bottom: 1px solid #fff;
+
+  &.expanded {
+    transform: translateY(0);
+    height: auto; // Adjust based on your content
+  }
+}
+// for reveal animation
+
+.headerDown {
+  transform: translate3d(0, -100%, 0);
+}
+// ----------------------------------
+
+.header {
+  &__inner {
+    padding: 48px 0;
+    margin: 0 auto;
+    max-width: $content-width;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_menu {
+      cursor: pointer;
+      font-size: 36px;
+      font-weight: 800;
+
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    &_contact {
+      font-size: 40px;
+    }
+  }
+}
+
+.submenu {
+  background-color: $background-color;
+  height: 300px;
+  max-width: $content-width;
+  margin: 0 auto;
+
+  padding-bottom: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__info {
+    font-size: 32px;
+    text-align: left;
+  }
+
+  &__slider {
+    color: $brand-color;
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &_inner {
+      width: 100%;
+      padding: 5px;
+      display: block;
+      &--card {
+        padding: 10px 0;
+        max-width: 308px;
+        font-size: 50px;
+        text-align: center;
+        margin-left: 0px;
+        transition: all 0.1s ease;
+
+        h2 {
+          font-size: 1.3vw;
+          font-weight: 600;
+          margin-top: 5px;
+          //padding-left: 8px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          text-align: left;
+          line-height: 1;
+        }
+
+        img {
+          width: 100%;
+          height: 220px;
+          border-radius: 1vw;
+          overflow: hidden;
+          display: flex;
+          align-items: flex-end;
+          -webkit-box-pack: center;
+          justify-content: center;
+          border-radius: 10px;
+        }
+
+        &:hover {
+          transform: scale(1.05);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.cancel__icon {
+  display: inline-block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 5px;
+}
+
+.cancel__icon::before,
+.cancel__icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background-color: $brand-color;
+  transform-origin: center;
+}
+
+.cancel__icon::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.cancel__icon::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
