@@ -3,6 +3,8 @@ import MainPage from "pages/MainPage"
 import Header from "components/Header"
 import styles from "./App.module.scss"
 import Footer from "components/Footer"
+import ContactForm from "components/ContactForm"
+import ItemPage from "pages/ItemPage"
 
 function App() {
   return (
@@ -10,10 +12,11 @@ function App() {
       <Header />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<MainPage />}></Route>
+          <Route path="/" element={<ItemPage />}></Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
+      <ContactForm />
       <Footer />
     </div>
   )
