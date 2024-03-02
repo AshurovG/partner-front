@@ -1,5 +1,5 @@
-import React from "react"
-import styles from "./Slider.module.scss"
+// import React from "react"
+// import styles from "./Slider.module.scss"
 import ImageGallery from "react-image-gallery"
 import "react-image-gallery/styles/scss/image-gallery.scss"
 

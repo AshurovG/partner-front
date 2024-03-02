@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import { useState } from "react"
+import { useLocation } from "react-router-dom"
 import styles from "./Header.module.scss"
 import useScrollDirection from "../../utils/HeaderHook"
 import BurgerIcon from "components/Icons/BurgerIcon"
@@ -37,6 +38,8 @@ const dataTop = [
 ]
 
 const Header = () => {
+  const location = useLocation()
+  const showHeader = !['/ashurovvitaly', '/rasulovelshan', '/derevitskayaevgenia'].includes(location.pathname)
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
   const scrollDirection = useScrollDirection()
 
@@ -74,9 +77,11 @@ const Header = () => {
   }
 
   return (
-    <header
+    <> 
+    {
+      showHeader ? <header
       className={`${headerClass} ${isSubmenuOpen ? styles.expanded : ""}`}
-    >
+      >
       <div className={styles.header__inner}>
         <div
           className={styles.header__inner_menu}
@@ -130,6 +135,8 @@ const Header = () => {
         )}
       </AnimatePresence>
     </header>
+    : null}
+  </>
   )
 }
 
