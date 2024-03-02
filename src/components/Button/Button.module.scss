@@ -1,0 +1,44 @@
+@import "../../styles/variables.scss";
+
+.button {
+  border: 3px solid $brand-color;
+
+  padding: 10px 30px;
+  border-radius: 3px;
+  transition: all 0.1s linear;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &-dark {
+    border: 3px solid $brand-color;
+    background-color: #000;
+    color: $brand-color;
+  }
+  &-inverse {
+    border: 3px solid #000;
+    background-color: $brand-color;
+    color: #000;
+  }
+  &-light {
+    background-color: $brand-color;
+    border: 3px solid $brand-color;
+    color: #fff;
+  }
+
+  &__text {
+    display: block;
+  }
+  &__icon {
+    height: 24px;
+    width: 24px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+  //   &:disabled {
+  //     background-color: #634242d1;
+  //     cursor: default;
+  //   }
+}

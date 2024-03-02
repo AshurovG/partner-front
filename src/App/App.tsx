@@ -6,23 +6,31 @@ import DerevitskayaCardPage from "pages/DerevitskayaCardPage"
 import Header from "components/Header"
 import styles from "./App.module.scss"
 import Footer from "components/Footer"
+import ContactForm from "components/ContactForm"
+import ItemPage from "pages/ItemPage"
 
 const App = () => {
   return (
     <div className={styles.app}>
       <BrowserRouter>
-        <Header/>
+        <Header />
         <Routes>
-          <Route path="/" element={<MainPage />}></Route>
-          <Route path="/ashurovvitaly" element={<AshurovCardPage/>}></Route>
-          <Route path="/rasulovelshan" element={<RasulovCardPage/>}></Route>
-          <Route path="/derevitskayaevgenia" element={<DerevitskayaCardPage/>}></Route>
+          <Route path="/" element={<ItemPage />}></Route>
+
+          <Route path="/ashurovvitaly" element={<AshurovCardPage />}></Route>
+          <Route path="/rasulovelshan" element={<RasulovCardPage />}></Route>
+          <Route
+            path="/derevitskayaevgenia"
+            element={<DerevitskayaCardPage />}
+          ></Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Footer />
       </BrowserRouter>
+      <ContactForm />
+      <Footer />
     </div>
-  );
+  )
 }
 
 export default App
