@@ -13,22 +13,28 @@ const Footer = () => {
         <div className={styles.footer__inner_left}>
           <img className={styles.footer__inner_left_logo} src={Logo}></img>
           <div className={styles.footer__inner_left_socials}>
-            <TelegramIcon />
-            <WhatsAppIcon />
-            <MailIcon />
+            <a>
+              <TelegramIcon />
+            </a>
+            <a>
+              <WhatsAppIcon />
+            </a>
+            <a>
+              <MailIcon />
+            </a>
           </div>
         </div>
         <div className={styles.footer__inner_right}>
           <h2 className={styles.footer__inner_right_title}>НАШИ КОНТАКТЫ</h2>
           <div className={styles.footer__inner_right_contacts}>
             <div>
-              <h3>+7 (861) 203-38-33</h3>
-              <h3>+7 (928) 402-23-09</h3>
-              <h3>+7 (969) 303-11-11</h3>
+              <a href="tel:+7-861-203-38-33">+7 (861) 203-38-33</a>
+              <a href="tel:+7-928-402-23-09">+7 (928) 402-23-09</a>
+              <a href="tel:+7-969-303-11-11">+7 (969) 303-11-11</a>
             </div>
             <div>
-              <h3>PARTNER.M2309@MAIL.RU</h3>
-              <h3>PARTNER.M2309@MAIL.RU</h3>
+              <a href="mailto:PARTNER.M2309@MAIL.RU">PARTNER.M2309@MAIL.RU</a>
+              <a href="mailto:PARTNER.M2309@MAIL.RU">PARTNER.M2309@MAIL.RU</a>
             </div>
           </div>
         </div>
