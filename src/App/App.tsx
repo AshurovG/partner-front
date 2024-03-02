@@ -8,6 +8,7 @@ import styles from "./App.module.scss"
 import Footer from "components/Footer"
 import ContactForm from "components/ContactForm"
 import ItemPage from "pages/ItemPage"
+import AuthPage from "pages/AuthPage"
 import AboutCompanyBlock from "components/AboutCompanyBlock"
 
 const App = () => {
@@ -20,10 +21,8 @@ const App = () => {
           <Route path="/item" element={<ItemPage />}></Route>
           <Route path="/ashurovvitaly" element={<AshurovCardPage />}></Route>
           <Route path="/rasulovelshan" element={<RasulovCardPage />}></Route>
-          <Route
-            path="/derevitskayaevgenia"
-            element={<DerevitskayaCardPage />}
-          ></Route>
+          <Route path="/derevitskayaevgenia"element={<DerevitskayaCardPage />}></Route>
+          <Route path='/login' element={<AuthPage/>}/>
           {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
         </Routes>
         <ContactForm />
