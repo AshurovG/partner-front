@@ -3,6 +3,7 @@ import { useForm, FieldValues } from "react-hook-form"
 import axios from 'axios'
 import Button from "components/Button"
 import styles from './AuthPage.module.scss'
+import Card from 'components/Card'
 
 const AuthPage = () => {
     const form = useRef<HTMLFormElement>(null)

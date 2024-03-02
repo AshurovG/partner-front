@@ -1,0 +1,17 @@
+@import "../../styles/variables.scss";
+
+.card {
+    width: 336px;
+
+    &__image {
+        width: 100%;
+        object-fit: contain;
+        height: auto;
+    }
+
+    &__title {
+        font-size: 30px;
+        text-align: center;
+        margin-top: 5px;
+    }
+}
