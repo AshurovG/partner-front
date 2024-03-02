@@ -16,19 +16,17 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<ItemPage />}></Route>
-
           <Route path="/ashurovvitaly" element={<AshurovCardPage />}></Route>
           <Route path="/rasulovelshan" element={<RasulovCardPage />}></Route>
           <Route
             path="/derevitskayaevgenia"
             element={<DerevitskayaCardPage />}
           ></Route>
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
         </Routes>
+        <ContactForm />
         <Footer />
       </BrowserRouter>
-      <ContactForm />
-      <Footer />
     </div>
   )
 }
