@@ -8,6 +8,7 @@ import styles from "./App.module.scss"
 import Footer from "components/Footer"
 import ContactForm from "components/ContactForm"
 import ItemPage from "pages/ItemPage"
+import AboutCompanyBlock from "components/AboutCompanyBlock"
 
 const App = () => {
   return (
@@ -15,7 +16,8 @@ const App = () => {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<ItemPage />}></Route>
+          <Route path="/" element={<MainPage />}></Route>
+          <Route path="/item" element={<ItemPage />}></Route>
           <Route path="/ashurovvitaly" element={<AshurovCardPage />}></Route>
           <Route path="/rasulovelshan" element={<RasulovCardPage />}></Route>
           <Route

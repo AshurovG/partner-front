@@ -40,7 +40,9 @@ const Button: React.FC<ButtonProps> = ({
       {/* Отображение иконки только если isRedirecting равно true */}
       {isRedirecting && (
         <ArrowRightIcon
-          fill={mode === "inverse" ? "#000" : undefined}
+          fill={
+            mode === "inverse" ? "#000" : mode === "dark" ? "#cc9966" : "fff"
+          }
           className={styles.button__icon}
         />
       )}

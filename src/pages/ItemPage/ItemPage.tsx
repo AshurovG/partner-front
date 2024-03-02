@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useLayoutEffect } from "react"
 import styles from "./ItemPage.module.scss"
 import Slider from "components/Slider"
 import wineImage from "../../assets/images/wine.jpg"
@@ -22,6 +22,9 @@ const images = [
 ]
 
 const ItemPage = () => {
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div className={styles["item-page"]}>
       <div className={styles["item-page__inner"]}>

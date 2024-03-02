@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import styles from "./Header.module.scss"
 import useScrollDirection from "../../utils/HeaderHook"
 import BurgerIcon from "components/Icons/BurgerIcon"
@@ -39,7 +39,11 @@ const dataTop = [
 
 const Header = () => {
   const location = useLocation()
-  const showHeader = !['/ashurovvitaly', '/rasulovelshan', '/derevitskayaevgenia'].includes(location.pathname)
+  const showHeader = ![
+    "/ashurovvitaly",
+    "/rasulovelshan",
+    "/derevitskayaevgenia",
+  ].includes(location.pathname)
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
   const scrollDirection = useScrollDirection()
 
@@ -77,66 +81,73 @@ const Header = () => {
   }
 
   return (
-    <> 
-    {
-      showHeader ? <header
-      className={`${headerClass} ${isSubmenuOpen ? styles.expanded : ""}`}
-      >
-      <div className={styles.header__inner}>
-        <div
-          className={styles.header__inner_menu}
-          onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}
+    <>
+      {showHeader ? (
+        <header
+          className={`${headerClass} ${isSubmenuOpen ? styles.expanded : ""}`}
         >
-          <h2>MENU</h2>
-          {isSubmenuOpen === false ? (
-            <BurgerIcon
-              className={styles.burger__icon}
-              onClick={() => setIsSubmenuOpen(true)}
-            />
-          ) : (
+          <div className={styles.header__inner}>
             <div
-              className={styles.cancel__icon}
-              onClick={() => setIsSubmenuOpen(false)}
-            ></div>
-          )}
-        </div>
-        <div className={styles.header__inner_contact}>+7 (861) 203-38-33</div>
-      </div>
-      <AnimatePresence>
-        {isSubmenuOpen && (
-          <motion.div
-            className={styles.submenu}
-            variants={submenuVariants}
-            initial="closed"
-            animate="open"
-            exit="closed"
-          >
-            <div className={styles.submenu__info}>
-              <h2>Задать вопрос</h2>
-              <h2>Контакты</h2>
+              className={styles.header__inner_menu}
+              onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}
+            >
+              <h2>MENU</h2>
+              {isSubmenuOpen === false ? (
+                <BurgerIcon
+                  className={styles.burger__icon}
+                  onClick={() => setIsSubmenuOpen(true)}
+                />
+              ) : (
+                <div
+                  className={styles.cancel__icon}
+                  onClick={() => setIsSubmenuOpen(false)}
+                ></div>
+              )}
             </div>
-            <div className={styles.submenu__slider}>
-              <Slider {...settings} className={styles["submenu__slider_inner"]}>
-                {dataTop.map((item, index) => {
-                  return (
-                    <div
-                      className={styles["submenu__slider_inner--card"]}
-                      key={index}
-                    >
-                      <img src={item.url} alt="hero_img" />
+            <Link to="/">
+              <div className={styles.header__inner_contact}>
+                +7 (861) 203-38-33
+              </div>
+            </Link>
+          </div>
+          <AnimatePresence>
+            {isSubmenuOpen && (
+              <motion.div
+                className={styles.submenu}
+                variants={submenuVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
+              >
+                <div className={styles.submenu__info}>
+                  <h2>Задать вопрос</h2>
+                  <h2>Контакты</h2>
+                </div>
+                <div className={styles.submenu__slider}>
+                  <Slider
+                    {...settings}
+                    className={styles["submenu__slider_inner"]}
+                  >
+                    {dataTop.map((item, index) => {
+                      return (
+                        <div
+                          className={styles["submenu__slider_inner--card"]}
+                          key={index}
+                        >
+                          <img src={item.url} alt="hero_img" />
 
-                      <h2>{item.title}</h2>
-                    </div>
-                  )
-                })}
-              </Slider>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
-    : null}
-  </>
+                          <h2>{item.title}</h2>
+                        </div>
+                      )
+                    })}
+                  </Slider>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </header>
+      ) : null}
+    </>
   )
 }
 
