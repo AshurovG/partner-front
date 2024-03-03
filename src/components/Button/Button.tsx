@@ -37,7 +37,6 @@ const Button: React.FC<ButtonProps> = ({
     >
       <p className={styles.button__text}>{children}</p>
 
-      {/* Отображение иконки только если isRedirecting равно true */}
       {isRedirecting && (
         <ArrowRightIcon
           fill={
