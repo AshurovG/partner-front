@@ -6,6 +6,8 @@ import AboutCompanyBlock from "components/AboutCompanyBlock"
 import BottlesBlock from "components/BottlesBlock"
 import { useLayoutEffect } from "react"
 import LocksBlock from "components/LocksBlock"
+import PackagesBlock from "components/PackagesBlock"
+import GlassesBlock from "components/GlassesBlock"
 
 const MainPage = () => {
   useLayoutEffect(() => {
@@ -16,6 +18,8 @@ const MainPage = () => {
     <div className={styles["main-page"]}>
       <AboutCompanyBlock />
       <BottlesBlock />
+      <PackagesBlock />
+      <GlassesBlock />
       <LocksBlock />
     </div>
   )
