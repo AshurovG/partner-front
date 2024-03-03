@@ -16,7 +16,7 @@ const LocksBlock = () => {
             для стеклянной тары
           </p>
           <div>
-            <Link to="item">
+            <Link to="/locks">
               <Button
                 className={styles.block__inner_content_action}
                 isRedirecting={true}

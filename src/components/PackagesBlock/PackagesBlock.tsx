@@ -3,6 +3,7 @@ import styles from "./PackagesBlock.module.scss"
 import Button from "components/Button"
 import Complex from "../../assets/images/complex_package.png"
 import Simple from "../../assets/images/simple_package.png"
+import { Link } from "react-router-dom"
 
 const PackagesBlock = () => {
   return (
@@ -14,13 +15,15 @@ const PackagesBlock = () => {
           <p className={styles.card__description}>
             Все виды и типы упаковки из различных видов картона
           </p>
-          <Button
-            className={styles.card__action}
-            mode="dark"
-            isRedirecting={true}
-          >
-            Подробнее
-          </Button>
+          <Link to="/simple-package">
+            <Button
+              className={styles.card__action}
+              mode="dark"
+              isRedirecting={true}
+            >
+              Подробнее
+            </Button>
+          </Link>
         </div>
         <div className={styles.line}></div>
         <div className={styles.card}>
@@ -29,13 +32,15 @@ const PackagesBlock = () => {
           <p className={styles.card__description}>
             Подарочные упаковки с использованием фурнитуры высокого качества
           </p>
-          <Button
-            className={styles.card__action}
-            mode="dark"
-            isRedirecting={true}
-          >
-            Подробнее
-          </Button>
+          <Link to="/complex-package">
+            <Button
+              className={styles.card__action}
+              mode="dark"
+              isRedirecting={true}
+            >
+              Подробнее
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,10 +1,13 @@
-import React, { useLayoutEffect } from "react"
+import React, { useLayoutEffect, useState } from "react"
 import styles from "./ItemPage.module.scss"
 import Slider from "components/Slider"
 import wineImage from "../../assets/images/wine.jpg"
 import wineThumbnail from "../../assets/images/wine.jpg"
 import glassImage from "../../assets/images/glass.jpg"
 import glassThumbnail from "../../assets/images/glass.jpg"
+import { Outlet, useParams } from "react-router"
+import axios from "axios"
+import { Response } from "types"
 
 const images = [
   {
@@ -21,9 +24,56 @@ const images = [
   },
 ]
 
+type Image = {
+  original: string
+  thumbnail: string
+}
+
+type ItemPics = {
+  product_item_id: number
+  url: string
+  product_id: number
+}
+
+type Item = {
+  product_id: number
+  title: string
+  url: string
+  description: string
+  category_id: number
+  items: ItemPics[]
+}
+
 const ItemPage = () => {
+  const { itemId } = useParams()
+  const [item, setItem] = useState<Item>()
+  const [images, setImages] = useState<Image[]>([])
+  // const images: Image[] = [];
+
+  const getItem = async () => {
+    try {
+      const response: Response = await axios(
+        `https://partnerev.ru/api/products/${itemId}`,
+        {
+          method: "GET",
+        }
+      )
+      setImages(
+        response.data.items.map((itemPic: ItemPics) => ({
+          original: itemPic.url,
+          thumbnail: itemPic.url, // Assuming you want to use the same URL for both original and thumbnail
+        }))
+      )
+      setItem(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
+    console.log(itemId)
+    getItem()
   }, [])
   return (
     <div className={styles["item-page"]}>
@@ -35,15 +85,10 @@ const ItemPage = () => {
           />
           <div className={styles["item-page__content_text"]}>
             <h1 className={styles["item-page__content_text_title"]}>
-              Винный бокал
+              {item?.title}
             </h1>
             <p className={styles["item-page__content_text_description"]}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur.
+              {item?.description}
             </p>
           </div>
         </div>

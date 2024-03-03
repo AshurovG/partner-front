@@ -98,7 +98,9 @@ header {
         }
 
         img {
-          width: 100%;
+          min-width: 100%;
+          max-width: 100%;
+          object-fit: cover;
           height: 220px;
           border-radius: 1vw;
           overflow: hidden;

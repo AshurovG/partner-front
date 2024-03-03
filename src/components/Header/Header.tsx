@@ -10,30 +10,42 @@ import { motion, AnimatePresence } from "framer-motion"
 import ArrowLeftIcon from "components/Icons/ArrowLeftIcon"
 import ArrowRightIcon from "components/Icons/ArrowRightIcon"
 
+import Bottles from "../../assets/images/bottles-block-background.png"
+import Decorations from "../../assets/images/decs.png"
+import Simple from "../../assets/images/simple_package.png"
+import Complex from "../../assets/images/complex_package.png"
+import Glasses from "../../assets/images/gl.png"
+
 const dataTop = [
   {
-    url: "https://main-cdn.sbermegamarket.ru/big2/hlr-system/650/590/078/112/220/37/600009463326b7.jpeg",
+    url: Bottles,
     title: "Стеклянная тара",
+    key: "bottles",
+  },
+  {
+    url: Simple,
+    title: "Простая упаковка",
+    key: "simple-package",
+  },
+  {
+    url: Complex,
+    title: "Сложная упаковка",
+    key: "complex-package",
+  },
+  {
+    url: Decorations,
+    title: "Медальоны и жетоны",
+    key: "decorations",
+  },
+  {
+    url: Glasses,
+    title: "Бокалы & Рюмки",
+    key: "glasses",
   },
   {
     url: "https://main-cdn.sbermegamarket.ru/big2/hlr-system/650/590/078/112/220/37/600009463326b7.jpeg",
     title: "Укупорочные устройства",
-  },
-  {
-    url: "https://main-cdn.sbermegamarket.ru/big2/hlr-system/650/590/078/112/220/37/600009463326b7.jpeg",
-    title: "Медальоны и жетоны",
-  },
-  {
-    url: "https://main-cdn.sbermegamarket.ru/big2/hlr-system/650/590/078/112/220/37/600009463326b7.jpeg",
-    title: "Бокалы например",
-  },
-  {
-    url: "https://main-cdn.sbermegamarket.ru/big2/hlr-system/650/590/078/112/220/37/600009463326b7.jpeg",
-    title: "Простая упаковка",
-  },
-  {
-    url: "https://main-cdn.sbermegamarket.ru/big2/hlr-system/650/590/078/112/220/37/600009463326b7.jpeg",
-    title: "Сложная упаковка",
+    key: "locks",
   },
 ]
 
@@ -130,14 +142,16 @@ const Header = () => {
                   >
                     {dataTop.map((item, index) => {
                       return (
-                        <div
-                          className={styles["submenu__slider_inner--card"]}
-                          key={index}
-                        >
-                          <img src={item.url} alt="hero_img" />
+                        <Link to={`/${item.key}`}>
+                          <div
+                            className={styles["submenu__slider_inner--card"]}
+                            key={index}
+                          >
+                            <img src={item.url} alt="hero_img" />
 
-                          <h2>{item.title}</h2>
-                        </div>
+                            <h2>{item.title}</h2>
+                          </div>
+                        </Link>
                       )
                     })}
                   </Slider>

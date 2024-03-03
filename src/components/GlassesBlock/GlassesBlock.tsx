@@ -2,6 +2,7 @@ import React from "react"
 import styles from "./GlassesBlock.module.scss"
 import Button from "components/Button"
 import Glasses from "../../assets/images/glasses.png"
+import { Link } from "react-router-dom"
 
 const GlassesBlock = () => {
   return (
@@ -16,13 +17,15 @@ const GlassesBlock = () => {
             нашими специалистами
           </p>
           <div>
-            <Button
-              className={styles.block__inner_content_action}
-              isRedirecting={true}
-              mode="inverse"
-            >
-              Подробнее
-            </Button>
+            <Link to="/glasses">
+              <Button
+                className={styles.block__inner_content_action}
+                isRedirecting={true}
+                mode="inverse"
+              >
+                Подробнее
+              </Button>
+            </Link>
           </div>
         </div>
         <img src={Glasses} className={styles.block__inner_image}></img>

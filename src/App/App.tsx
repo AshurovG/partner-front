@@ -10,6 +10,7 @@ import ContactForm from "components/ContactForm"
 import ItemPage from "pages/ItemPage"
 import AuthPage from "pages/AuthPage"
 import AboutCompanyBlock from "components/AboutCompanyBlock"
+import CategoryPage from "pages/CategoryPage"
 
 const App = () => {
   return (
@@ -18,11 +19,16 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<MainPage />}></Route>
-          <Route path="/item" element={<ItemPage />}></Route>
+          <Route path="/:categoryKey/*" element={<CategoryPage />} />
+          <Route path="/:categoryKey/:itemId" element={<ItemPage />} />
+          {/* <Route path="/:item" element={<ItemPage />}></Route> */}
           <Route path="/ashurovvitaly" element={<AshurovCardPage />}></Route>
           <Route path="/rasulovelshan" element={<RasulovCardPage />}></Route>
-          <Route path="/derevitskayaevgenia"element={<DerevitskayaCardPage />}></Route>
-          <Route path='/login' element={<AuthPage/>}/>
+          <Route
+            path="/derevitskayaevgenia"
+            element={<DerevitskayaCardPage />}
+          ></Route>
+          <Route path="/login" element={<AuthPage />} />
           {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
         </Routes>
         <ContactForm />

@@ -1,0 +1,20 @@
+@import "../../styles/variables.scss";
+
+.category-page {
+  margin-top: 200px;
+  &__inner {
+    max-width: $content-width;
+    margin: 0 auto;
+    &_title {
+      font-size: 40px;
+      font-weight: 800;
+      color: $brand-color;
+    }
+    &_description {
+      font-size: 28px;
+      color: $brand-secondary;
+    }
+    &_content {
+    }
+  }
+}

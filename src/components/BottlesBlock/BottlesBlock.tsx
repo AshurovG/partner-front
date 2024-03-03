@@ -15,7 +15,7 @@ const BottlesBlock = () => {
             вино-коньяной продукции
           </p>
           <div>
-            <Link to="item">
+            <Link to="/bottles">
               <Button
                 className={styles.block__inner_content_action}
                 isRedirecting={true}
