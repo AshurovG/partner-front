@@ -1,11 +1,16 @@
 import React, {useRef} from 'react'
 import { useForm, FieldValues } from "react-hook-form"
+import { toast } from "react-toastify"
 import axios from 'axios'
 import Button from "components/Button"
 import styles from './AuthPage.module.scss'
-import Card from 'components/Card'
+import { useDispatch } from "react-redux"
+import { setIsAuthAction } from "slices/AuthSlice"
+import { useNavigate } from 'react-router-dom'
 
 const AuthPage = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const form = useRef<HTMLFormElement>(null)
 
     const forma = useForm({
@@ -17,20 +22,24 @@ const AuthPage = () => {
 
     const login = async (password: string) => {
         try {
-            const response = await axios(`https://partnerev.ru/api/login`, {
-                method: 'POST',
-                data: {
-                    password: password
-                }
+            const response = await axios("https://partnerev.ru/api/login", {
+              method: "POST",
+              data: {
+                password: password,
+              },
             })
-            // Загрзка jwt в redux
-        } catch (error) {
+            localStorage.setItem("token", response.data.token)
+            dispatch(setIsAuthAction(true))
+            navigate("/")
+            toast.success("Вы успешно вошли в систему!")
+          } catch (error) {
+            toast.error("Неверный код доступа!")
             throw error
-        }
+          }
     }
     
     const onSubmit = (data: FieldValues) => {
-        console.log(data.fio, data.email, data.description)
+        login(data.password)
     }
 
     return (

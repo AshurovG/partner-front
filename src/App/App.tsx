@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import MainPage from "pages/MainPage"
 import AshurovCardPage from "pages/AshurovCardPage"
 import RasulovCardPage from "pages/RasulovCardPage"
@@ -34,6 +36,7 @@ const App = () => {
         <ContactForm />
         <Footer />
       </BrowserRouter>
+      <ToastContainer autoClose={1500} pauseOnHover={false} />
     </div>
   )
 }
