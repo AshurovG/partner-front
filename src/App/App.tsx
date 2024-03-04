@@ -15,7 +15,6 @@ import Footer from "components/Footer"
 import ContactForm from "components/ContactForm"
 import ItemPage from "pages/ItemPage"
 import AuthPage from "pages/AuthPage"
-import AboutCompanyBlock from "components/AboutCompanyBlock"
 import CategoryPage from "pages/CategoryPage"
 
 const App = () => {

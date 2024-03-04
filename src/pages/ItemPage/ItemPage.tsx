@@ -1,26 +1,34 @@
-import React, { useLayoutEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import styles from "./ItemPage.module.scss"
 import Slider from "components/Slider"
 import wineImage from "../../assets/images/wine.jpg"
 import wineThumbnail from "../../assets/images/wine.jpg"
 import glassImage from "../../assets/images/glass.jpg"
 import glassThumbnail from "../../assets/images/glass.jpg"
-import { Outlet, useParams } from "react-router"
+import { useParams } from "react-router"
 import axios from "axios"
 import { Response } from "types"
 
-const images = [
+const mockImages = [
   {
     original: wineImage,
-    thumbnail: wineThumbnail,
+    thumbnail: wineImage,
   },
   {
     original: glassImage,
-    thumbnail: glassThumbnail,
+    thumbnail: glassImage,
   },
   {
     original: wineImage,
-    thumbnail: wineThumbnail,
+    thumbnail: wineImage,
+  },
+  {
+    original: wineImage,
+    thumbnail: wineImage,
+  },
+  {
+    original: wineImage,
+    thumbnail: wineImage,
   },
 ]
 
@@ -43,12 +51,11 @@ type Item = {
   category_id: number
   items: ItemPics[]
 }
-
 const ItemPage = () => {
   const { itemId } = useParams()
   const [item, setItem] = useState<Item>()
   const [images, setImages] = useState<Image[]>([])
-  // const images: Image[] = [];
+  const [isLoading, setIsLoading] = useState<boolean>(true) // Добавляем состояние для отслеживания загрузки
 
   const getItem = async () => {
     try {
@@ -58,31 +65,40 @@ const ItemPage = () => {
           method: "GET",
         }
       )
+
+      setItem(response.data)
       setImages(
         response.data.items.map((itemPic: ItemPics) => ({
           original: itemPic.url,
-          thumbnail: itemPic.url, // Assuming you want to use the same URL for both original and thumbnail
+          thumbnail: itemPic.url,
         }))
       )
-      setItem(response.data)
+      setIsLoading(false) // Устанавливаем состояние загрузки в false после получения данных
     } catch (error) {
       console.log(error)
+      setIsLoading(false) // Также устанавливаем состояние загрузки в false в случае ошибки
     }
   }
 
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0)
-    console.log(itemId)
+  useEffect(() => {
     getItem()
   }, [])
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  // Рендерим Slider только после загрузки данных
   return (
     <div className={styles["item-page"]}>
       <div className={styles["item-page__inner"]}>
         <div className={styles["item-page__content"]}>
-          <Slider
-            className={styles["item-page__content_slider"]}
-            images={images}
-          />
+          {!isLoading && (
+            <Slider
+              className={styles["item-page__content_slider"]}
+              images={images}
+            />
+          )}
           <div className={styles["item-page__content_text"]}>
             <h1 className={styles["item-page__content_text_title"]}>
               {item?.title}

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import styles from "./Header.module.scss"
 import useScrollDirection from "../../utils/HeaderHook"
@@ -6,6 +6,8 @@ import BurgerIcon from "components/Icons/BurgerIcon"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import { scroller, Link as ScrollLink } from "react-scroll"
+
 import { motion, AnimatePresence } from "framer-motion"
 import ArrowLeftIcon from "components/Icons/ArrowLeftIcon"
 import ArrowRightIcon from "components/Icons/ArrowRightIcon"
@@ -58,6 +60,20 @@ const Header = () => {
   ].includes(location.pathname)
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
   const scrollDirection = useScrollDirection()
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setIsSubmenuOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", checkIfClickedOutside)
+    return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside)
+    }
+  }, [])
 
   const headerClass =
     scrollDirection === "up" ? styles.headerUp : styles.headerDown
@@ -116,11 +132,10 @@ const Header = () => {
                 ></div>
               )}
             </div>
-            <Link to="/">
-              <div className={styles.header__inner_contact}>
-                +7 (861) 203-38-33
-              </div>
-            </Link>
+
+            <div className={styles.header__inner_contact}>
+              <a href="tel:+7-861-203-38-33">+7 (861) 203-38-33</a>
+            </div>
           </div>
           <AnimatePresence>
             {isSubmenuOpen && (
@@ -131,9 +146,39 @@ const Header = () => {
                 animate="open"
                 exit="closed"
               >
-                <div className={styles.submenu__info}>
-                  <h2>Задать вопрос</h2>
-                  <h2>Контакты</h2>
+                <div ref={menuRef} className={styles.submenu__info}>
+                  <Link to="/">
+                    <h2
+                      onClick={() => {
+                        setIsSubmenuOpen(false)
+                      }}
+                    >
+                      Главная
+                    </h2>
+                  </Link>
+
+                  <h2
+                    onClick={() => {
+                      scroller.scrollTo("form", {
+                        smooth: true,
+                        duration: 1000,
+                      })
+                      setIsSubmenuOpen(false)
+                    }}
+                  >
+                    Задать вопрос
+                  </h2>
+                  <h2
+                    onClick={() => {
+                      scroller.scrollTo("contacts", {
+                        smooth: true,
+                        duration: 1000,
+                      })
+                      setIsSubmenuOpen(false)
+                    }}
+                  >
+                    Контакты
+                  </h2>
                 </div>
                 <div className={styles.submenu__slider}>
                   <Slider
