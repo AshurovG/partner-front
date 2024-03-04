@@ -62,18 +62,18 @@ const Header = () => {
   const scrollDirection = useScrollDirection()
   const menuRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const checkIfClickedOutside = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setIsSubmenuOpen(false)
-      }
-    }
+  // useEffect(() => {
+  //   const checkIfClickedOutside = (e: MouseEvent) => {
+  //     if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+  //       setIsSubmenuOpen(false)
+  //     }
+  //   }
 
-    document.addEventListener("mousedown", checkIfClickedOutside)
-    return () => {
-      document.removeEventListener("mousedown", checkIfClickedOutside)
-    }
-  }, [])
+  //   document.addEventListener("mousedown", checkIfClickedOutside)
+  //   return () => {
+  //     document.removeEventListener("mousedown", checkIfClickedOutside)
+  //   }
+  // }, [])
 
   const headerClass =
     scrollDirection === "up" ? styles.headerUp : styles.headerDown

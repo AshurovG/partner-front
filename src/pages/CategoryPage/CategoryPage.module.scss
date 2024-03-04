@@ -15,6 +15,7 @@
       color: $brand-secondary;
     }
     &_content {
+      margin-top: 24px;
       display: grid;
       // grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       grid-template-columns: repeat(4, 340px);

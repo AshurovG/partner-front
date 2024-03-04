@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import { useRef } from "react"
 import styles from "./ContactForm.module.scss"
 import { useLocation } from "react-router-dom"
 import { useForm, FieldValues } from "react-hook-form"
@@ -18,11 +18,11 @@ const ContactForm = () => {
     mode: "onChange",
   })
 
-  const { register, handleSubmit, formState, reset } = forma
+  const { register, handleSubmit, formState } = forma
   const { isValid, touchedFields, errors } = formState
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data.fio, data.email, data.description)
+    console.log(data.fio, data.phone, data.description)
   }
 
   return (
@@ -59,20 +59,20 @@ const ContactForm = () => {
               </div>
               <div style={{ position: "relative", width: `100%` }}>
                 <input
-                  {...register("email", {
+                  {...register("phone", {
                     required: "Обязательное поле",
                     pattern: {
-                      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                      message: "Введите корректный e-mail",
+                      value: /^8\d{10}$/,
+                      message: "Введите корректный номер телефона",
                     },
                   })}
                   className={styles.form__input}
-                  type="email"
-                  placeholder="Введите e-mail*"
+                  type="tel"
+                  placeholder="Введите номер телефона*"
                 />
-                {errors?.email && touchedFields.email && (
+                {errors?.phone && touchedFields.phone && (
                   <div className={styles.form__input_message}>
-                    {errors?.email?.message?.toString()}
+                    {errors?.phone?.message?.toString()}
                   </div>
                 )}
               </div>
