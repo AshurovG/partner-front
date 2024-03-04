@@ -5,6 +5,7 @@ import CategoriesList from 'components/CategoriesList'
 import Card from 'components/Card'
 import AddButton from 'components/Icons/AddButton'
 import ModalWindow from 'components/ModalWindow'
+import ProductForm from 'components/PorductForm/PorductForm'
 
 type Card = {
     product_id: number
@@ -51,7 +52,7 @@ const AdminPage = () => {
             </div>
 
             <ModalWindow className={styles['admin__page-modal']} active={isCreateWindowOpened} handleBackdropClick={() => setIsCreateWindowOpened(false)}>
-                dklsjfklsa
+                <ProductForm/>
             </ModalWindow>
         </div>
     )
