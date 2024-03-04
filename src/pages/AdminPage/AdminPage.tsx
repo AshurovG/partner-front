@@ -3,6 +3,8 @@ import axios from 'axios'
 import styles from './AdminPage.module.scss'
 import CategoriesList from 'components/CategoriesList'
 import Card from 'components/Card'
+import AddButton from 'components/Icons/AddButton'
+import ModalWindow from 'components/ModalWindow'
 
 type Card = {
     product_id: number
@@ -14,6 +16,7 @@ type Card = {
 
 const AdminPage = () => {
     const [cards, setCards] = useState<Card[]>([])
+    const [isCreateWindowOpened, setIsCreateWindowOpened] = useState(false)
 
     const getProducts = async (id: number) => {
         try {
@@ -35,6 +38,7 @@ const AdminPage = () => {
                 <h4 className={styles['admin__page-subtitle']}>Здесь вы можете обновлять информацию о вашем сайте!</h4>
                 <div className={styles['admin__page-action']}>
                     <h4 className={styles['admin__page-text']}>Хотите добавить новый товар?</h4>
+                    <AddButton onClick={() => {setIsCreateWindowOpened(true)}}/>
                 </div>
                 <div className={styles['admin__page-content']}>
                     <CategoriesList className={styles['admin__page-list']} onClick={getProducts} />
@@ -45,6 +49,10 @@ const AdminPage = () => {
                     </div>
                 </div>
             </div>
+
+            <ModalWindow className={styles['admin__page-modal']} active={isCreateWindowOpened} handleBackdropClick={() => setIsCreateWindowOpened(false)}>
+                dklsjfklsa
+            </ModalWindow>
         </div>
     )
 }
