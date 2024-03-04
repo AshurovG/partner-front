@@ -18,7 +18,7 @@ const Footer = () => {
   return (
     <>
       {showFooter ? (
-        <footer className={styles.footer}>
+        <footer id="contacts" className={styles.footer}>
           <div className={styles.footer__inner}>
             <div className={styles.footer__inner_left}>
               <img className={styles.footer__inner_left_logo} src={Logo}></img>

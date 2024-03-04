@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import styles from "./CategoryPage.module.scss"
-import { Link, Route, Routes, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { Categories } from "../../consts"
 import axios from "axios"
 import { Response } from "../../types"
 import Card from "components/Card"
 import Test from "../../assets/images/wine.jpg"
-import ItemPage from "pages/ItemPage"
-import { Outlet } from "react-router-dom"
 
 type Card = {
   product_id: number
@@ -46,10 +44,13 @@ const CategoryPage = () => {
     }
   }
 
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   useEffect(() => {
     console.log(categoryKey)
     getCategoryItems()
-  }, [])
+  }, [categoryKey])
 
   return (
     <div className={styles["category-page"]}>
@@ -64,7 +65,7 @@ const CategoryPage = () => {
           {cards.length != 0 ? (
             cards.map((item: Card) => (
               <Link to={`${item.product_id}`} key={item.product_id}>
-                <Card title={item.title} image={Test}></Card>
+                <Card title={item.title} image={item.url}></Card>
               </Link>
             ))
           ) : (

@@ -2,12 +2,27 @@ import React from "react"
 import styles from "./LocksBlock.module.scss"
 import { Link } from "react-router-dom"
 import Button from "components/Button"
+import { motion } from "framer-motion"
+
+const Animation = {
+  hidden: { y: 300, opacity: 0 },
+  visible: { y: 0, opacity: 1 },
+  transition: {
+    type: "Tween",
+    duration: 10,
+  },
+}
 
 const LocksBlock = () => {
   return (
     <div className={styles.block}>
       <div className={styles.block__inner}>
-        <div className={styles.block__inner_content}>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={Animation}
+          className={styles.block__inner_content}
+        >
           <h2 className={styles.block__inner_content_title}>
             УКУПОРОЧНЫЕ УСТРОЙСТВА
           </h2>
@@ -26,7 +41,7 @@ const LocksBlock = () => {
               </Button>
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   )
