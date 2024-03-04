@@ -81,7 +81,6 @@ const CategoryPage = () => {
                 <div style={{ color: "red" }}>пусто</div>
               )}
             </div>
-            {/* <Skeleton /> */}
           </>
         )}
       </div>

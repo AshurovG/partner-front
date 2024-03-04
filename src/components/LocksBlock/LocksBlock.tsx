@@ -5,11 +5,14 @@ import Button from "components/Button"
 import { motion } from "framer-motion"
 
 const Animation = {
-  hidden: { y: 300, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-  transition: {
-    type: "Tween",
-    duration: 10,
+  hidden: { y: 100, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "Tween",
+      duration: 0.5,
+    },
   },
 }
 

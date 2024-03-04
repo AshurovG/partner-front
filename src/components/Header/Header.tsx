@@ -161,7 +161,7 @@ const Header = () => {
                     onClick={() => {
                       scroller.scrollTo("form", {
                         smooth: true,
-                        duration: 1000,
+                        duration: 1500,
                       })
                       setIsSubmenuOpen(false)
                     }}
@@ -172,7 +172,7 @@ const Header = () => {
                     onClick={() => {
                       scroller.scrollTo("contacts", {
                         smooth: true,
-                        duration: 1000,
+                        duration: 1500,
                       })
                       setIsSubmenuOpen(false)
                     }}
