@@ -2,31 +2,31 @@ export const Categories = [
   {
     id: 1,
     key: "bottles",
-    value: "Категория 1",
+    value: "Стекляная тара",
   }, // стекляная тара
   {
     id: 2,
     key: "simple-package",
-    value: "Категория 2",
+    value: "Простая упаковка",
   }, // простая упаковка
   {
     id: 3,
     key: "complex-package",
-    value: "Категория 3",
+    value: "Сложная упаковка",
   }, // сложная упаковка
   {
     id: 4,
     key: "decorations",
-    value: "Категория 4",
+    value: "Медальоны",
   }, // медальоны
   {
     id: 5,
     key: "glasses",
-    value: "Категория 5",
+    value: "Бокалы, рюмки и тд.",
   }, // бокалы, рюмки и тд
   {
     id: 6,
     key: "locks",
-    value: "Категория 6",
+    value: "Укупорочные устройства",
   }, // укупорочные устройства
 ]

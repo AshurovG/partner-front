@@ -16,6 +16,7 @@ import ContactForm from "components/ContactForm"
 import ItemPage from "pages/ItemPage"
 import AuthPage from "pages/AuthPage"
 import CategoryPage from "pages/CategoryPage"
+import AdminPage from 'pages/AdminPage'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -58,6 +59,7 @@ const App = () => {
               <Route path="/" element={<MainPage />}></Route>
               <Route path="/:categoryKey/*" element={<CategoryPage />} />
               <Route path="/:categoryKey/:itemId" element={<ItemPage />} />
+              {isAuth && <Route path="/admin" element={<AdminPage />}/>}
               {/* <Route path="/:item" element={<ItemPage />}></Route> */}
               <Route path="/ashurovvitaly" element={<AshurovCardPage />}></Route>
               <Route path="/rasulovelshan" element={<RasulovCardPage />}></Route>
