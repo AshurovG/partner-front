@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 import styles from './AdminPage.module.scss'
 import CategoriesList from 'components/CategoriesList'
 import Card from 'components/Card'
@@ -18,15 +19,56 @@ type Card = {
 const AdminPage = () => {
     const [cards, setCards] = useState<Card[]>([])
     const [isCreateWindowOpened, setIsCreateWindowOpened] = useState(false)
+    const [selectedCategoryId, setSelectedCategoryId] = useState(3)
+    
 
     const getProducts = async (id: number) => {
         try {
             const response = await axios(`https://partnerev.ru/api/categories/${id}`)
             setCards(response.data.products)
+            setSelectedCategoryId(id)
         } catch (error) {
             throw error
         }
     }
+
+    const postProduct = async (
+        title: string,
+        description: string,
+        file: File | null
+      ) => {
+       
+        try {
+          const formData = new FormData()
+        //   if (token) {
+        //     formData.append("jwt", token)
+        //   }
+          formData.append("title", title)
+          formData.append("description", description)
+          formData.append("category_id", selectedCategoryId.toString());;
+          if (file && file.size > 5 * 1024 * 1024) {
+            toast.error("Размер фотографии должен не превышать  5 МБ")
+            return
+          } else if (file) {
+            formData.append("file", file)
+          }
+          await axios("https://partnerev.ru/api/products/", {
+            method: "POST",
+            data: formData,
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+        //   setIsCardsLoading(true)
+          toast.success("Объект создан успешно!")
+    
+          getProducts(selectedCategoryId)
+          setIsCreateWindowOpened(false)
+        } catch (error) {
+          toast.error("Размер фотографии должен не превышать 5 МБ")
+          throw error
+        }
+      }
 
     useEffect(() => {
         getProducts(3)
@@ -52,7 +94,13 @@ const AdminPage = () => {
             </div>
 
             <ModalWindow className={styles['admin__page-modal']} active={isCreateWindowOpened} handleBackdropClick={() => setIsCreateWindowOpened(false)}>
-                <ProductForm/>
+                <ProductForm 
+                    isEditing={false}
+                    onSubmit={postProduct}
+                    title=""
+                    description=""
+                    fileTitle=""
+                    active={isCreateWindowOpened}/>
             </ModalWindow>
         </div>
     )
