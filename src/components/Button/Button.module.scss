@@ -37,8 +37,12 @@
   &:hover {
     transform: scale(1.05);
   }
-  //   &:disabled {
-  //     background-color: #634242d1;
-  //     cursor: default;
-  //   }
+    &:disabled {
+      background-color: #b4acacd1;
+      border: none; 
+      cursor: default;
+      &:hover {
+        transform: none;
+      }
+    }
 }
