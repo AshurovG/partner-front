@@ -7,7 +7,9 @@ import { Response } from "../../types"
 import Card from "components/Card"
 import Test from "../../assets/images/wine.jpg"
 import MyLoader from "components/Skeletons/CardSkeleton"
-import Skeleton from "components/Skeletons/CardSkeleton"
+
+import Skeleton from "react-loading-skeleton"
+import "react-loading-skeleton/dist/skeleton.css"
 
 type Card = {
   product_id: number
@@ -28,6 +30,7 @@ const CategoryPage = () => {
   const [category, setCategory] = useState<Category>()
   const [cards, setCards] = useState<Card[]>([])
   const [categoryExists, setCategoryExists] = useState<boolean>(true)
+  const [isItemsLoading, setIsItemsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const categoryObject = Categories.find((cat) => cat.key === categoryKey)
@@ -36,6 +39,7 @@ const CategoryPage = () => {
     } else {
       getCategoryItems(categoryObject.id)
     }
+    setIsItemsLoading(true)
   }, [categoryKey])
 
   const getCategoryItems = async (categoryId: number) => {
@@ -48,6 +52,9 @@ const CategoryPage = () => {
       )
       setCards(response.data.products)
       setCategory(response.data)
+      setTimeout(() => {
+        setIsItemsLoading(false)
+      }, 3000)
     } catch (error) {
       console.log(error)
     }
@@ -64,21 +71,51 @@ const CategoryPage = () => {
           <Navigate to="/" replace />
         ) : (
           <>
-            <h1 className={styles["category-page__inner_title"]}>
-              {category?.title}
-            </h1>
-            <div className={styles["category-page__inner_description"]}>
-              {category?.description}
-            </div>
+            {isItemsLoading ? (
+              <Skeleton
+                className={styles["category-page__inner_title"]}
+                width={500}
+                style={{ marginBottom: 15 }}
+                highlightColor="#ac6823"
+                baseColor="#cc9966"
+              />
+            ) : (
+              <h1 className={styles["category-page__inner_title"]}>
+                {category?.title}
+              </h1>
+            )}
+            {isItemsLoading ? (
+              <Skeleton
+                style={{ marginTop: 5 }}
+                className={styles["category-page__inner_description"]}
+                count={3}
+                highlightColor="#ac6823"
+                baseColor="#cc9966"
+              />
+            ) : (
+              <div className={styles["category-page__inner_description"]}>
+                {category?.description}
+              </div>
+            )}
+
             <div className={styles["category-page__inner_content"]}>
-              {cards.length != 0 ? (
+              {isItemsLoading ? (
+                [...new Array(8)].map((_, index) => (
+                  <Skeleton
+                    highlightColor="#ac6823"
+                    baseColor="#cc9966"
+                    height={466}
+                    key={index}
+                  />
+                ))
+              ) : cards.length == 0 ? (
+                <div style={{ color: "red" }}>пусто</div>
+              ) : (
                 cards.map((item: Card) => (
                   <Link to={`${item.product_id}`} key={item.product_id}>
                     <Card title={item.title} image={item.url}></Card>
                   </Link>
                 ))
-              ) : (
-                <div style={{ color: "red" }}>пусто</div>
               )}
             </div>
           </>

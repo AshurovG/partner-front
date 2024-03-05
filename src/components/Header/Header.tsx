@@ -61,19 +61,30 @@ const Header = () => {
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
   const scrollDirection = useScrollDirection()
   const menuRef = useRef<HTMLDivElement>(null)
+  const sliderRef = useRef(null)
 
-  // useEffect(() => {
-  //   const checkIfClickedOutside = (e: MouseEvent) => {
-  //     if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-  //       setIsSubmenuOpen(false)
-  //     }
-  //   }
+  useEffect(() => {
+    const checkIfClickedOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement // Приведение типа для доступа к свойствам DOM
+      const isLeftIconClicked = target.id === "left-icon"
+      const isRightIconClicked = target.id === "right-icon"
 
-  //   document.addEventListener("mousedown", checkIfClickedOutside)
-  //   return () => {
-  //     document.removeEventListener("mousedown", checkIfClickedOutside)
-  //   }
-  // }, [])
+      if (
+        e.target &&
+        menuRef.current &&
+        !menuRef.current.contains(e.target as Node) &&
+        !isLeftIconClicked &&
+        !isRightIconClicked
+      ) {
+        setIsSubmenuOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", checkIfClickedOutside)
+    return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside)
+    }
+  }, [])
 
   const headerClass =
     scrollDirection === "up" ? styles.headerUp : styles.headerDown
@@ -104,8 +115,8 @@ const Header = () => {
     slidesToShow: 2.5,
     slidesToScroll: 1,
     initialSlide: 0,
-    prevArrow: <ArrowLeftIcon />,
-    nextArrow: <ArrowRightIcon />,
+    prevArrow: <ArrowLeftIcon id="left-icon" />,
+    nextArrow: <ArrowRightIcon id="right-icon" />,
   }
 
   return (
@@ -145,8 +156,9 @@ const Header = () => {
                 initial="closed"
                 animate="open"
                 exit="closed"
+                ref={menuRef}
               >
-                <div ref={menuRef} className={styles.submenu__info}>
+                <div className={styles.submenu__info}>
                   <Link to="/">
                     <h2
                       onClick={() => {
@@ -182,6 +194,7 @@ const Header = () => {
                 </div>
                 <div className={styles.submenu__slider}>
                   <Slider
+                    ref={sliderRef}
                     {...settings}
                     className={styles["submenu__slider_inner"]}
                   >
@@ -189,6 +202,9 @@ const Header = () => {
                       return (
                         <Link to={`/${item.key}`}>
                           <div
+                            onClick={() => {
+                              setIsSubmenuOpen(false)
+                            }}
                             className={styles["submenu__slider_inner--card"]}
                             key={index}
                           >
