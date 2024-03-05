@@ -12,9 +12,10 @@ type ImageType = {
 interface SliderProps {
   images: ImageType[]
   className: string
+  isNotAutomatic?: boolean
 }
 
-const Slider: React.FC<SliderProps> = ({ images, className }) => {
+const Slider: React.FC<SliderProps> = ({ images, className, isNotAutomatic }) => {
   useEffect(() => {
     console.log(images)
   }, [images])
@@ -26,7 +27,7 @@ const Slider: React.FC<SliderProps> = ({ images, className }) => {
         // showThumbnails={false}
         showPlayButton={false}
         showFullscreenButton={false}
-        autoPlay={true}
+        autoPlay={!isNotAutomatic}
         slideInterval={4000}
         showNav={true}
       />

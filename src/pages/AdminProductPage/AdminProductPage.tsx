@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import styles from './AdminProductPage.module.scss'
-import {Response} from '../../types'
-import Card from 'components/Card'
+import { Response } from '../../types'
+import EditIcon from 'components/Icons/EditIcon'
+import BasketIcon from 'components/Icons/BasketIcon'
+import Slider from "components/Slider"
+import AddButton from 'components/Icons/AddButton'
 
 type Image = {
     original: string
@@ -64,14 +67,66 @@ const AdminProductPage = () => {
             <div className={styles['product__page-wrapper']}>
               <div className={styles['product__page-content']}>
                 <img className={styles['product__page-image']} src={item?.url} alt="" />
+
                 <div className={styles['product__page-info']}>
-                  <h4 className={styles['product__page-subtitle']}>Название товара:</h4>
-                  <p className={styles['product__page-text']}>{item?.title}</p>
-                  <h4 className={styles['product__page-subtitle']}>Описание товара:</h4>
-                  <p className={styles['product__page-text']}>{item?.description}</p>
+                  <div>
+                    <h4 className={styles['product__page-subtitle']}>Название товара:</h4>
+                    <p className={styles['product__page-text']}>{item?.title}</p>
+                  </div>
+
+                  <div>
+                    <h4 className={styles['product__page-subtitle']}>Описание товара:</h4>
+                    <p className={styles['product__page-text']}>{item?.description}</p>
+                  </div>
+                </div>
+
+                <div className={styles['product__page-action']}>
+                  <div className={styles['product__page-action-item']}>
+                    <p className={styles['product__page-subtitle']}>Изменить информацию о товаре</p>
+                    <EditIcon/>
+                  </div>
+                  
+                  <div className={styles['product__page-action-item']}>
+                    <p className={styles['product__page-subtitle']}>Удалить товар</p>
+                    <BasketIcon/>
+                  </div>
                 </div>
               </div>
-              
+
+              <div className={styles['product__page-gallery']}>
+                {images.length !== 0 ? <div className={styles['product__page-gallery-content']}>
+                    <Slider
+                    className={styles["'product__page-gallery-slider"]}
+                    images={images}
+                    isNotAutomatic
+                    />
+                    <div className={styles['product__page-action']}>
+                      <div className={styles['product__page-action-item']}>
+                        <p className={styles['product__page-subtitle']}>
+                          Добавить новое фото
+                        </p>
+                        <AddButton onClick={() => {}}/>
+                      </div>
+
+                      <div className={styles['product__page-action-item']}>
+                        <p className={styles['product__page-subtitle']}>
+                          Удалить текущее фото
+                        </p>
+                        <BasketIcon onClick={() => {}}/>
+                      </div>
+                    </div>
+                  </div>
+                :  <div>
+                    <p className={styles['product__page-subtitle']}>На данный момент в галерее нет ни одного фото!</p>
+                    <div className={styles['product__page-action-item']}>
+                      <p className={styles['product__page-subtitle']}>
+                        Хотите добавить новое?
+                      </p>
+                      <AddButton onClick={() => {}}/>
+                    </div>
+                  </div>
+                }
+              </div>
             </div>
         </div>
     )
