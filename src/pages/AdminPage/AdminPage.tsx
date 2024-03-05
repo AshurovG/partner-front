@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { Link } from 'react-router-dom'
 import styles from './AdminPage.module.scss'
 import CategoriesList from 'components/CategoriesList'
 import Card from 'components/Card'
@@ -21,7 +22,6 @@ const AdminPage = () => {
     const [isCreateWindowOpened, setIsCreateWindowOpened] = useState(false)
     const [selectedCategoryId, setSelectedCategoryId] = useState(3)
     
-
     const getProducts = async (id: number) => {
         try {
             const response = await axios(`https://partnerev.ru/api/categories/${id}`)
@@ -87,7 +87,7 @@ const AdminPage = () => {
                     <CategoriesList className={styles['admin__page-list']} onClick={getProducts} />
                     <div className={styles['admin__page-cards']}>
                         {cards.map((card: Card) => (
-                            <Card title={card.title} image={card.url}/>
+                            <Link to={`/products/${card.product_id}`}><Card title={card.title} image={card.url} /></Link>
                         ))}
                     </div>
                 </div>

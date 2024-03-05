@@ -11,8 +11,8 @@ const ContactForm = () => {
     "/rasulovelshan",
     "/derevitskayaevgenia",
     "/login",
-    "/admin"
-  ].includes(location.pathname)
+    "/admin",
+  ].includes(location.pathname) && !location.pathname.includes('/products')
   const form = useRef<HTMLFormElement>(null)
 
   const forma = useForm({
