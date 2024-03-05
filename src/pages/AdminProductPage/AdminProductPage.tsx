@@ -9,6 +9,7 @@ import Slider from "components/Slider"
 import AddButton from 'components/Icons/AddButton'
 
 type Image = {
+    id: number
     original: string
     thumbnail: string
   }
@@ -46,6 +47,7 @@ const AdminProductPage = () => {
           setItem(response.data)
           setImages(
             response.data.items.map((itemPic: ItemPics) => ({
+              id: itemPic.product_item_id,
               original: itemPic.url,
               thumbnail: itemPic.url,
             }))
