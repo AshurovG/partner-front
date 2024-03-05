@@ -7,23 +7,26 @@ import { motion } from "framer-motion"
 
 const Animation = {
   hidden: { y: 100, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-  transition: {
-    type: "Tween",
-    duration: 1,
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "Tween",
+      duration: 0.5,
+    },
   },
 }
 
 const GlassesBlock = () => {
   return (
     <div className={styles.block}>
-      <div className={styles.block__inner}>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={Animation}
-          className={styles.block__inner_content}
-        >
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        variants={Animation}
+        className={styles.block__inner}
+      >
+        <div className={styles.block__inner_content}>
           <h2 className={styles.block__inner_content_title}>
             СТЕКЛЯННАЯ ТАРА <br /> БОКАЛЫ & РЮМКИ
           </h2>
@@ -42,9 +45,9 @@ const GlassesBlock = () => {
               </Button>
             </Link>
           </div>
-        </motion.div>
+        </div>
         <img src={Glasses} className={styles.block__inner_image}></img>
-      </div>
+      </motion.div>
     </div>
   )
 }

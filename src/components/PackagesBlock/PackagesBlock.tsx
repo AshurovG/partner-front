@@ -5,11 +5,41 @@ import Complex from "../../assets/images/complex_package.png"
 import Simple from "../../assets/images/simple_package.png"
 import { Link } from "react-router-dom"
 
+import { motion } from "framer-motion"
+
+const Animation = {
+  hidden: { x: 100, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      type: "Tween",
+      duration: 1,
+    },
+  },
+}
+const LineAnimation = {
+  hidden: { y: 150, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "Tween",
+      duration: 1.2,
+    },
+  },
+}
+
 const PackagesBlock = () => {
   return (
     <div className={styles.block}>
       <div className={styles.block__inner}>
-        <div className={styles.card}>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={Animation}
+          className={styles.card}
+        >
           <img src={Simple} className={styles.card__image}></img>
           <h2 className={styles.card__title}>Простая упаковка</h2>
           <p className={styles.card__description}>
@@ -24,9 +54,19 @@ const PackagesBlock = () => {
               Подробнее
             </Button>
           </Link>
-        </div>
-        <div className={styles.line}></div>
-        <div className={styles.card}>
+        </motion.div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={LineAnimation}
+          className={styles.line}
+        ></motion.div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={Animation}
+          className={styles.card}
+        >
           <img src={Complex} className={styles.card__image}></img>
           <h2 className={styles.card__title}>Премиум упаковка</h2>
           <p className={styles.card__description}>
@@ -41,7 +81,7 @@ const PackagesBlock = () => {
               Подробнее
             </Button>
           </Link>
-        </div>
+        </motion.div>
       </div>
     </div>
   )

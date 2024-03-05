@@ -4,10 +4,29 @@ import Button from "components/Button"
 import Decarations from "../../assets/images/decorations.png"
 import { Link } from "react-router-dom"
 
+import { motion } from "framer-motion"
+
+const Animation = {
+  hidden: { y: 100, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "Tween",
+      duration: 0.5,
+    },
+  },
+}
+
 const DecorationsBlock = () => {
   return (
     <div className={styles.block}>
-      <div className={styles.block__inner}>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        variants={Animation}
+        className={styles.block__inner}
+      >
         <h2 className={styles.block__inner_title}>
           МЕДАЛЬОНЫ, ЖЕТОНЫ,
           <br /> ШИЛЬДЫ, КУЛОНЫ
@@ -32,7 +51,7 @@ const DecorationsBlock = () => {
         </Link>
 
         <img src={Decarations} className={styles.block__inner_image}></img>
-      </div>
+      </motion.div>
     </div>
   )
 }
