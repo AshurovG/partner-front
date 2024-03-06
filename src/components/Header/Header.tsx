@@ -222,6 +222,15 @@ const Header = () => {
                   >
                     Контакты
                   </h2>
+                  <Link to="/admin?category_id=3">
+                    <h2
+                      onClick={() => {
+                        setIsSubmenuOpen(false)
+                      }}
+                    >
+                      Управление сайтом
+                    </h2>
+                  </Link>
                 </div>
                 <div className={styles.submenu__slider}>
                   <Slider

@@ -1,10 +1,11 @@
-// import React from "react"
-// import styles from "./Slider.module.scss"
 import { useEffect } from "react"
 import ImageGallery from "react-image-gallery"
 import "react-image-gallery/styles/scss/image-gallery.scss"
+import { useDispatch } from "react-redux"
+import { setCurrentImageIdAction } from "slices/AdminSlice"
 
 type ImageType = {
+  id?: number
   original: string
   thumbnail: string
 }
@@ -12,11 +13,13 @@ type ImageType = {
 interface SliderProps {
   images: ImageType[]
   className: string
+  isNotAutomatic?: boolean
 }
 
-const Slider: React.FC<SliderProps> = ({ images, className }) => {
+const Slider: React.FC<SliderProps> = ({ images, className, isNotAutomatic }) => {
+  const dispatch = useDispatch()
   useEffect(() => {
-    console.log(images)
+    dispatch(setCurrentImageIdAction(images[0].id))
   }, [images])
   return (
     <div className={className}>
@@ -26,9 +29,10 @@ const Slider: React.FC<SliderProps> = ({ images, className }) => {
         // showThumbnails={false}
         showPlayButton={false}
         showFullscreenButton={false}
-        autoPlay={true}
+        autoPlay={!isNotAutomatic}
         slideInterval={4000}
         showNav={true}
+        onSlide={isNotAutomatic ? (index) => dispatch(setCurrentImageIdAction(images[index].id)): undefined}
       />
     </div>
   )
