@@ -93,7 +93,7 @@ header {
         transition: all 0.1s ease;
 
         h2 {
-          font-size: 1.3vw;
+          font-size: 20px;
           font-weight: 600;
           margin-top: 5px;
           //padding-left: 8px;
@@ -105,7 +105,7 @@ header {
         }
 
         img {
-          min-width: 100%;
+          // min-width: 100%;
           max-width: 100%;
           object-fit: cover;
           height: 220px;
@@ -155,6 +155,66 @@ header {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+@include extraLargeTablet {
+  .submenu {
+    &__info {
+      font-size: 26px;
+    }
+    &__slider {
+      width: 700px;
+      height: 250px;
+      &_inner {
+        &--card {
+          img {
+            height: 200px;
+            width: 250px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include largeTablet {
+  .submenu {
+    &__info {
+      font-size: 24px;
+    }
+    &__slider {
+      width: 600px;
+      height: 220px;
+      &_inner {
+        &--card {
+          img {
+            height: 170px;
+            width: 210px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mediumTablet {
+  .submenu {
+    &__info {
+      font-size: 22px;
+    }
+    &__slider {
+      width: 500px;
+      height: 200px;
+      &_inner {
+        &--card {
+          img {
+            height: 150px;
+            width: 180px;
+          }
+        }
+      }
+    }
+  }
+}
+
 @include smallTablet {
   .header__inner_menu {
     h2 {
@@ -164,7 +224,55 @@ header {
   .header__inner_contact {
     font-size: 36px;
   }
+  .submenu {
+    flex-direction: column;
+    gap: 20px;
+
+    &__info {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 80%;
+    }
+    &__slider {
+      width: 90%;
+      height: 200px;
+      &_inner {
+        &--card {
+          img {
+            height: 150px;
+            width: 220px;
+          }
+        }
+      }
+    }
+  }
 }
+
+@include mobileLandscape {
+  .submenu {
+    flex-direction: column;
+    gap: 15px;
+
+    &__info {
+      width: 90%;
+      font-size: 20px;
+    }
+    &__slider {
+      width: 95%;
+      height: 180px;
+      &_inner {
+        &--card {
+          img {
+            height: 130px;
+            width: 190px;
+          }
+        }
+      }
+    }
+  }
+}
+
 @include mobile {
   .header__inner {
     flex-direction: row-reverse;
@@ -177,11 +285,58 @@ header {
       font-size: 32px;
     }
   }
+  .submenu {
+    flex-direction: column;
+    // gap: 10px;
+
+    &__info {
+      width: 100%;
+      font-size: 18px;
+    }
+    &__slider {
+      width: 100%;
+      height: 160px;
+      &_inner {
+        &--card {
+          img {
+            height: 120px;
+            width: 170px;
+          }
+        }
+      }
+    }
+  }
 }
 @include extraSmallMobile {
   .header__inner {
     &_contact {
       font-size: 26px;
+    }
+  }
+  .submenu {
+    flex-direction: column;
+    // gap: 10px;
+
+    &__info {
+      width: 100%;
+      font-size: 14px;
+    }
+  }
+}
+
+@include ultraSmallMobile {
+  .header__inner {
+    &_contact {
+      font-size: 26px;
+    }
+  }
+  .submenu {
+    flex-direction: column;
+    // gap: 10px;
+
+    &__info {
+      width: 110%;
+      font-size: 14px;
     }
   }
 }

@@ -24,8 +24,8 @@ const mockImages = [
     thumbnail: wineImage,
   },
   {
-    original: wineImage,
-    thumbnail: wineImage,
+    original: glassImage,
+    thumbnail: glassImage,
   },
   {
     original: wineImage,

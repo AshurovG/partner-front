@@ -1,3 +1,9 @@
+@mixin extraLargeTablet {
+  @media (max-width: 1450px) {
+    @content;
+  }
+}
+
 @mixin tablet {
   @media (max-width: 1300px) {
     @content;

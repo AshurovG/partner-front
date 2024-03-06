@@ -119,6 +119,34 @@ const Header = () => {
     initialSlide: 0,
     prevArrow: <ArrowLeftIcon id="left-icon" />,
     nextArrow: <ArrowRightIcon id="right-icon" />,
+    responsive: [
+      {
+        breakpoint: 520, // При ширине экрана меньше или равной 992px
+        settings: {
+          slidesToShow: 2.2, // Показывать 1 слайд
+        },
+      },
+      {
+        breakpoint: 460, // При ширине экрана меньше или равной 992px
+        settings: {
+          slidesToShow: 1.8, // Показывать 1 слайд
+        },
+      },
+      {
+        breakpoint: 400, // При ширине экрана меньше или равной 992px
+        settings: {
+          slidesToShow: 1.6, // Показывать 1 слайд
+        },
+      },
+      {
+        breakpoint: 350, // При ширине экрана меньше или равной 992px
+        settings: {
+          slidesToShow: 1.4, // Показывать 1 слайд
+        },
+      },
+
+      // Добавьте больше точек останова по мере необходимости
+    ],
   }
 
   return (
@@ -182,6 +210,7 @@ const Header = () => {
                   >
                     Задать вопрос
                   </h2>
+
                   <h2
                     onClick={() => {
                       scroller.scrollTo("contacts", {
