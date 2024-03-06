@@ -18,6 +18,8 @@ import Simple from "../../assets/images/simple_package.png"
 import Complex from "../../assets/images/complex_package.png"
 import Glasses from "../../assets/images/gl.png"
 
+import Logo from "../../assets/images/partner_logo.svg"
+
 const dataTop = [
   {
     url: Bottles,

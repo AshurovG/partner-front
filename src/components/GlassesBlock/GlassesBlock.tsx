@@ -4,6 +4,34 @@ import Button from "components/Button"
 import Glasses from "../../assets/images/glasses.png"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
+import Slider from "components/Slider"
+import wineImage from "../../assets/images/wine.jpg"
+import glassImage from "../../assets/images/glass.jpg"
+import ImageGallery from "react-image-gallery"
+import "react-image-gallery/styles/scss/image-gallery.scss"
+
+const mockImages = [
+  {
+    original: wineImage,
+    thumbnail: wineImage,
+  },
+  {
+    original: glassImage,
+    thumbnail: glassImage,
+  },
+  {
+    original: wineImage,
+    thumbnail: wineImage,
+  },
+  {
+    original: wineImage,
+    thumbnail: wineImage,
+  },
+  {
+    original: wineImage,
+    thumbnail: wineImage,
+  },
+]
 
 const Animation = {
   hidden: { y: 100, opacity: 0 },
@@ -46,7 +74,18 @@ const GlassesBlock = () => {
             </Link>
           </div>
         </div>
-        <img src={Glasses} className={styles.block__inner_image}></img>
+        <div className={styles.block__inner_image}>
+          <ImageGallery
+            items={mockImages}
+            showThumbnails={false}
+            showPlayButton={false}
+            showFullscreenButton={false}
+            autoPlay={true}
+            slideInterval={3000}
+            showNav={false}
+          />
+        </div>
+        {/* <img src={Glasses} className={styles.block__inner_image}></img> */}
       </motion.div>
     </div>
   )

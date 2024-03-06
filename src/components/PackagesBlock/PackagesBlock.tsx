@@ -8,24 +8,24 @@ import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 
 const Animation = {
-  hidden: { x: 100, opacity: 0 },
-  visible: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      type: "Tween",
-      duration: 1,
-    },
-  },
-}
-const LineAnimation = {
-  hidden: { y: 150, opacity: 0 },
+  hidden: { y: 100, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
       type: "Tween",
-      duration: 1.2,
+      duration: 0.5,
+    },
+  },
+}
+const LineAnimation = {
+  hidden: { y: 100, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "Tween",
+      duration: 1,
     },
   },
 }

@@ -17,12 +17,12 @@ const MainPage = () => {
 
   return (
     <div className={styles["main-page"]}>
-      <AboutCompanyBlock />
+      {/* <AboutCompanyBlock />
       <BottlesBlock />
       <PackagesBlock />
       <DecorationsBlock />
       <GlassesBlock />
-      <LocksBlock />
+      <LocksBlock /> */}
     </div>
   )
 }

@@ -1,10 +1,50 @@
 import React from "react"
 import styles from "./DecorationsBlock.module.scss"
 import Button from "components/Button"
-import Decarations from "../../assets/images/decorations.png"
+import Decorations from "../../assets/images/decorations.png"
 import { Link } from "react-router-dom"
 
 import { motion } from "framer-motion"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+
+import Dec1 from "../../assets/images/decoration1.png"
+import Dec2 from "../../assets/images/decoration2.png"
+import Dec3 from "../../assets/images/decoration3.png"
+import ArrowLeftIcon from "components/Icons/ArrowLeftIcon"
+import ArrowRightIcon from "components/Icons/ArrowRightIcon"
+
+const dataTop = [
+  {
+    url: Dec1,
+  },
+  {
+    url: Dec2,
+  },
+  {
+    url: Dec3,
+  },
+  {
+    url: Dec1,
+  },
+  {
+    url: Dec2,
+  },
+  {
+    url: Dec3,
+  },
+]
+
+const settings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  initialSlide: 0,
+  prevArrow: <ArrowLeftIcon id="left-icon" />,
+  nextArrow: <ArrowRightIcon id="right-icon" />,
+}
 
 const Animation = {
   hidden: { y: 100, opacity: 0 },
@@ -49,8 +89,19 @@ const DecorationsBlock = () => {
             Подробнее
           </Button>
         </Link>
+        <div className={styles.slider}>
+          <Slider {...settings} className={styles["slider_inner"]}>
+            {dataTop.map((item, index) => {
+              return (
+                <div className={styles["slider_inner--card"]} key={index}>
+                  <img src={item.url} alt="hero_img" />
+                </div>
+              )
+            })}
+          </Slider>
+        </div>
 
-        <img src={Decarations} className={styles.block__inner_image}></img>
+        {/* <img src={Decorations} className={styles.block__inner_image}></img> */}
       </motion.div>
     </div>
   )
