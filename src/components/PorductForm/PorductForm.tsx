@@ -4,30 +4,42 @@ import { useForm, FieldValues, Controller } from "react-hook-form"
 import Button from "components/Button"
 
 type ProductFormProps = {
-    onSubmit: (title: string, description: string, file: File | null) => void
-    isEditing?: boolean
-    active?: boolean
+  firstTitle?: string,
+  firstDescription?: string,
+  onSubmit: (title: string, description: string, file: File | null) => void
+  isEditing?: boolean
+  active?: boolean
 }
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024
 
-const ProductForm: React.FC<ProductFormProps> = ({onSubmit, isEditing, active}) => {
+const ProductForm: React.FC<ProductFormProps> = ({onSubmit, isEditing, active, firstTitle, firstDescription}) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const form = useRef<HTMLFormElement>(null)
-
+  //   defaultValues: {
+  //     title: 'dfdf',
+  //     description: 'dfdfd',
+  //     file: ''
+  //  },
+  
   const forma = useForm({
     mode: "onChange",
-  })
-
-  const { register, handleSubmit, formState, control, setValue, setError, clearErrors, reset, } = forma
-  const { isValid, touchedFields, errors } = formState
+    // defaultValues: {
+    //    title: firstTitle,
+    //    description: isEditing ? firstDescription : '',
+    //    file: ''
+    // },
+   });
+   
+   const { register, handleSubmit, formState, control, setValue, setError, clearErrors, reset } = forma;
+   const { isValid, touchedFields, errors } = formState;
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log('changed')
     if (event.target.files) {
       const file = event.target.files[0]
       if (file.size > MAX_FILE_SIZE) {
-        setValue("file", null)
+        setValue("file", '')
         setError("file", {
           type: "manual",
           message: "Размер файла не должен превышать 5 МБ",
@@ -49,13 +61,22 @@ const ProductForm: React.FC<ProductFormProps> = ({onSubmit, isEditing, active}) 
   }
 
   useEffect(() => {
-    reset({
+    if (active && !isEditing) {
+      reset({
         title: "",
         description: "",
-        file: null,
-    });
-    setSelectedFile(null)
-    clearErrors();
+        file: '',
+      })
+      setSelectedFile(null)
+      clearErrors();
+    } else if (active && isEditing) {
+      reset({
+        title: firstTitle || '', // Используйте firstTitle, если он предоставлен, иначе пустую строку
+        description: firstDescription || '', // Используйте firstDescription, если он предоставлен, иначе пустую строку
+        // file: '', // Не устанавливайте значение для file, так как файлы не могут быть установлены через value
+      });
+    }
+   
 }, [active]);
 
   return (
@@ -119,49 +140,45 @@ const ProductForm: React.FC<ProductFormProps> = ({onSubmit, isEditing, active}) 
 
           <div style={{ position: "relative", width: `100%` }}>
             <div className={styles["form__file"]}>
-                <Controller
-                    control={control}
-                    name="file"
-                    rules={{
-                    required: isEditing ? false : "Обязательное поле",
-                    }}
-                    render={({ field, fieldState: { error } }) => (
+              <Controller
+                control={control}
+                name="file"
+                rules={{
+                    required: !isEditing ? "Обязательное поле" : false,
+                }}
+                render={({ field, fieldState: { error } }) => (
                     <div>
-                        <input
-                          {...register("file", {
-                          required: "Обязательное поле",
-                        })}
-                        {...field}
+                      <input
+                        {...field} // Используйте field вместо register для управления состоянием поля
                         type="file"
                         id="inp"
                         accept="image/jpeg, image/png, image/gif, image/bmp, image/webp"
                         style={{ display: "none" }}
                         onChange={(e) => {
-                            field.onChange(e)
-                            handleFileChange(e)
-                            
+                          field.onChange(e); // Обработайте изменение файла через field.onChange
+                          handleFileChange(e);
                         }}
-                        />
-                        <label htmlFor="inp" className={styles["form__file-label"]}>
+                      />
+                      <label htmlFor="inp" className={styles["form__file-label"]}>
                         {isEditing ? (
-                            !selectedFile ? (
+                          !selectedFile ? (
                             <>Измените файл</>
-                            ) : (
+                          ) : (
                             <>{selectedFile.name}</>
-                            )
+                          )
                         ) : !selectedFile ? (
-                            <>Выберите файл</>
+                          <>Выберите файл</>
                         ) : (
-                            <>{selectedFile.name}</>
+                          <>{selectedFile.name}</>
                         )}
-                        </label>
-                        {error && (
+                      </label>
+                      {error && (
                         <div className={styles.form__input_message}>
-                            {error.message}
+                          {error.message}
                         </div>
-                        )}
+                      )}
                     </div>
-                    )}
+                )}
                 />
                 </div>
             </div>

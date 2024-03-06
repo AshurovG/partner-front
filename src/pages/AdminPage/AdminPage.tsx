@@ -109,9 +109,6 @@ const AdminPage = () => {
               <ProductForm 
                   isEditing={false}
                   onSubmit={postProduct}
-                  // title=""
-                  // description=""
-                  // fileTitle=""
                   active={isCreateWindowOpened}/>
           </ModalWindow>
       </div>

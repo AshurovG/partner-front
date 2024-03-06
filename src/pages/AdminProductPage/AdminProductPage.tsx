@@ -11,6 +11,7 @@ import Slider from "components/Slider"
 import AddButton from 'components/Icons/AddButton'
 import ModalWindow from 'components/ModalWindow'
 import Button from 'components/Button'
+import ProductForm from 'components/PorductForm'
 
 type Image = {
     id: number
@@ -39,6 +40,7 @@ const AdminProductPage = () => {
   const [item, setItem] = useState<Item>()
   const [images, setImages] = useState<Image[]>([])
   const [isDeleteModalOpened, setIsDeleteModalOpened] = useState(false)
+  const [isEditModalOpened, setIsEditModalOpened] = useState(false)
   // const [isLoading, setIsLoading] = useState<boolean>(true) // Добавляем состояние для отслеживания загрузки
 
   const getItem = async () => {
@@ -80,6 +82,43 @@ const AdminProductPage = () => {
       }
   }
 
+  const putProduct = async (
+    title: string,
+    description: string,
+    file: File | null
+  ) => {
+    try {
+      const formData = new FormData()
+      // if (token) {
+      //   formData.append("jwt", token)
+      // }
+      formData.append("title", title)
+      formData.append("description", description)
+      if (file) {
+        formData.append("file", file)
+        formData.append("isFileChanged", String(1))
+        if (item) {
+          formData.append("imgUrl", item?.url)
+        }
+      }
+
+      await axios(`https://partnerev.ru/api/products/${id}`, {
+        method: "PUT",
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      setIsEditModalOpened(false)
+      // setIsLoading(true)
+      toast.success("Информация успешно обновлена!")
+      getItem()
+    } catch (error) {
+      toast.success("Что-то пошло не так...")
+      throw error
+    }
+  }
+
   useEffect(() => {
     getItem()
   }, [])
@@ -106,7 +145,7 @@ const AdminProductPage = () => {
                 <div className={styles['product__page-action']}>
                   <div className={styles['product__page-action-item']}>
                     <p className={styles['product__page-subtitle']}>Изменить информацию о товаре</p>
-                    <EditIcon/>
+                    <EditIcon onClick={() => setIsEditModalOpened(true)}/>
                   </div>
                   
                   <div className={styles['product__page-action-item']}>
@@ -151,6 +190,7 @@ const AdminProductPage = () => {
                 }
               </div>
             </div>
+
             <ModalWindow className={styles.modal} active={isDeleteModalOpened} handleBackdropClick={() => setIsDeleteModalOpened(false)}>
               <h4 className={styles['product__page-subtitle']}>Вы уверены, что хотите удалить этот товар?</h4>
               <div className={styles.modal__action}>
@@ -158,6 +198,16 @@ const AdminProductPage = () => {
                 <Button className={styles['modal__action-btn']} onClick={() => setIsDeleteModalOpened(false)} isRedirecting={false} mode={'dark'}>Отклонить</Button>
               </div>
             </ModalWindow>
+
+            <ModalWindow className={styles.modal} active={isEditModalOpened} handleBackdropClick={() => setIsEditModalOpened(false)}>
+              <ProductForm 
+                  isEditing={true}
+                  onSubmit={putProduct}
+                  active={isEditModalOpened}
+                  firstTitle={item?.title}
+                  firstDescription={item?.description}
+                  />
+          </ModalWindow>
         </div>
     )
 }
