@@ -10,6 +10,7 @@ import MyLoader from "components/Skeletons/CardSkeleton"
 
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
+import ModalWindow from "components/ModalWindow"
 
 type Card = {
   product_id: number
@@ -31,16 +32,32 @@ const CategoryPage = () => {
   const [cards, setCards] = useState<Card[]>([])
   const [categoryExists, setCategoryExists] = useState<boolean>(true)
   const [isItemsLoading, setIsItemsLoading] = useState<boolean>(true)
+  const [isModalImageOpened, setIsModalImageOpened] = useState(false)
+  const [itemClick, setItemClick] = useState<Card>()
+
+  const [isCardModal, setIsCardModal] = useState<boolean>(false)
 
   useEffect(() => {
+    setIsCardModal(false)
     const categoryObject = Categories.find((cat) => cat.key === categoryKey)
     if (!categoryObject) {
       setCategoryExists(false)
     } else {
       getCategoryItems(categoryObject.id)
+      if (categoryObject.id == 4) {
+        console.log(categoryObject.id)
+        setIsCardModal(true)
+      }
     }
+    console.log(isCardModal)
+
     setIsItemsLoading(true)
   }, [categoryKey])
+
+  const onCardClick = (item: Card) => {
+    setIsModalImageOpened(true)
+    setItemClick(item)
+  }
 
   const getCategoryItems = async (categoryId: number) => {
     try {
@@ -111,16 +128,40 @@ const CategoryPage = () => {
               ) : cards.length == 0 ? (
                 <div style={{ color: "red" }}>пусто</div>
               ) : (
-                cards.map((item: Card) => (
-                  <Link to={`${item.product_id}`} key={item.product_id}>
-                    <Card title={item.title} image={item.url}></Card>
-                  </Link>
-                ))
+                cards.map((item: Card) => {
+                  if (isCardModal) {
+                    return (
+                      <Card
+                        onCardClick={() => onCardClick(item)}
+                        title={item.title}
+                        image={item.url}
+                        key={item.product_id}
+                      />
+                    )
+                  } else {
+                    return (
+                      <Link to={`${item.product_id}`} key={item.product_id}>
+                        <Card title={item.title} image={item.url} />
+                      </Link>
+                    )
+                  }
+                })
               )}
             </div>
           </>
         )}
       </div>
+      <ModalWindow
+        handleBackdropClick={() => {
+          setIsModalImageOpened(false)
+        }}
+        active={isModalImageOpened}
+      >
+        <img
+          style={{ height: "90vh", border: "2px solid #cc9966" }}
+          src={itemClick?.url}
+        ></img>
+      </ModalWindow>
     </div>
   )
 }
