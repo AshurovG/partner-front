@@ -8,6 +8,8 @@ import Card from 'components/Card'
 import AddButton from 'components/Icons/AddButton'
 import ModalWindow from 'components/ModalWindow'
 import ProductForm from 'components/PorductForm/PorductForm'
+import { useNavigate } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom';
 
 type Card = {
     product_id: number
@@ -21,6 +23,9 @@ const AdminPage = () => {
     const [cards, setCards] = useState<Card[]>([])
     const [isCreateWindowOpened, setIsCreateWindowOpened] = useState(false)
     const [selectedCategoryId, setSelectedCategoryId] = useState(3)
+    const navigate = useNavigate()
+    const [searchParams] = useSearchParams();
+    const categoryId = searchParams.get('category_id');
     
     const getProducts = async (id: number) => {
         try {
@@ -70,40 +75,48 @@ const AdminPage = () => {
         }
       }
 
-    useEffect(() => {
-        getProducts(3)
-    }, [])
+  const handleCategoryClick = (id: number) => {
+    // history.push(`/admin?category_id=${id}`);
+    navigate(`/admin?category_id=${id}`);
+    getProducts(id);
+  };
 
-    return (
-        <div className={styles.admin__page}>
-            <div className={styles['admin__page-wrapper']}>
-                <h1 className={styles['admin__page-title']}>Управление сайтом</h1>
-                <h4 className={styles['admin__page-subtitle']}>Здесь вы можете обновлять информацию о вашем сайте!</h4>
-                <div className={styles['admin__page-action']}>
-                    <h4 className={styles['admin__page-text']}>Хотите добавить новый товар?</h4>
-                    <AddButton onClick={() => {setIsCreateWindowOpened(true)}}/>
-                </div>
-                <div className={styles['admin__page-content']}>
-                    <CategoriesList className={styles['admin__page-list']} onClick={getProducts} />
-                    <div className={styles['admin__page-cards']}>
-                        {cards.map((card: Card) => (
-                            <Link to={`/products/${card.product_id}`}><Card title={card.title} image={card.url} /></Link>
-                        ))}
-                    </div>
-                </div>
-            </div>
+  useEffect(() => {
+    if (categoryId) {
+      getProducts(Number(categoryId)); // Предполагается, что getProducts ожидает числовой ID
+    }
+ }, [categoryId]);
 
-            <ModalWindow className={styles['admin__page-modal']} active={isCreateWindowOpened} handleBackdropClick={() => setIsCreateWindowOpened(false)}>
-                <ProductForm 
-                    isEditing={false}
-                    onSubmit={postProduct}
-                    title=""
-                    description=""
-                    fileTitle=""
-                    active={isCreateWindowOpened}/>
-            </ModalWindow>
-        </div>
-    )
+  return (
+      <div className={styles.admin__page}>
+          <div className={styles['admin__page-wrapper']}>
+              <h1 className={styles['admin__page-title']}>Управление сайтом</h1>
+              <h4 className={styles['admin__page-subtitle']}>Здесь вы можете обновлять информацию о вашем сайте!</h4>
+              <div className={styles['admin__page-action']}>
+                  <h4 className={styles['admin__page-text']}>Хотите добавить новый товар?</h4>
+                  <AddButton onClick={() => {setIsCreateWindowOpened(true)}}/>
+              </div>
+              <div className={styles['admin__page-content']}>
+                  <CategoriesList className={styles['admin__page-list']} onClick={handleCategoryClick} />
+                  <div className={styles['admin__page-cards']}>
+                      {cards.map((card: Card) => (
+                          <Link to={`/products/${card.product_id}`}><Card title={card.title} image={card.url} /></Link>
+                      ))}
+                  </div>
+              </div>
+          </div>
+
+          <ModalWindow className={styles['admin__page-modal']} active={isCreateWindowOpened} handleBackdropClick={() => setIsCreateWindowOpened(false)}>
+              <ProductForm 
+                  isEditing={false}
+                  onSubmit={postProduct}
+                  title=""
+                  description=""
+                  fileTitle=""
+                  active={isCreateWindowOpened}/>
+          </ModalWindow>
+      </div>
+  )
 }
 
 export default AdminPage

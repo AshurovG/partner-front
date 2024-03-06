@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import styles from './AdminProductPage.module.scss'
@@ -30,38 +31,53 @@ type Image = {
   }
 
 const AdminProductPage = () => {
+  const navigate = useNavigate()
   const { id } = useParams()
-    const [item, setItem] = useState<Item>()
-    const [images, setImages] = useState<Image[]>([])
-    // const [isLoading, setIsLoading] = useState<boolean>(true) // Добавляем состояние для отслеживания загрузки
+  const [item, setItem] = useState<Item>()
+  const [images, setImages] = useState<Image[]>([])
+  // const [isLoading, setIsLoading] = useState<boolean>(true) // Добавляем состояние для отслеживания загрузки
 
-    const getItem = async () => {
-        try {
-          const response: Response = await axios(
-            `https://partnerev.ru/api/products/${id}`,
-            {
-              method: "GET",
-            }
-          )
-    
-          setItem(response.data)
-          setImages(
-            response.data.items.map((itemPic: ItemPics) => ({
-              id: itemPic.product_item_id,
-              original: itemPic.url,
-              thumbnail: itemPic.url,
-            }))
-          )
-        //   setIsLoading(false) // Устанавливаем состояние загрузки в false после получения данных
-        } catch (error) {
-          console.log(error)
-        //   setIsLoading(false) // Также устанавливаем состояние загрузки в false в случае ошибки
-        }
-    }
+  const getItem = async () => {
+      try {
+        const response: Response = await axios(
+          `https://partnerev.ru/api/products/${id}`,
+          {
+            method: "GET",
+          }
+        )
+  
+        setItem(response.data)
+        setImages(
+          response.data.items.map((itemPic: ItemPics) => ({
+            id: itemPic.product_item_id,
+            original: itemPic.url,
+            thumbnail: itemPic.url,
+          }))
+        )
+      //   setIsLoading(false) // Устанавливаем состояние загрузки в false после получения данных
+      } catch (error) {
+        console.log(error)
+      //   setIsLoading(false) // Также устанавливаем состояние загрузки в false в случае ошибки
+      }
+  }
 
-    useEffect(() => {
-      getItem()
-    }, [])
+  const deleteProduct = async () => {
+      try {
+        const response: Response = await axios(
+          `https://partnerev.ru/api/products/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
+        navigate('/admin')
+      } catch (error) {
+        console.log(error)
+      }
+  }
+
+  useEffect(() => {
+    getItem()
+  }, [])
 
     return (
         <div className={styles.product__page}>
@@ -90,7 +106,7 @@ const AdminProductPage = () => {
                   
                   <div className={styles['product__page-action-item']}>
                     <p className={styles['product__page-subtitle']}>Удалить товар</p>
-                    <BasketIcon/>
+                    <BasketIcon onClick={deleteProduct}/>
                   </div>
                 </div>
               </div>
