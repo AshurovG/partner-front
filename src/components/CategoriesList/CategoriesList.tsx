@@ -3,15 +3,18 @@ import clsx from 'clsx'
 import styles from './CategoriesList.module.scss'
 import { Categories } from '../../consts'
 import Button from 'components/Button'
+import { useSearchParams } from 'react-router-dom';
 
 type  CategoriesProps = {
-    // activeId?: number
+    id?: number
     onClick: (id: number) => void
     className: string
 }
 
-const CategoriesList: React.FC<CategoriesProps> = ({ onClick, className }) => {
-  const [activeId, setActiveId] = useState(3)
+const CategoriesList: React.FC<CategoriesProps> = ({ onClick, className, id }) => {
+  const [searchParams] = useSearchParams();
+  const categoryId = searchParams.get('category_id');
+  const [activeId, setActiveId] = useState(Number(categoryId))
 
   const handleButtonClick = (id: number) => {
     onClick(id)

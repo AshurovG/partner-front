@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import styles from './AdminProductPage.module.scss'
@@ -8,6 +9,8 @@ import EditIcon from 'components/Icons/EditIcon'
 import BasketIcon from 'components/Icons/BasketIcon'
 import Slider from "components/Slider"
 import AddButton from 'components/Icons/AddButton'
+import ModalWindow from 'components/ModalWindow'
+import Button from 'components/Button'
 
 type Image = {
     id: number
@@ -35,6 +38,7 @@ const AdminProductPage = () => {
   const { id } = useParams()
   const [item, setItem] = useState<Item>()
   const [images, setImages] = useState<Image[]>([])
+  const [isDeleteModalOpened, setIsDeleteModalOpened] = useState(false)
   // const [isLoading, setIsLoading] = useState<boolean>(true) // Добавляем состояние для отслеживания загрузки
 
   const getItem = async () => {
@@ -63,13 +67,14 @@ const AdminProductPage = () => {
 
   const deleteProduct = async () => {
       try {
-        const response: Response = await axios(
+        await axios(
           `https://partnerev.ru/api/products/${id}`,
           {
             method: "DELETE",
           }
         )
-        navigate('/admin')
+        navigate(`/admin?category_id=${item?.category_id}`)
+        toast.success('Товар успешно удален!')
       } catch (error) {
         console.log(error)
       }
@@ -106,7 +111,7 @@ const AdminProductPage = () => {
                   
                   <div className={styles['product__page-action-item']}>
                     <p className={styles['product__page-subtitle']}>Удалить товар</p>
-                    <BasketIcon onClick={deleteProduct}/>
+                    <BasketIcon onClick={() => setIsDeleteModalOpened(true)}/>
                   </div>
                 </div>
               </div>
@@ -146,6 +151,13 @@ const AdminProductPage = () => {
                 }
               </div>
             </div>
+            <ModalWindow className={styles.modal} active={isDeleteModalOpened} handleBackdropClick={() => setIsDeleteModalOpened(false)}>
+              <h4 className={styles['product__page-subtitle']}>Вы уверены, что хотите удалить этот товар?</h4>
+              <div className={styles.modal__action}>
+                <Button className={styles['modal__action-btn']} onClick={deleteProduct} isRedirecting={false} mode={'dark'}>Подтвердить</Button>
+                <Button className={styles['modal__action-btn']} onClick={() => setIsDeleteModalOpened(false)} isRedirecting={false} mode={'dark'}>Отклонить</Button>
+              </div>
+            </ModalWindow>
         </div>
     )
 }
