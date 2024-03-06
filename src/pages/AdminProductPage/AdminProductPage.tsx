@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useCurrentImageId } from 'slices/AdminSlice'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -12,6 +14,7 @@ import AddButton from 'components/Icons/AddButton'
 import ModalWindow from 'components/ModalWindow'
 import Button from 'components/Button'
 import ProductForm from 'components/PorductForm'
+import ImageForm from 'components/ImageForm'
 
 type Image = {
     id: number
@@ -37,10 +40,13 @@ type Image = {
 const AdminProductPage = () => {
   const navigate = useNavigate()
   const { id } = useParams()
+  const currentImageId = useCurrentImageId()
   const [item, setItem] = useState<Item>()
   const [images, setImages] = useState<Image[]>([])
   const [isDeleteModalOpened, setIsDeleteModalOpened] = useState(false)
   const [isEditModalOpened, setIsEditModalOpened] = useState(false)
+  const [isCreateImageModalOpened, setIsCreateImageModalOpened] = useState(false)
+  const [isDeleteImageModalOpened, setIsDeleteImageModalOpened] = useState(false)
   // const [isLoading, setIsLoading] = useState<boolean>(true) // Добавляем состояние для отслеживания загрузки
 
   const getItem = async () => {
@@ -119,6 +125,50 @@ const AdminProductPage = () => {
     }
   }
 
+  const postImage = async (file: File) => {
+    const formData = new FormData()
+    // if (token) {
+    //   formData.append("jwt", token)
+    // }
+    formData.append("file", file)
+    if (item) {
+      formData.append("product_id", String(item.product_id))
+    }
+    try {
+      await axios("https://partnerev.ru/api/products_items/", {
+        method: "POST",
+        data: formData,
+      })
+      getItem()
+      toast.success("Фото успешно добавлено!")
+      // setIsLoading(true)
+    } catch (error) {
+      toast.error("Размер фото не должен превышать 5 МБ!")
+      throw error
+    }
+  }
+
+  const deleteImage = async () => {
+    try {
+      await axios(
+        `https://partnerev.ru/api/products_items/${currentImageId}`,
+        {
+          method: "DELETE",
+          // data: {
+          //   idMany: imageId,
+          //   jwt: token,
+          // },
+        }
+      )
+      getItem()
+      toast.success("Фото успешно удалено!")
+      // setIsLoading(true)
+    } catch (error) {
+      toast.error("Что-то пошло не так...")
+      throw error
+    }
+  }
+
   useEffect(() => {
     getItem()
   }, [])
@@ -167,14 +217,14 @@ const AdminProductPage = () => {
                         <p className={styles['product__page-subtitle']}>
                           Добавить новое фото
                         </p>
-                        <AddButton onClick={() => {}}/>
+                        <AddButton onClick={() => setIsCreateImageModalOpened(true)}/>
                       </div>
 
                       <div className={styles['product__page-action-item']}>
                         <p className={styles['product__page-subtitle']}>
                           Удалить текущее фото
                         </p>
-                        <BasketIcon onClick={() => {}}/>
+                        <BasketIcon onClick={() => setIsDeleteImageModalOpened(true)}/>
                       </div>
                     </div>
                   </div>
@@ -184,7 +234,7 @@ const AdminProductPage = () => {
                       <p className={styles['product__page-subtitle']}>
                         Хотите добавить новое?
                       </p>
-                      <AddButton onClick={() => {}}/>
+                      <AddButton  onClick={() => setIsCreateImageModalOpened(true)}/>
                     </div>
                   </div>
                 }
@@ -201,13 +251,29 @@ const AdminProductPage = () => {
 
             <ModalWindow className={styles.modal} active={isEditModalOpened} handleBackdropClick={() => setIsEditModalOpened(false)}>
               <ProductForm 
-                  isEditing={true}
-                  onSubmit={putProduct}
-                  active={isEditModalOpened}
-                  firstTitle={item?.title}
-                  firstDescription={item?.description}
-                  />
-          </ModalWindow>
+                isEditing={true}
+                onSubmit={putProduct}
+                active={isEditModalOpened}
+                firstTitle={item?.title}
+                firstDescription={item?.description}
+              />
+            </ModalWindow>
+
+            <ModalWindow className={styles.modal} active={isCreateImageModalOpened} handleBackdropClick={() => setIsCreateImageModalOpened(false)}>
+              <ImageForm  active={isCreateImageModalOpened} onSubmit={(image: File) => {
+                postImage(image)
+                setIsCreateImageModalOpened(false)
+              }}/>
+            </ModalWindow>
+
+            <ModalWindow className={styles.modal} active={isDeleteImageModalOpened} handleBackdropClick={() => setIsDeleteImageModalOpened(false)}>
+              <h4 className={styles['product__page-subtitle']}>Вы уверены, что хотите удалить это фото?</h4>
+              <div className={styles.modal__action}>
+                <Button className={styles['modal__action-btn']} onClick={() => {deleteImage(); setIsDeleteImageModalOpened(false)}} isRedirecting={false} mode={'dark'}>Подтвердить</Button>
+                <Button className={styles['modal__action-btn']} onClick={() => setIsDeleteImageModalOpened(false)} isRedirecting={false} mode={'dark'}>Отклонить</Button>
+              </div>
+            </ModalWindow>
+
         </div>
     )
 }

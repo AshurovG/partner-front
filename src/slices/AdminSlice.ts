@@ -6,7 +6,7 @@ interface DataState {
 }
 
 const dataSlice = createSlice({
-  name: "data",
+  name: "adminData",
   initialState: {
     currentImageId: undefined
   } as DataState,
@@ -19,7 +19,7 @@ const dataSlice = createSlice({
 });
 
 export const useCurrentImageId = () =>
-  useSelector((state: { mainData: DataState }) => state.mainData.currentImageId);
+  useSelector((state: { adminData: DataState }) => state.adminData.currentImageId);
 
 export const {
     setCurrentImageId: setCurrentImageIdAction,

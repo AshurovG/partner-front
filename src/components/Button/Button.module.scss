@@ -39,6 +39,7 @@
   }
     &:disabled {
       background-color: #b4acacd1;
+      color: $brand-secondary;
       border: none; 
       cursor: default;
       &:hover {
