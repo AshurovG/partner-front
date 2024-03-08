@@ -1,16 +1,32 @@
-import React from 'react'
-import styles from './Card.module.scss'
+import React from "react"
+import styles from "./Card.module.scss"
+import { clsx } from "clsx"
 
 type CardProps = {
-    title: string
-    image: string
+  title: string
+  image: string
+  className?: string
+
+  onCardClick?: () => void
 }
 
-const Card: React.FC<CardProps> = ({title, image}) => {
+const Card: React.FC<CardProps> = ({
+  title,
+  image,
+  className,
+  onCardClick,
+}) => {
   return (
-    <div className={styles.card}>
-        <img className={styles.card__image} src={image} alt="" />
-        <h3 className={styles.card__title}>{title}</h3>
+    <div
+      onClick={() => {
+        if (onCardClick) {
+          onCardClick()
+        }
+      }}
+      className={clsx(styles.card, className)}
+    >
+      <img className={styles.card__image} src={image} alt="" />
+      <h3 className={styles.card__title}>{title}</h3>
     </div>
   )
 }
