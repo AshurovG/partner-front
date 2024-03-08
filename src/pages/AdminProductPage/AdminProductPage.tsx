@@ -173,109 +173,112 @@ const AdminProductPage = () => {
     getItem()
   }, [])
 
-    return (
-        <div className={styles.product__page}>
-          <h1 className={styles['product__page-title']}>Редактирование текущего товара</h1>
-            <div className={styles['product__page-wrapper']}>
-              <div className={styles['product__page-content']}>
-                <img className={styles['product__page-image']} src={item?.url} alt="" />
+  return (
+      <div className={styles.product__page}>
+        <div className={styles['product__page-wrapper']}>
+          <div className={styles['product__page-title-block']}>
+            <h1 className={styles['product__page-title']}>Редактирование текущего товара</h1>
+            <Button onClick={() => navigate(`/admin?category_id=${item?.category_id}`)} className={styles['product__page-title-btn']} mode='inverse' isRedirecting={false}>Назад</Button>
+          </div>
+          <div className={styles['product__page-content']}>
+            <img className={styles['product__page-image']} src={item?.url} alt="" />
 
-                <div className={styles['product__page-info']}>
-                  <div>
-                    <h4 className={styles['product__page-subtitle']}>Название товара:</h4>
-                    <p className={styles['product__page-text']}>{item?.title}</p>
-                  </div>
-
-                  <div>
-                    <h4 className={styles['product__page-subtitle']}>Описание товара:</h4>
-                    <p className={styles['product__page-text']}>{item?.description}</p>
-                  </div>
-                </div>
-
-                <div className={styles['product__page-action']}>
-                  <div className={styles['product__page-action-item']}>
-                    <p className={styles['product__page-subtitle']}>Изменить информацию о товаре</p>
-                    <EditIcon onClick={() => setIsEditModalOpened(true)}/>
-                  </div>
-                  
-                  <div className={styles['product__page-action-item']}>
-                    <p className={styles['product__page-subtitle']}>Удалить товар</p>
-                    <BasketIcon onClick={() => setIsDeleteModalOpened(true)}/>
-                  </div>
-                </div>
+            <div className={styles['product__page-info']}>
+              <div>
+                <h4 className={styles['product__page-subtitle']}>Название товара:</h4>
+                <p className={styles['product__page-text']}>{item?.title}</p>
               </div>
 
-              <div className={styles['product__page-gallery']}>
-                {images.length !== 0 ? <div className={styles['product__page-gallery-content']}>
-                    <Slider
-                    className={styles["'product__page-gallery-slider"]}
-                    images={images}
-                    isNotAutomatic
-                    />
-                    <div className={styles['product__page-action']}>
-                      <div className={styles['product__page-action-item']}>
-                        <p className={styles['product__page-subtitle']}>
-                          Добавить новое фото
-                        </p>
-                        <AddButton onClick={() => setIsCreateImageModalOpened(true)}/>
-                      </div>
-
-                      <div className={styles['product__page-action-item']}>
-                        <p className={styles['product__page-subtitle']}>
-                          Удалить текущее фото
-                        </p>
-                        <BasketIcon onClick={() => setIsDeleteImageModalOpened(true)}/>
-                      </div>
-                    </div>
-                  </div>
-                :  <div>
-                    <p className={styles['product__page-subtitle']}>На данный момент в галерее нет ни одного фото!</p>
-                    <div className={styles['product__page-action-item']}>
-                      <p className={styles['product__page-subtitle']}>
-                        Хотите добавить новое?
-                      </p>
-                      <AddButton  onClick={() => setIsCreateImageModalOpened(true)}/>
-                    </div>
-                  </div>
-                }
+              <div>
+                <h4 className={styles['product__page-subtitle']}>Описание товара:</h4>
+                <p className={styles['product__page-text']}>{item?.description}</p>
               </div>
             </div>
 
-            <ModalWindow className={styles.modal} active={isDeleteModalOpened} handleBackdropClick={() => setIsDeleteModalOpened(false)}>
-              <h4 className={styles['product__page-subtitle']}>Вы уверены, что хотите удалить этот товар?</h4>
-              <div className={styles.modal__action}>
-                <Button className={styles['modal__action-btn']} onClick={deleteProduct} isRedirecting={false} mode={'dark'}>Подтвердить</Button>
-                <Button className={styles['modal__action-btn']} onClick={() => setIsDeleteModalOpened(false)} isRedirecting={false} mode={'dark'}>Отклонить</Button>
+            <div className={styles['product__page-action']}>
+              <div className={styles['product__page-action-item']}>
+                <p className={styles['product__page-subtitle']}>Изменить информацию о товаре</p>
+                <EditIcon onClick={() => setIsEditModalOpened(true)}/>
               </div>
-            </ModalWindow>
-
-            <ModalWindow className={styles.modal} active={isEditModalOpened} handleBackdropClick={() => setIsEditModalOpened(false)}>
-              <ProductForm 
-                isEditing={true}
-                onSubmit={putProduct}
-                active={isEditModalOpened}
-                firstTitle={item?.title}
-                firstDescription={item?.description}
-              />
-            </ModalWindow>
-
-            <ModalWindow className={styles.modal} active={isCreateImageModalOpened} handleBackdropClick={() => setIsCreateImageModalOpened(false)}>
-              <ImageForm  active={isCreateImageModalOpened} onSubmit={(image: File) => {
-                postImage(image)
-                setIsCreateImageModalOpened(false)
-              }}/>
-            </ModalWindow>
-
-            <ModalWindow className={styles.modal} active={isDeleteImageModalOpened} handleBackdropClick={() => setIsDeleteImageModalOpened(false)}>
-              <h4 className={styles['product__page-subtitle']}>Вы уверены, что хотите удалить это фото?</h4>
-              <div className={styles.modal__action}>
-                <Button className={styles['modal__action-btn']} onClick={() => {deleteImage(); setIsDeleteImageModalOpened(false)}} isRedirecting={false} mode={'dark'}>Подтвердить</Button>
-                <Button className={styles['modal__action-btn']} onClick={() => setIsDeleteImageModalOpened(false)} isRedirecting={false} mode={'dark'}>Отклонить</Button>
+              
+              <div className={styles['product__page-action-item']}>
+                <p className={styles['product__page-subtitle']}>Удалить товар</p>
+                <BasketIcon onClick={() => setIsDeleteModalOpened(true)}/>
               </div>
-            </ModalWindow>
+            </div>
+          </div>
 
+          <div className={styles['product__page-gallery']}>
+            {images.length !== 0 ? <div className={styles['product__page-gallery-content']}>
+                <Slider
+                className={styles["'product__page-gallery-slider"]}
+                images={images}
+                isNotAutomatic
+                />
+                <div className={styles['product__page-action']}>
+                  <div className={styles['product__page-action-item']}>
+                    <p className={styles['product__page-subtitle']}>
+                      Добавить новое фото
+                    </p>
+                    <AddButton onClick={() => setIsCreateImageModalOpened(true)}/>
+                  </div>
+
+                  <div className={styles['product__page-action-item']}>
+                    <p className={styles['product__page-subtitle']}>
+                      Удалить текущее фото
+                    </p>
+                    <BasketIcon onClick={() => setIsDeleteImageModalOpened(true)}/>
+                  </div>
+                </div>
+              </div>
+            :  <div>
+                <p className={styles['product__page-subtitle']}>На данный момент в галерее нет ни одного фото!</p>
+                <div className={styles['product__page-action-item']}>
+                  <p className={styles['product__page-subtitle']}>
+                    Хотите добавить новое?
+                  </p>
+                  <AddButton  onClick={() => setIsCreateImageModalOpened(true)}/>
+                </div>
+              </div>
+            }
+          </div>
         </div>
-    )
+
+          <ModalWindow className={styles.modal} active={isDeleteModalOpened} handleBackdropClick={() => setIsDeleteModalOpened(false)}>
+            <h4 className={styles['product__page-subtitle']}>Вы уверены, что хотите удалить этот товар?</h4>
+            <div className={styles.modal__action}>
+              <Button className={styles['modal__action-btn']} onClick={deleteProduct} isRedirecting={false} mode={'dark'}>Подтвердить</Button>
+              <Button className={styles['modal__action-btn']} onClick={() => setIsDeleteModalOpened(false)} isRedirecting={false} mode={'dark'}>Отклонить</Button>
+            </div>
+          </ModalWindow>
+
+          <ModalWindow className={styles.modal} active={isEditModalOpened} handleBackdropClick={() => setIsEditModalOpened(false)}>
+            <ProductForm 
+              isEditing={true}
+              onSubmit={putProduct}
+              active={isEditModalOpened}
+              firstTitle={item?.title}
+              firstDescription={item?.description}
+            />
+          </ModalWindow>
+
+          <ModalWindow className={styles.modal} active={isCreateImageModalOpened} handleBackdropClick={() => setIsCreateImageModalOpened(false)}>
+            <ImageForm  active={isCreateImageModalOpened} onSubmit={(image: File) => {
+              postImage(image)
+              setIsCreateImageModalOpened(false)
+            }}/>
+          </ModalWindow>
+
+          <ModalWindow className={styles.modal} active={isDeleteImageModalOpened} handleBackdropClick={() => setIsDeleteImageModalOpened(false)}>
+            <h4 className={styles['product__page-subtitle']}>Вы уверены, что хотите удалить это фото?</h4>
+            <div className={styles.modal__action}>
+              <Button className={styles['modal__action-btn']} onClick={() => {deleteImage(); setIsDeleteImageModalOpened(false)}} isRedirecting={false} mode={'dark'}>Подтвердить</Button>
+              <Button className={styles['modal__action-btn']} onClick={() => setIsDeleteImageModalOpened(false)} isRedirecting={false} mode={'dark'}>Отклонить</Button>
+            </div>
+          </ModalWindow>
+
+      </div>
+  )
 }
 
 export default AdminProductPage

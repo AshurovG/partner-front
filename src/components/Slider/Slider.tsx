@@ -19,7 +19,9 @@ interface SliderProps {
 const Slider: React.FC<SliderProps> = ({ images, className, isNotAutomatic }) => {
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(setCurrentImageIdAction(images[0].id))
+    if (isNotAutomatic) {
+      dispatch(setCurrentImageIdAction(images[0].id))
+    }
   }, [images])
   return (
     <div className={className}>
