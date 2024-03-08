@@ -45,28 +45,3 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
-// slider styles
-.image-gallery-icon {
-  &:hover {
-    transition: none;
-    color: #cc9966;
-  }
-}
-
-.image-gallery-slide {
-  img {
-    min-width: 100%;
-    max-width: 100%;
-    object-fit: cover;
-    height: 500px;
-  }
-}
-.image-gallery-thumbnail.active {
-  border: 3px #fff solid;
-}
-.image-gallery-thumbnail {
-  &:hover {
-    border: 3px #fff solid;
-  }
-}

@@ -78,7 +78,7 @@ const ItemPage = () => {
       )
       setTimeout(() => {
         setIsLoading(false)
-      }, 500)
+      }, 3000)
       // setIsLoading(false) // Устанавливаем состояние загрузки в false после получения данных
     } catch (error) {
       console.log(error)
@@ -100,18 +100,34 @@ const ItemPage = () => {
       <div className={styles["item-page__inner"]}>
         <div className={styles["item-page__content"]}>
           {!isLoading ? (
+            <h1 className={styles["item-page__content_adapt-title"]}>
+              {item?.title}
+            </h1>
+          ) : (
+            <Skeleton
+              highlightColor="#ac6823"
+              width={`50%`}
+              height={"32px"}
+              baseColor="#cc9966"
+              className={styles["item-page__content_adapt-title"]}
+            />
+          )}
+
+          {!isLoading ? (
             <Slider
               className={styles["item-page__content_slider"]}
               images={images}
             />
           ) : (
-            <Skeleton
-              width={695}
-              height={500}
-              className={styles["item-page__content_slider"]}
-              highlightColor="#ac6823"
-              baseColor="#cc9966"
-            />
+            <div className={styles["item-page__content_slider"]}>
+              <Skeleton
+                width={"100%"}
+                height={500}
+                className={styles["item-page__content_slider"]}
+                highlightColor="#ac6823"
+                baseColor="#cc9966"
+              />
+            </div>
           )}
           <div className={styles["item-page__content_text"]}>
             {!isLoading ? (
@@ -120,18 +136,26 @@ const ItemPage = () => {
                   {item?.title}
                 </h1>
                 <p className={styles["item-page__content_text_description"]}>
-                  {item?.description}
+                  {/* {item?.description} */}
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam
+                  dolorum animi molestias quae? Nihil libero iste dicta
+                  inventore aspernatur id, quae, asperiores, quas repudiandae
+                  dolorem cumque corrupti esse vitae dignissimos? Lorem ipsum
+                  dolor sit, amet consectetur adipisicing elit. Nam dolorum
+                  animi molestias quae?
                 </p>
               </>
             ) : (
               <>
-                <Skeleton
-                  highlightColor="#ac6823"
-                  width={`50%`}
-                  baseColor="#cc9966"
-                  className={styles["item-page__content_text_title"]}
-                  style={{ marginBottom: 15 }}
-                />
+                <div className={styles["item-page__content_text_title"]}>
+                  <Skeleton
+                    highlightColor="#ac6823"
+                    width={`50%`}
+                    baseColor="#cc9966"
+                    style={{ marginBottom: 15 }}
+                  />
+                </div>
+
                 <Skeleton
                   highlightColor="#ac6823"
                   baseColor="#cc9966"

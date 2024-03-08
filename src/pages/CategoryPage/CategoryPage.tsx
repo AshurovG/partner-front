@@ -71,7 +71,7 @@ const CategoryPage = () => {
       setCategory(response.data)
       setTimeout(() => {
         setIsItemsLoading(false)
-      }, 500)
+      }, 3000)
     } catch (error) {
       console.log(error)
     }
@@ -91,8 +91,7 @@ const CategoryPage = () => {
             {isItemsLoading ? (
               <Skeleton
                 className={styles["category-page__inner_title"]}
-                width={500}
-                style={{ marginBottom: 15 }}
+                style={{ marginBottom: 15, maxWidth: "400px" }}
                 highlightColor="#ac6823"
                 baseColor="#cc9966"
               />
@@ -111,7 +110,12 @@ const CategoryPage = () => {
               />
             ) : (
               <div className={styles["category-page__inner_description"]}>
-                {category?.description}
+                {/* {category?.description} */}
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptate, magnam nemo? Tempore aspernatur neque vel laborum
+                molestias autem ipsam pariatur quod, sunt minima nesciunt illum
+                optio minus? Optio, magni impedit. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Voluptate, magnam nemo?
               </div>
             )}
 
@@ -121,7 +125,7 @@ const CategoryPage = () => {
                   <Skeleton
                     highlightColor="#ac6823"
                     baseColor="#cc9966"
-                    height={466}
+                    height={300}
                     key={index}
                   />
                 ))
@@ -157,10 +161,7 @@ const CategoryPage = () => {
         }}
         active={isModalImageOpened}
       >
-        <img
-          style={{ height: "90vh", border: "2px solid #cc9966" }}
-          src={itemClick?.url}
-        ></img>
+        <img className={styles.modal_image} src={itemClick?.url}></img>
       </ModalWindow>
     </div>
   )

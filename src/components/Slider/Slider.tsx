@@ -3,6 +3,7 @@ import ImageGallery from "react-image-gallery"
 import "react-image-gallery/styles/scss/image-gallery.scss"
 import { useDispatch } from "react-redux"
 import { setCurrentImageIdAction } from "slices/AdminSlice"
+import "./Slider.scss"
 
 type ImageType = {
   id?: number
@@ -16,7 +17,11 @@ interface SliderProps {
   isNotAutomatic?: boolean
 }
 
-const Slider: React.FC<SliderProps> = ({ images, className, isNotAutomatic }) => {
+const Slider: React.FC<SliderProps> = ({
+  images,
+  className,
+  isNotAutomatic,
+}) => {
   const dispatch = useDispatch()
   useEffect(() => {
     if (isNotAutomatic) {
@@ -31,10 +36,14 @@ const Slider: React.FC<SliderProps> = ({ images, className, isNotAutomatic }) =>
         // showThumbnails={false}
         showPlayButton={false}
         showFullscreenButton={false}
-        autoPlay={!isNotAutomatic}
+        autoPlay={false}
         slideInterval={4000}
         showNav={true}
-        onSlide={isNotAutomatic ? (index) => dispatch(setCurrentImageIdAction(images[index].id)): undefined}
+        onSlide={
+          isNotAutomatic
+            ? (index) => dispatch(setCurrentImageIdAction(images[index].id))
+            : undefined
+        }
       />
     </div>
   )
