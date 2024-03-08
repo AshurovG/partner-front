@@ -1,4 +1,5 @@
 @import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
 
 .categories {
     display: flex;
@@ -12,3 +13,19 @@
         text-align: center;
     }
 }
+
+@include mediumTablet {
+    .categories {
+        &__btn {
+            font-size: 18px;
+            height: 70px;
+        }
+    }
+}
+
+@include mobileLandscape {
+    .categories {
+        font-size: 20px;
+    }
+}
+

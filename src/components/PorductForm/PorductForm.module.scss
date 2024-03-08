@@ -1,4 +1,5 @@
 @import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
 
 .form {
 //   background-color: $brand-color;
@@ -8,7 +9,7 @@
   &__inner {
     margin: 0 auto;
     width: 500px;
-    height: 500px;
+    // height: 500px;
     padding: 20px;
     box-sizing: border-box;
 
@@ -97,5 +98,83 @@
     font-size: 24px;
     width: 100%;
     display: block;
+  }
+}
+
+@include largeTablet {
+  .form {
+    width: 60vw;
+  }
+}
+
+@include mobileLandscape {
+  .form {
+    width: 100%;
+    gap: 20px;
+    padding: 30px 6vw;
+    width: 60vw;
+    &__submit {
+      font-size: 20px;
+    }
+    &__header {
+      font-size: 26px;
+      margin-bottom: 15px;
+    }
+
+    &__inner_title {
+      font-size: 26px;
+    }
+
+    &__input {
+      font-size: 18px;
+
+      &_big {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@include extraSmallMobile {
+  .form {
+    padding: 25px 6vw;
+    width: 70vw;
+    &__submit {
+      padding: 7px 10px;
+      font-size: 14px;
+    }
+
+    &__inner_title {
+      font-size: 22px;
+    }
+
+    &__header {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    &__input {
+      font-size: 4vw;
+      &_big {
+        font-size: 4vw;
+      }
+      &_message {
+        font-size: 11px;
+      }
+    }
+  }
+}
+
+@include ultraSmallMobile {
+  .form {
+    padding: 20px 6vw;
+    &__header {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    &__file {
+      &-label {
+        font-size: 14px;
+      }
+    }
   }
 }

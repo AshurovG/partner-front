@@ -10,6 +10,7 @@ import ModalWindow from 'components/ModalWindow'
 import ProductForm from 'components/PorductForm/PorductForm'
 import { useNavigate } from 'react-router-dom'
 import { useSearchParams } from 'react-router-dom';
+import CategoriesIcon from 'components/Icons/CategoriesIcon'
 
 type Card = {
     product_id: number
@@ -25,6 +26,7 @@ const AdminPage = () => {
   const [cards, setCards] = useState<Card[]>([])
   const [isCreateWindowOpened, setIsCreateWindowOpened] = useState(false)
   const [selectedCategoryId, setSelectedCategoryId] = useState(Number(categoryId))
+  const [isCategoriesWindowOpened ,setIsCategoriesWindowOpened] = useState(false)
   const navigate = useNavigate()
   
   const getProducts = async (id: number) => {
@@ -75,9 +77,11 @@ const AdminPage = () => {
     }
 
   const handleCategoryClick = (id: number) => {
-    // history.push(`/admin?category_id=${id}`);
     navigate(`/admin?category_id=${id}`);
     getProducts(id);
+    if (isCategoriesWindowOpened) {
+      setIsCategoriesWindowOpened(false)
+    }
   };
 
   useEffect(() => {
@@ -91,6 +95,12 @@ const AdminPage = () => {
           <div className={styles['admin__page-wrapper']}>
               <h1 className={styles['admin__page-title']}>Управление сайтом</h1>
               <h4 className={styles['admin__page-subtitle']}>Здесь вы можете обновлять информацию о вашем сайте!</h4>
+              <CategoriesList className={styles['admin__page-list-tablet']} onClick={handleCategoryClick} id={selectedCategoryId}/>
+              <div className={styles['admin__page-action-mobile']}>
+                  <h4 className={styles['admin__page-text']}>Сменить категорию</h4>
+                  <CategoriesIcon onClick={() => {setIsCategoriesWindowOpened(true)}}/>
+              </div>
+
               <div className={styles['admin__page-action']}>
                   <h4 className={styles['admin__page-text']}>Хотите добавить новый товар?</h4>
                   <AddButton onClick={() => {setIsCreateWindowOpened(true)}}/>
@@ -105,11 +115,15 @@ const AdminPage = () => {
               </div>
           </div>
 
-          <ModalWindow className={styles['admin__page-modal']} active={isCreateWindowOpened} handleBackdropClick={() => setIsCreateWindowOpened(false)}>
+          <ModalWindow className={styles['modal']} active={isCreateWindowOpened} handleBackdropClick={() => setIsCreateWindowOpened(false)}>
               <ProductForm 
                   isEditing={false}
                   onSubmit={postProduct}
                   active={isCreateWindowOpened}/>
+          </ModalWindow>
+
+          <ModalWindow className={styles['modal']} active={isCategoriesWindowOpened} handleBackdropClick={() => setIsCategoriesWindowOpened(false)}>
+            <CategoriesList className={styles['admin__page-list-mobile']} onClick={handleCategoryClick} id={selectedCategoryId}/>
           </ModalWindow>
       </div>
   )

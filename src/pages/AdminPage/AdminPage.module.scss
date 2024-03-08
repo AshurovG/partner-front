@@ -1,4 +1,5 @@
 @import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
 
 .admin__page {
     margin-top: 200px;
@@ -6,6 +7,7 @@
     
     &-wrapper {
         max-width: $content-width;
+        width: 85vw;
         margin: 0 auto;
     }
 
@@ -32,17 +34,25 @@
         display: flex;
         align-items: center;
         gap: 30px;
+
+        &-mobile {
+            display: none;
+        }
     }
 
     &-content {
         margin-top: 30px;
         display: flex;
-        gap: 10px;
+        gap: 30px;
         justify-content: space-between;
     }
 
     &-list {
-        width: 300px;
+        width: 500px;
+
+        &-tablet {
+            display: none !important;
+        }
     }
 
     &-cards {
@@ -50,11 +60,84 @@
         grid-template-columns: 1fr 1fr 1fr;
         gap: 30px;
     }
+}
 
-    &-modal {
-        background: $background-color;
-        padding: 30px;
-        border: 1px solid $brand-color;
-        border-radius: 10px;
+.modal {
+    background: $background-color;
+    padding: 30px;
+    border: 1px solid $brand-color;
+    border-radius: 10px;
+}
+
+@include extraLargeTablet {
+    .admin__page {
+        &-content {
+            display: block;
+        }
+
+        &-action {
+            margin-top: 30px;
+        }
+
+        &-list {
+            display: none !important;
+            &-tablet {
+                width: 100%;
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr);
+                margin-top: 30px;
+            }
+        }
+
+        &-cards {
+            gap: 10px;
+        }
     }
+}
+
+@include smallTablet {
+    .admin__page {
+        &-cards {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+@include mobileLandscape {
+    .admin__page {
+        &-action {
+            &-mobile {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-top: 30px;
+            }
+        }
+
+        &-list {
+            &-tablet {
+                display: none !important;
+            }
+        }
+    }
+}
+
+@include mobile {
+    .admin__page {
+        &-cards {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .modal {
+        padding: 0;
+
+        &__delete {
+          width: 300px;
+          padding: 20px;
+        }
+        &__title {
+          font-size: 18px;
+        }
+      }
 }
