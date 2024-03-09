@@ -1,9 +1,11 @@
 @import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
 
 .block {
   margin-top: 82px;
   &__inner {
     height: 600px;
+    width: 85vw;
     max-width: $content-width;
     margin: 0 auto;
 
@@ -35,13 +37,13 @@
       text-align: center;
     }
     &_action {
-      font-size: 24px;
+      font-size: 28px;
     }
   }
 }
 
 .slider {
-  width: 800px;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,7 +61,7 @@
 
       img {
         margin-left: 50px;
-        min-width: 100%;
+        // min-width: 100%;
         max-width: 100%;
         object-fit: cover;
         height: 155px;
@@ -69,6 +71,201 @@
         align-items: flex-end;
         -webkit-box-pack: center;
         justify-content: center;
+      }
+    }
+  }
+}
+
+@include extraLargeTablet {
+  .slider_inner--card {
+    img {
+      margin-left: 20%;
+    }
+  }
+}
+@include tablet {
+  .slider {
+    width: 70%;
+    &_inner--card {
+      img {
+        margin-left: 20%;
+      }
+    }
+  }
+}
+
+@include mediumTablet {
+  .block__inner {
+    &_title {
+      font-size: 36px;
+      margin-top: -60px;
+    }
+    &_description {
+      font-size: 24px;
+    }
+  }
+  .slider {
+    height: 200px;
+    width: 80%;
+    &_inner--card {
+      img {
+        // margin-left: 25%;
+        height: 140px;
+        width: 140px;
+      }
+    }
+  }
+}
+
+@include smallTablet {
+  // .block__inner {
+  //   &_title {
+  //     font-size: 36px;
+  //     margin-top: -60px;
+  //   }
+  //   &_description {
+  //     font-size: 24px;
+  //   }
+  // }
+  .slider {
+    height: 180px;
+    width: 85%;
+    &_inner--card {
+      img {
+        margin-left: 15%;
+        height: 130px;
+        width: 130px;
+      }
+    }
+  }
+}
+
+@include mobileLandscape {
+  .block__inner {
+    height: 550px;
+    &_title {
+      font-size: 32px;
+      margin-top: -50px;
+    }
+    &_description {
+      font-size: 20px;
+    }
+    &_action {
+      font-size: 20px;
+    }
+  }
+  .slider {
+    height: 160px;
+    width: 90%;
+    &_inner--card {
+      img {
+        margin-left: 15%;
+        height: 115px;
+        width: 115px;
+      }
+    }
+  }
+}
+
+@include mobile {
+  .block__inner {
+    &_title {
+      padding: 0 30px;
+      font-size: 26px;
+      margin-top: -50px;
+    }
+    &_description {
+      font-size: 18px;
+    }
+  }
+  .slider {
+    height: 140px;
+    width: 80%;
+    &_inner--card {
+      img {
+        // margin-left: 15%;
+        height: 110px;
+        width: 110px;
+      }
+    }
+  }
+}
+@include extraSmallMobile {
+  .block__inner {
+    height: auto;
+    gap: 10px;
+    &_title {
+      padding: 0 20px;
+      font-size: 22px;
+      margin-top: -50px;
+    }
+    &_description {
+      font-size: 16px;
+    }
+    &_action {
+      font-size: 16px;
+    }
+  }
+  .slider {
+    height: 140px;
+    width: 95%;
+    &_inner--card {
+      img {
+        // margin-left: 15%;
+        height: 100px;
+        width: 100px;
+      }
+    }
+  }
+}
+@include ultraSmallMobile {
+  .block__inner {
+    &_title {
+      padding: 0 10px;
+      font-size: 22px;
+      margin-top: -50px;
+    }
+    &_description {
+      font-size: 16px;
+    }
+    &_action {
+      font-size: 16px;
+    }
+  }
+  .slider {
+    height: 130px;
+    width: 95%;
+    &_inner--card {
+      img {
+        // margin-left: 15%;
+        height: 90px;
+        width: 90px;
+      }
+    }
+  }
+}
+@include tinyMobile {
+  .block__inner {
+    &_title {
+      padding: 0 10px;
+      font-size: 22px;
+      margin-top: -50px;
+    }
+    &_description {
+      font-size: 16px;
+    }
+    &_action {
+      font-size: 16px;
+    }
+  }
+  .slider {
+    height: 130px;
+    width: 60%;
+    &_inner--card {
+      img {
+        margin-left: 10%;
+        height: 90px;
+        width: 90px;
       }
     }
   }

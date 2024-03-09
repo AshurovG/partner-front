@@ -1,5 +1,34 @@
 @import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
 
 .main-page {
   margin-top: 200px;
+}
+
+@include mediumTablet {
+  .main-page {
+    margin-top: 190px;
+  }
+}
+
+@include smallTablet {
+  .main-page {
+    margin-top: 170px;
+  }
+}
+@include mobileLandscape {
+  .main-page {
+    margin-top: 160px;
+  }
+}
+@include mobile {
+  .main-page {
+    margin-top: 150px;
+  }
+}
+
+@include extraSmallMobile {
+  .main-page {
+    margin-top: 140px;
+  }
 }

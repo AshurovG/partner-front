@@ -44,6 +44,28 @@ const settings = {
   initialSlide: 0,
   prevArrow: <ArrowLeftIcon id="left-icon" />,
   nextArrow: <ArrowRightIcon id="right-icon" />,
+  responsive: [
+    {
+      breakpoint: 620, // При ширине экрана меньше или равной 992px
+      settings: {
+        slidesToShow: 2, // Показывать 1 слайд
+      },
+    },
+    {
+      breakpoint: 460, // При ширине экрана меньше или равной 992px
+      settings: {
+        slidesToShow: 2, // Показывать 1 слайд
+      },
+    },
+    {
+      breakpoint: 340, // При ширине экрана меньше или равной 992px
+      settings: {
+        slidesToShow: 1, // Показывать 1 слайд
+      },
+    },
+
+    // Добавьте больше точек останова по мере необходимости
+  ],
 }
 
 const Animation = {

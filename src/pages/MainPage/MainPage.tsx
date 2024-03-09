@@ -18,11 +18,11 @@ const MainPage = () => {
   return (
     <div className={styles["main-page"]}>
       <AboutCompanyBlock />
-      <BottlesBlock />
-      <PackagesBlock />
+      {/* <BottlesBlock />
+      <PackagesBlock /> */}
       <DecorationsBlock />
-      <GlassesBlock />
-      <LocksBlock />
+      {/* <GlassesBlock />
+      <LocksBlock /> */}
     </div>
   )
 }

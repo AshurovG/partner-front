@@ -1,9 +1,10 @@
 @import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
 
 .block {
   max-width: $content-width;
+  width: 85vw;
   margin: 0 auto;
-  height: 500px;
 
   color: $brand-color;
 
@@ -17,6 +18,7 @@
     gap: 20px;
 
     &_logo {
+      width: 650px;
     }
     &_description {
       width: 80%;
@@ -24,6 +26,75 @@
       font-weight: 800;
       display: block;
       text-align: center;
+    }
+  }
+}
+
+@include mediumTablet {
+  .block {
+    &__inner {
+      &_logo {
+        width: 550px;
+      }
+      &_description {
+        width: 90%;
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+@include mobileLandscape {
+  .block {
+    width: 90vw;
+    &__inner {
+      &_logo {
+        width: 500px;
+      }
+      &_description {
+        width: 95%;
+        font-size: 28px;
+      }
+    }
+  }
+}
+
+@include mobileLandscape {
+  .block {
+    width: 95vw;
+    &__inner {
+      &_logo {
+        width: 400px;
+      }
+      &_description {
+        width: 95%;
+        font-size: 26px;
+      }
+    }
+  }
+}
+
+@include extraSmallMobile {
+  .block {
+    width: 95vw;
+    &__inner {
+      &_logo {
+        width: 300px;
+      }
+      &_description {
+        width: 100%;
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+@include tinyMobile {
+  .block {
+    &__inner {
+      &_logo {
+        width: 95%;
+      }
     }
   }
 }
