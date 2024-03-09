@@ -189,6 +189,21 @@ const AdminProductPage = () => {
             Назад
           </Button>
         </div>
+
+        <div className={styles["product__page-action-tablet"]}>
+          <div className={styles["product__page-action-item"]}>
+            <p className={styles["product__page-subtitle"]}>
+              Изменить информацию о товаре
+            </p>
+            <EditIcon onClick={() => setIsEditModalOpened(true)} />
+          </div>
+
+          <div className={styles["product__page-action-item"]}>
+            <p className={styles["product__page-subtitle"]}>Удалить товар</p>
+            <BasketIcon onClick={() => setIsDeleteModalOpened(true)} />
+          </div>
+        </div>
+
         <div className={styles["product__page-content"]}>
           <img
             className={styles["product__page-image"]}
@@ -253,7 +268,7 @@ const AdminProductPage = () => {
                 images={images}
                 isNotAutomatic
               />
-              <div className={styles["product__page-action"]}>
+              <div className={styles["product__page-action-gallery"]}>
                 <div className={styles["product__page-action-item"]}>
                   <p className={styles["product__page-subtitle"]}>
                     Добавить новое фото
@@ -294,27 +309,30 @@ const AdminProductPage = () => {
         active={isDeleteModalOpened}
         handleBackdropClick={() => setIsDeleteModalOpened(false)}
       >
-        <h4 className={styles["product__page-subtitle"]}>
-          Вы уверены, что хотите удалить этот товар?
-        </h4>
-        <div className={styles.modal__action}>
-          <Button
-            className={styles["modal__action-btn"]}
-            onClick={deleteProduct}
-            isRedirecting={false}
-            mode={"dark"}
-          >
-            Подтвердить
-          </Button>
-          <Button
-            className={styles["modal__action-btn"]}
-            onClick={() => setIsDeleteModalOpened(false)}
-            isRedirecting={false}
-            mode={"dark"}
-          >
-            Отклонить
-          </Button>
+        <div className={styles.modal__delete}>
+          <h4 className={styles["modal__title"]}>
+            Вы уверены, что хотите удалить этот товар?
+          </h4>
+          <div className={styles.modal__action}>
+            <Button
+              className={styles["modal__action-btn"]}
+              onClick={deleteProduct}
+              isRedirecting={false}
+              mode={"dark"}
+            >
+              Подтвердить
+            </Button>
+            <Button
+              className={styles["modal__action-btn"]}
+              onClick={() => setIsDeleteModalOpened(false)}
+              isRedirecting={false}
+              mode={"dark"}
+            >
+              Отклонить
+            </Button>
+          </div>
         </div>
+       
       </ModalWindow>
 
       <ModalWindow
@@ -350,30 +368,33 @@ const AdminProductPage = () => {
         active={isDeleteImageModalOpened}
         handleBackdropClick={() => setIsDeleteImageModalOpened(false)}
       >
-        <h4 className={styles["product__page-subtitle"]}>
-          Вы уверены, что хотите удалить это фото?
-        </h4>
-        <div className={styles.modal__action}>
-          <Button
-            className={styles["modal__action-btn"]}
-            onClick={() => {
-              deleteImage()
-              setIsDeleteImageModalOpened(false)
-            }}
-            isRedirecting={false}
-            mode={"dark"}
-          >
-            Подтвердить
-          </Button>
-          <Button
-            className={styles["modal__action-btn"]}
-            onClick={() => setIsDeleteImageModalOpened(false)}
-            isRedirecting={false}
-            mode={"dark"}
-          >
-            Отклонить
-          </Button>
+        <div className={styles.modal__delete}>
+          <h4 className={styles["modal__title"]}>
+            Вы уверены, что хотите удалить это фото?
+          </h4>
+          <div className={styles.modal__action}>
+            <Button
+              className={styles["modal__action-btn"]}
+              onClick={() => {
+                deleteImage()
+                setIsDeleteImageModalOpened(false)
+              }}
+              isRedirecting={false}
+              mode={"dark"}
+            >
+              Подтвердить
+            </Button>
+            <Button
+              className={styles["modal__action-btn"]}
+              onClick={() => setIsDeleteImageModalOpened(false)}
+              isRedirecting={false}
+              mode={"dark"}
+            >
+              Отклонить
+            </Button>
+          </div>
         </div>
+        
       </ModalWindow>
     </div>
   )
