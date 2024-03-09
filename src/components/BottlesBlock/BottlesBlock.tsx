@@ -27,11 +27,16 @@ const BottlesBlock = () => {
           variants={Animation}
           className={styles.block__inner_content}
         >
-          <h2 className={styles.block__inner_content_title}>СТЕКЛЯННАЯ ТАРА</h2>
-          <p className={styles.block__inner_content_description}>
-            Изготовление и поставка стеклянной тары для ликеро-водочной и
-            вино-коньяной продукции
-          </p>
+          <div>
+            <h2 className={styles.block__inner_content_title}>
+              СТЕКЛЯННАЯ ТАРА
+            </h2>
+            <p className={styles.block__inner_content_description}>
+              Изготовление и поставка стеклянной тары для ликеро-водочной и
+              вино-коньяной продукции
+            </p>
+          </div>
+
           <div>
             <Link to="/bottles">
               <Button

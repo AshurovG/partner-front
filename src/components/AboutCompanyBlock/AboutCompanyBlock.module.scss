@@ -73,6 +73,12 @@
     }
   }
 }
+@include mobile {
+  .block {
+    padding-bottom: 32px;
+    border-bottom: 1px solid #fff;
+  }
+}
 
 @include extraSmallMobile {
   .block {
