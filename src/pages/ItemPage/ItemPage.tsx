@@ -1,10 +1,8 @@
 import { useEffect, useLayoutEffect, useState } from "react"
 import styles from "./ItemPage.module.scss"
 import Slider from "components/Slider"
-import wineImage from "../../assets/images/wine.jpg"
-import wineThumbnail from "../../assets/images/wine.jpg"
-import glassImage from "../../assets/images/glass.jpg"
-import glassThumbnail from "../../assets/images/glass.jpg"
+// import wineImage from "../../assets/images/wine.jpg"
+// import glassImage from "../../assets/images/glass.jpg"
 import { useParams } from "react-router"
 import axios from "axios"
 import { Response } from "types"
@@ -12,28 +10,28 @@ import { Response } from "types"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
 
-const mockImages = [
-  {
-    original: wineImage,
-    thumbnail: wineImage,
-  },
-  {
-    original: glassImage,
-    thumbnail: glassImage,
-  },
-  {
-    original: wineImage,
-    thumbnail: wineImage,
-  },
-  {
-    original: wineImage,
-    thumbnail: wineImage,
-  },
-  {
-    original: wineImage,
-    thumbnail: wineImage,
-  },
-]
+// const mockImages = [
+//   {
+//     original: wineImage,
+//     thumbnail: wineImage,
+//   },
+//   {
+//     original: glassImage,
+//     thumbnail: glassImage,
+//   },
+//   {
+//     original: wineImage,
+//     thumbnail: wineImage,
+//   },
+//   {
+//     original: wineImage,
+//     thumbnail: wineImage,
+//   },
+//   {
+//     original: wineImage,
+//     thumbnail: wineImage,
+//   },
+// ]
 
 type Image = {
   original: string

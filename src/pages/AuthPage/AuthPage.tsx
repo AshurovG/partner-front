@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import { useRef } from 'react'
 import { useForm, FieldValues } from "react-hook-form"
 import { toast } from "react-toastify"
 import axios from 'axios'
@@ -17,7 +17,7 @@ const AuthPage = () => {
         mode: "onChange",
     })
 
-    const { register, handleSubmit, formState, reset } = forma
+    const { register, handleSubmit, formState } = forma
     const { isValid, touchedFields, errors } = formState
 
     const login = async (password: string) => {

@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import ContentLoader from "react-content-loader"
 // import styles from "./Skeleton.module.scss"
 
@@ -6,7 +5,7 @@ type SkeletonProps = {
   className?: string
 }
 
-const Skeleton: React.FC<SkeletonProps> = ({ className }) => (
+const Skeleton: React.FC<SkeletonProps> = ({  }) => (
   <ContentLoader
     speed={2}
     // width={400}

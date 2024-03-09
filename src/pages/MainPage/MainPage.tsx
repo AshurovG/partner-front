@@ -1,7 +1,4 @@
-// import React from "react"
 import styles from "./MainPage.module.scss"
-import Slider from "components/Slider"
-import ContactForm from "components/ContactForm"
 import AboutCompanyBlock from "components/AboutCompanyBlock"
 import BottlesBlock from "components/BottlesBlock"
 import { useLayoutEffect } from "react"

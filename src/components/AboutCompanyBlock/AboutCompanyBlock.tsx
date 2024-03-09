@@ -1,4 +1,3 @@
-import React from "react"
 import styles from "./AboutCompanyBlock.module.scss"
 import Logo from "../../assets/images/about-company-logo.png"
 

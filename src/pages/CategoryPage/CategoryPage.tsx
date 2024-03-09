@@ -5,8 +5,6 @@ import { Categories } from "../../consts"
 import axios from "axios"
 import { Response } from "../../types"
 import Card from "components/Card"
-import Test from "../../assets/images/wine.jpg"
-import MyLoader from "components/Skeletons/CardSkeleton"
 
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"

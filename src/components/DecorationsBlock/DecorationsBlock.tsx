@@ -1,7 +1,5 @@
-import React from "react"
 import styles from "./DecorationsBlock.module.scss"
 import Button from "components/Button"
-import Decorations from "../../assets/images/decorations.png"
 import { Link } from "react-router-dom"
 
 import { motion } from "framer-motion"

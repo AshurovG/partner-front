@@ -6,7 +6,8 @@ import BurgerIcon from "components/Icons/BurgerIcon"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import { scroller, Link as ScrollLink } from "react-scroll"
+// import { scroller, Link as ScrollLink } from "react-scroll"
+import { scroller } from "react-scroll"
 
 import { motion, AnimatePresence } from "framer-motion"
 import ArrowLeftIcon from "components/Icons/ArrowLeftIcon"
@@ -18,7 +19,7 @@ import Simple from "../../assets/images/simple_package.png"
 import Complex from "../../assets/images/complex_package.png"
 import Glasses from "../../assets/images/gl.png"
 
-import Logo from "../../assets/images/partner_logo.svg"
+// import Logo from "../../assets/images/partner_logo.svg"
 
 const dataTop = [
   {

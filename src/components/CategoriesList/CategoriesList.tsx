@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import clsx from 'clsx'
 import styles from './CategoriesList.module.scss'
 import { Categories } from '../../consts'
 import Button from 'components/Button'
@@ -11,7 +10,7 @@ type  CategoriesProps = {
     className: string
 }
 
-const CategoriesList: React.FC<CategoriesProps> = ({ onClick, className, id }) => {
+const CategoriesList: React.FC<CategoriesProps> = ({ onClick, className }) => {
   const [searchParams] = useSearchParams();
   const categoryId = searchParams.get('category_id');
   const [activeId, setActiveId] = useState(Number(categoryId))

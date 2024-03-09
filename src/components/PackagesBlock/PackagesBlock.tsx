@@ -1,4 +1,3 @@
-import React from "react"
 import styles from "./PackagesBlock.module.scss"
 import Button from "components/Button"
 import Complex from "../../assets/images/complex_package.png"

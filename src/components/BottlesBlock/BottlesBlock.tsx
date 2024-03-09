@@ -1,6 +1,4 @@
-import React from "react"
 import styles from "./BottlesBlock.module.scss"
-import Back from "../../assets/images/bottles-block-background.png"
 import Button from "components/Button"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"

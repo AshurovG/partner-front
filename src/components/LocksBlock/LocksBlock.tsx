@@ -1,4 +1,3 @@
-import React from "react"
 import styles from "./LocksBlock.module.scss"
 import { Link } from "react-router-dom"
 import Button from "components/Button"
