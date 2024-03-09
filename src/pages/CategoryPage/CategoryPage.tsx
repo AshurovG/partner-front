@@ -71,7 +71,7 @@ const CategoryPage = () => {
       setCategory(response.data)
       setTimeout(() => {
         setIsItemsLoading(false)
-      }, 10000)
+      }, 300)
     } catch (error) {
       console.log(error)
     }

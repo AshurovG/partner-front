@@ -73,7 +73,7 @@ const AdminProductPage = () => {
       )
       setTimeout(() => {
         setIsLoading(false)
-      }, 10000)
+      }, 300)
     } catch (error) {
       console.log(error)
     }
@@ -205,11 +205,20 @@ const AdminProductPage = () => {
         </div>
 
         <div className={styles["product__page-content"]}>
-          <img
-            className={styles["product__page-image"]}
-            src={item?.url}
-            alt=""
-          />
+          {isLoading ? (
+            <Skeleton
+              highlightColor="#ac6823"
+              baseColor="#cc9966"
+              className={styles["product__page-image"]}
+              height={500}
+            />
+          ) : (
+            <img
+              className={styles["product__page-image"]}
+              src={item?.url}
+              alt=""
+            />
+          )}
 
           <div className={styles["product__page-info"]}>
             <div>
@@ -263,11 +272,21 @@ const AdminProductPage = () => {
         <div className={styles["product__page-gallery"]}>
           {images.length !== 0 ? (
             <div className={styles["product__page-gallery-content"]}>
-              <Slider
-                className={styles["'product__page-gallery-slider"]}
-                images={images}
-                isNotAutomatic
-              />
+              {isLoading ? (
+                <Skeleton
+                  highlightColor="#ac6823"
+                  baseColor="#cc9966"
+                  className={styles["product__page-gallery-slider"]}
+                  height={350}
+                />
+              ) : (
+                <Slider
+                  className={styles["product__page-gallery-slider"]}
+                  images={images}
+                  isNotAutomatic
+                />
+              )}
+
               <div className={styles["product__page-action-gallery"]}>
                 <div className={styles["product__page-action-item"]}>
                   <p className={styles["product__page-subtitle"]}>
@@ -332,7 +351,6 @@ const AdminProductPage = () => {
             </Button>
           </div>
         </div>
-       
       </ModalWindow>
 
       <ModalWindow
@@ -394,7 +412,6 @@ const AdminProductPage = () => {
             </Button>
           </div>
         </div>
-        
       </ModalWindow>
     </div>
   )

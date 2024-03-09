@@ -78,7 +78,7 @@ const ItemPage = () => {
       )
       setTimeout(() => {
         setIsLoading(false)
-      }, 10000)
+      }, 300)
       // setIsLoading(false) // Устанавливаем состояние загрузки в false после получения данных
     } catch (error) {
       console.log(error)
