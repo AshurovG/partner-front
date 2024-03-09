@@ -26,13 +26,16 @@ const LocksBlock = () => {
           variants={Animation}
           className={styles.block__inner_content}
         >
-          <h2 className={styles.block__inner_content_title}>
-            УКУПОРОЧНЫЕ УСТРОЙСТВА
-          </h2>
-          <p className={styles.block__inner_content_description}>
-            Мы специализируемся на поставках эксклюзивных укупорочных средств
-            для стеклянной тары
-          </p>
+          <div>
+            <h2 className={styles.block__inner_content_title}>
+              УКУПОРОЧНЫЕ УСТРОЙСТВА
+            </h2>
+            <p className={styles.block__inner_content_description}>
+              Мы специализируемся на поставках эксклюзивных укупорочных средств
+              для стеклянной тары
+            </p>
+          </div>
+
           <div>
             <Link to="/locks">
               <Button

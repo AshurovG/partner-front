@@ -45,7 +45,7 @@ const AdminPage = () => {
       setSelectedCategoryId(id)
       setTimeout(() => {
         setIsLoading(false)
-      }, 500)
+      }, 10000)
     } catch (error) {
       throw error
     }
@@ -139,11 +139,20 @@ const AdminPage = () => {
             id={selectedCategoryId}
           />
           <div className={styles["admin__page-cards"]}>
-            {cards.map((card: Card) => (
-              <Link to={`/products/${card.product_id}`}>
-                <Card title={card.title} image={card.url} />
-              </Link>
-            ))}
+            {isLoading
+              ? [...new Array(6)].map((_, index) => (
+                  <Skeleton
+                    highlightColor="#ac6823"
+                    baseColor="#cc9966"
+                    height={400}
+                    key={index}
+                  />
+                ))
+              : cards.map((card: Card) => (
+                  <Link to={`/products/${card.product_id}`}>
+                    <Card title={card.title} image={card.url} />
+                  </Link>
+                ))}
           </div>
         </div>
       </div>

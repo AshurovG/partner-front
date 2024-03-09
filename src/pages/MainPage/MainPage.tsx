@@ -21,8 +21,8 @@ const MainPage = () => {
       <BottlesBlock />
       <PackagesBlock />
       <DecorationsBlock />
-      {/* <GlassesBlock />
-      <LocksBlock /> */}
+      <GlassesBlock />
+      <LocksBlock />
     </div>
   )
 }

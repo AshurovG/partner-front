@@ -96,6 +96,7 @@
 
 @include mediumTablet {
   .block__inner {
+    border: 3px solid $brand-color;
     &_title {
       font-size: 36px;
       margin-top: -60px;
@@ -169,6 +170,7 @@
 
 @include mobile {
   .block__inner {
+    border: 2px solid $brand-color;
     &_title {
       padding: 0 30px;
       font-size: 26px;

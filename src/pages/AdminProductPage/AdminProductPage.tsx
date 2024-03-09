@@ -73,7 +73,7 @@ const AdminProductPage = () => {
       )
       setTimeout(() => {
         setIsLoading(false)
-      }, 500)
+      }, 10000)
     } catch (error) {
       console.log(error)
     }
@@ -201,16 +201,32 @@ const AdminProductPage = () => {
               <h4 className={styles["product__page-subtitle"]}>
                 Название товара:
               </h4>
-              <p className={styles["product__page-text"]}>{item?.title}</p>
+              {isLoading ? (
+                <Skeleton
+                  highlightColor="#ac6823"
+                  baseColor="#cc9966"
+                  className={styles["product__page-text"]}
+                />
+              ) : (
+                <p className={styles["product__page-text"]}>{item?.title}</p>
+              )}
             </div>
 
             <div>
               <h4 className={styles["product__page-subtitle"]}>
                 Описание товара:
               </h4>
-              <p className={styles["product__page-text"]}>
-                {item?.description}
-              </p>
+              {isLoading ? (
+                <Skeleton
+                  highlightColor="#ac6823"
+                  baseColor="#cc9966"
+                  className={styles["product__page-text"]}
+                />
+              ) : (
+                <p className={styles["product__page-text"]}>
+                  {item?.description}
+                </p>
+              )}
             </div>
           </div>
 
