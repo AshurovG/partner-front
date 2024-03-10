@@ -30,6 +30,7 @@
     display: block;
   }
   &__icon {
+    margin-left: 5px;
     height: 24px;
     width: 24px;
   }
@@ -37,13 +38,13 @@
   &:hover {
     transform: scale(1.05);
   }
-    &:disabled {
-      background-color: #b4acacd1;
-      color: $brand-secondary;
-      border: none; 
-      cursor: default;
-      &:hover {
-        transform: none;
-      }
+  &:disabled {
+    background-color: #b4acacd1;
+    color: $brand-secondary;
+    border: none;
+    cursor: default;
+    &:hover {
+      transform: none;
     }
+  }
 }

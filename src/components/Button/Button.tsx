@@ -2,6 +2,7 @@ import React from "react"
 import styles from "./Button.module.scss"
 import clsx from "clsx"
 import ArrowRightIcon from "components/Icons/ArrowRightIcon"
+import RedirectArrow from "components/Icons/RedirectArrow"
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   loading?: boolean
@@ -38,7 +39,7 @@ const Button: React.FC<ButtonProps> = ({
       <p className={styles.button__text}>{children}</p>
 
       {isRedirecting && (
-        <ArrowRightIcon
+        <RedirectArrow
           fill={
             mode === "inverse" ? "#000" : mode === "dark" ? "#cc9966" : "fff"
           }
