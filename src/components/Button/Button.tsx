@@ -1,7 +1,6 @@
 import React from "react"
 import styles from "./Button.module.scss"
 import clsx from "clsx"
-import ArrowRightIcon from "components/Icons/ArrowRightIcon"
 import RedirectArrow from "components/Icons/RedirectArrow"
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {

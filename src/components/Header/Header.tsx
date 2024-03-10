@@ -6,7 +6,6 @@ import BurgerIcon from "components/Icons/BurgerIcon"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-// import { scroller, Link as ScrollLink } from "react-scroll"
 import { scroller } from "react-scroll"
 
 import { motion, AnimatePresence } from "framer-motion"
@@ -18,8 +17,6 @@ import Decorations from "../../assets/images/decs.png"
 import Simple from "../../assets/images/simple_package.png"
 import Complex from "../../assets/images/complex_package.png"
 import Glasses from "../../assets/images/gl.png"
-
-// import Logo from "../../assets/images/partner_logo.svg"
 
 const dataTop = [
   {
@@ -61,14 +58,31 @@ const Header = () => {
     "/rasulovelshan",
     "/derevitskayaevgenia",
   ].includes(location.pathname)
+
+  const [showMainHeader, setShowMainHeader] = useState(true)
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
   const scrollDirection = useScrollDirection()
   const menuRef = useRef<HTMLDivElement>(null)
   const sliderRef = useRef(null)
 
+  const [isBelow200, setIsBelow200] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.pageYOffset
+      setIsBelow200(scrollPosition > 100)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
   useEffect(() => {
     const checkIfClickedOutside = (e: MouseEvent) => {
-      const target = e.target as HTMLElement // Приведение типа для доступа к свойствам DOM
+      const target = e.target as HTMLElement
       const isLeftIconClicked = target.id === "left-icon"
       const isRightIconClicked = target.id === "right-icon"
 
@@ -90,12 +104,12 @@ const Header = () => {
   }, [])
 
   const headerClass =
-    scrollDirection === "up" ? styles.headerUp : styles.headerDown
+    scrollDirection !== "up" && isBelow200 ? styles.headerDown : styles.headerUp
 
   const submenuVariants = {
     open: {
       opacity: 1,
-      height: "auto", // Adjust based on your content
+      height: "auto",
       transition: {
         duration: 0.5,
         ease: "easeInOut",
@@ -122,31 +136,29 @@ const Header = () => {
     nextArrow: <ArrowRightIcon id="right-icon" />,
     responsive: [
       {
-        breakpoint: 520, // При ширине экрана меньше или равной 992px
+        breakpoint: 520,
         settings: {
-          slidesToShow: 2.2, // Показывать 1 слайд
+          slidesToShow: 2.2,
         },
       },
       {
-        breakpoint: 460, // При ширине экрана меньше или равной 992px
+        breakpoint: 460,
         settings: {
-          slidesToShow: 1.8, // Показывать 1 слайд
+          slidesToShow: 1.8,
         },
       },
       {
-        breakpoint: 400, // При ширине экрана меньше или равной 992px
+        breakpoint: 400,
         settings: {
-          slidesToShow: 1.6, // Показывать 1 слайд
+          slidesToShow: 1.6,
         },
       },
       {
-        breakpoint: 350, // При ширине экрана меньше или равной 992px
+        breakpoint: 350,
         settings: {
-          slidesToShow: 1.4, // Показывать 1 слайд
+          slidesToShow: 1.4,
         },
       },
-
-      // Добавьте больше точек останова по мере необходимости
     ],
   }
 
@@ -154,6 +166,7 @@ const Header = () => {
     <>
       {showHeader ? (
         <header
+          id="header"
           className={`${headerClass} ${isSubmenuOpen ? styles.expanded : ""}`}
         >
           <div className={styles.header__inner}>
