@@ -64,7 +64,7 @@ const Header = () => {
     "/derevitskayaevgenia",
   ].includes(location.pathname)
 
-  const [showMainHeader, setShowMainHeader] = useState(true)
+  // const [showMainHeader, setShowMainHeader] = useState(true)
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
   const scrollDirection = useScrollDirection()
   const menuRef = useRef<HTMLDivElement>(null)
