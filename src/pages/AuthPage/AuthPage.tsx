@@ -44,7 +44,7 @@ const AuthPage = () => {
 
     return (
         <div className={styles.auth__page}>
-            <h1 className={styles['auth__page-title']}>Вход в режиме администратора</h1>
+            <h1 className={styles['auth__page-title']}>Вход в режим администратора</h1>
                 <form
                 onSubmit={handleSubmit(onSubmit)}
                 ref={form}
