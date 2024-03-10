@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { useIsAuth, setIsAuthAction } from "slices/AuthSlice"
+import { toast } from 'react-toastify'
 import styles from "./Header.module.scss"
 import useScrollDirection from "../../utils/HeaderHook"
 import BurgerIcon from "components/Icons/BurgerIcon"
@@ -56,6 +59,8 @@ const dataTop = [
 
 const Header = () => {
   const location = useLocation()
+  const dispatch = useDispatch()
+  const isAuth = useIsAuth()
   const showHeader = ![
     "/ashurovvitaly",
     "/rasulovelshan",
@@ -223,7 +228,7 @@ const Header = () => {
                   >
                     Контакты
                   </h2>
-                  <Link to="/admin?category_id=3">
+                  {isAuth && <Link to="/admin?category_id=3">
                     <h2
                       onClick={() => {
                         setIsSubmenuOpen(false)
@@ -231,7 +236,17 @@ const Header = () => {
                     >
                       Управление сайтом
                     </h2>
-                  </Link>
+                  </Link>}
+                  {isAuth && <h2
+                    onClick={() => {
+                      localStorage.removeItem('token');
+                      dispatch(setIsAuthAction(false))
+                      toast.success('Вы успешно вышли из режима администратора!')
+                      setIsSubmenuOpen(false)
+                    }}
+                  >
+                    Выйти
+                  </h2>}
                 </div>
                 <div className={styles.submenu__slider}>
                   <Slider
