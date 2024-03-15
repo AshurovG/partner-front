@@ -5,12 +5,12 @@ import { ToastContainer } from 'react-toastify';
 import { useDispatch } from "react-redux";
 import { useIsAuth, setIsAuthAction } from "slices/AuthSlice"
 import 'react-toastify/dist/ReactToastify.css';
+import './App.scss';
 import MainPage from "pages/MainPage"
 import AshurovCardPage from "pages/AshurovCardPage"
 import RasulovCardPage from "pages/RasulovCardPage"
 import DerevitskayaCardPage from "pages/DerevitskayaCardPage"
 import Header from "components/Header"
-import styles from "./App.module.scss"
 import Footer from "components/Footer"
 import ContactForm from "components/ContactForm"
 import ItemPage from "pages/ItemPage"
@@ -50,7 +50,7 @@ const App = () => {
   }, [])
 
   return (
-    <div className={styles.app}>
+    <div className='app'>
       <BrowserRouter>
         {
           isCheckLoading ? <h3>Загрузка</h3> // TODO: В последствии поставить лоадер

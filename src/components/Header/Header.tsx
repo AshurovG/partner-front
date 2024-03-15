@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { useIsAuth, setIsAuthAction } from "slices/AuthSlice"
+import { toast } from "react-toastify"
 import styles from "./Header.module.scss"
 import useScrollDirection from "../../utils/HeaderHook"
 import BurgerIcon from "components/Icons/BurgerIcon"
@@ -53,12 +56,15 @@ const dataTop = [
 
 const Header = () => {
   const location = useLocation()
+  const dispatch = useDispatch()
+  const isAuth = useIsAuth()
   const showHeader = ![
     "/ashurovvitaly",
     "/rasulovelshan",
     "/derevitskayaevgenia",
   ].includes(location.pathname)
 
+  // const [showMainHeader, setShowMainHeader] = useState(true)
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
   const scrollDirection = useScrollDirection()
   const menuRef = useRef<HTMLDivElement>(null)
@@ -235,15 +241,31 @@ const Header = () => {
                   >
                     Контакты
                   </h2>
-                  <Link to="/admin?category_id=3">
+                  {isAuth && (
+                    <Link to="/admin?category_id=3">
+                      <h2
+                        onClick={() => {
+                          setIsSubmenuOpen(false)
+                        }}
+                      >
+                        Управление сайтом
+                      </h2>
+                    </Link>
+                  )}
+                  {isAuth && (
                     <h2
                       onClick={() => {
+                        localStorage.removeItem("token")
+                        dispatch(setIsAuthAction(false))
+                        toast.success(
+                          "Вы успешно вышли из режима администратора!"
+                        )
                         setIsSubmenuOpen(false)
                       }}
                     >
-                      Управление сайтом
+                      Выйти
                     </h2>
-                  </Link>
+                  )}
                 </div>
                 <div className={styles.submenu__slider}>
                   <Slider
