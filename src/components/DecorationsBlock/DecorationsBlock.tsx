@@ -37,32 +37,44 @@ const settings = {
   dots: false,
   infinite: true,
   speed: 500,
-  slidesToShow: 3,
+  slidesToShow: 5,
   slidesToScroll: 1,
   initialSlide: 0,
   prevArrow: <ArrowLeftIcon id="left-icon" />,
   nextArrow: <ArrowRightIcon id="right-icon" />,
+  autoplay: true,
+  autoplaySpeed: 2000,
   responsive: [
     {
-      breakpoint: 620, // При ширине экрана меньше или равной 992px
+      breakpoint: 1050,
       settings: {
-        slidesToShow: 2, // Показывать 1 слайд
+        slidesToShow: 4,
       },
     },
     {
-      breakpoint: 460, // При ширине экрана меньше или равной 992px
+      breakpoint: 770,
       settings: {
-        slidesToShow: 2, // Показывать 1 слайд
+        slidesToShow: 3,
+      },
+    },
+    // {
+    //   breakpoint: 620,
+    //   settings: {
+    //     slidesToShow: 2,
+    //   },
+    // },
+    {
+      breakpoint: 540,
+      settings: {
+        slidesToShow: 2,
       },
     },
     {
-      breakpoint: 340, // При ширине экрана меньше или равной 992px
+      breakpoint: 340,
       settings: {
-        slidesToShow: 1, // Показывать 1 слайд
+        slidesToShow: 1,
       },
     },
-
-    // Добавьте больше точек останова по мере необходимости
   ],
 }
 
@@ -93,12 +105,8 @@ const DecorationsBlock = () => {
         </h2>
         <p className={styles.block__inner_description}>
           Мы специализируемся на производстве декоративных изделий и украшений,
-          таких как медальоны, шильды, значки, брелоки и кулоны, которыT могут
+          таких как медальоны, шильды, значки, брелоки и кулоны, которые могут
           быть изготовлены как на двухсторонней клеевой основе, так и без нее.
-          Наши изделия предназначены для оформления стеклянной Тары и упаковки.
-          Мы работаем с различными материалами, включая по-лимерные материалы,
-          вулканизированную резину, натуральную кожу и композиционную кожу, а
-          также недрагоценные металлы.
         </p>
         <Link to="/decorations">
           <Button

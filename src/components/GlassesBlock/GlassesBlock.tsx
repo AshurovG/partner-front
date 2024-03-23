@@ -7,26 +7,32 @@ import glassImage from "../../assets/images/glass.jpg"
 import ImageGallery from "react-image-gallery"
 import "react-image-gallery/styles/scss/image-gallery.scss"
 
+import glass1 from "../../assets/images/glasses_block_assets/glass1.png"
+import glass2 from "../../assets/images/glasses_block_assets/glass2.png"
+import glass3 from "../../assets/images/glasses_block_assets/glass3.png"
+import glass4 from "../../assets/images/glasses_block_assets/glass4.png"
+import glass5 from "../../assets/images/glasses_block_assets/glass5.png"
+
 const mockImages = [
   {
-    original: wineImage,
-    thumbnail: wineImage,
+    original: glass1,
+    thumbnail: glass1,
   },
   {
-    original: glassImage,
-    thumbnail: glassImage,
+    original: glass2,
+    thumbnail: glass2,
   },
   {
-    original: wineImage,
-    thumbnail: wineImage,
+    original: glass3,
+    thumbnail: glass3,
   },
   {
-    original: glassImage,
-    thumbnail: glassImage,
+    original: glass4,
+    thumbnail: glass4,
   },
   {
-    original: wineImage,
-    thumbnail: wineImage,
+    original: glass5,
+    thumbnail: glass5,
   },
 ]
 
@@ -53,7 +59,7 @@ const GlassesBlock = () => {
       >
         <div className={styles.block__inner_content}>
           <h2 className={styles.block__inner_content_title}>
-            СТЕКЛЯННАЯ ТАРА <br /> БОКАЛЫ & РЮМКИ
+            СТЕКЛЯННАЯ ПОСУДА <br /> БОКАЛЫ & РЮМКИ
           </h2>
           <p className={styles.block__inner_content_description}>
             Возможно изготовление по вашим чертежам или разбработка с нуля
@@ -64,7 +70,7 @@ const GlassesBlock = () => {
               <Button
                 className={styles.block__inner_content_action}
                 isRedirecting={true}
-                mode="inverse"
+                mode="dark"
               >
                 Подробнее
               </Button>
@@ -78,7 +84,7 @@ const GlassesBlock = () => {
             showPlayButton={false}
             showFullscreenButton={false}
             autoPlay={true}
-            slideInterval={3000}
+            slideInterval={2000}
             showNav={false}
           />
         </div>

@@ -6,13 +6,14 @@ import Button from "components/Button"
 
 const ContactForm = () => {
   const location = useLocation()
-  const showForm = ![
-    "/ashurovvitaly",
-    "/rasulovelshan",
-    "/derevitskayaevgenia",
-    "/login",
-    "/admin",
-  ].includes(location.pathname) && !location.pathname.includes('/products')
+  const showForm =
+    ![
+      "/ashurovvitaly",
+      "/rasulovelshan",
+      "/derevitskayaevgenia",
+      "/login",
+      "/admin",
+    ].includes(location.pathname) && !location.pathname.includes("/products")
   const form = useRef<HTMLFormElement>(null)
 
   const forma = useForm({

@@ -18,7 +18,12 @@
     gap: 20px;
 
     &_logo {
-      width: 650px;
+      width: 200px;
+    }
+
+    &_name {
+      font-family: "Colus";
+      font-size: 80px;
     }
     &_description {
       width: 80%;
@@ -34,7 +39,10 @@
   .block {
     &__inner {
       &_logo {
-        width: 550px;
+        width: 150px;
+      }
+      &_name {
+        font-size: 70px;
       }
       &_description {
         width: 90%;
@@ -49,7 +57,10 @@
     width: 90vw;
     &__inner {
       &_logo {
-        width: 500px;
+        width: 100px;
+      }
+      &_name {
+        font-size: 60px;
       }
       &_description {
         width: 95%;
@@ -64,7 +75,10 @@
     width: 95vw;
     &__inner {
       &_logo {
-        width: 400px;
+        width: 100px;
+      }
+      &_name {
+        font-size: 45px;
       }
       &_description {
         width: 95%;
@@ -85,7 +99,10 @@
     width: 95vw;
     &__inner {
       &_logo {
-        width: 300px;
+        // width: 300px;
+      }
+      &_name {
+        font-size: 40px;
       }
       &_description {
         width: 100%;
@@ -99,7 +116,7 @@
   .block {
     &__inner {
       &_logo {
-        width: 95%;
+        // width: 95%;
       }
     }
   }

@@ -3,7 +3,7 @@
 
 .block {
   color: #000;
-  margin-top: 52px;
+  margin-top: 26px;
   &__inner {
     height: 500px;
     max-width: $content-width;
@@ -17,7 +17,7 @@
     &_content {
       box-sizing: border-box;
 
-      background-color: $brand-color;
+      background-color: black;
       height: 100%;
       width: 45%;
       display: flex;
@@ -26,10 +26,12 @@
       padding: 20px;
 
       &_title {
+        color: $brand-color;
         font-size: 40px;
         font-weight: 800;
       }
       &_description {
+        color: #fff;
         font-size: 28px;
       }
       &_action {
@@ -108,7 +110,7 @@
       &_image {
         box-sizing: border-box;
         width: 100%;
-        border: 5px solid $brand-color;
+        // border: 5px solid $brand-color;
       }
     }
   }

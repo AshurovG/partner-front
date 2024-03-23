@@ -2,6 +2,7 @@ import styles from "./BottlesBlock.module.scss"
 import Button from "components/Button"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
+import Bottles from "../../assets/images/bottles-block-background.png"
 
 const Animation = {
   hidden: { y: 100, opacity: 0 },
@@ -19,6 +20,9 @@ const BottlesBlock = () => {
   return (
     <div className={styles.block}>
       <div className={styles.block__inner}>
+        <div className={styles.block__inner_image}>
+          <img src={Bottles}></img>
+        </div>
         <motion.div
           initial="hidden"
           animate="visible"

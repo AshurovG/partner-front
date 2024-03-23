@@ -16,10 +16,10 @@ const MainPage = () => {
     <div className={styles["main-page"]}>
       <AboutCompanyBlock />
       <BottlesBlock />
+      <LocksBlock />
       <PackagesBlock />
       <DecorationsBlock />
       <GlassesBlock />
-      <LocksBlock />
     </div>
   )
 }

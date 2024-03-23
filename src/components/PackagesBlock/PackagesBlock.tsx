@@ -40,9 +40,9 @@ const PackagesBlock = () => {
           className={styles.card}
         >
           <img src={Simple} className={styles.card__image}></img>
-          <h2 className={styles.card__title}>Простая упаковка</h2>
+          <h2 className={styles.card__title}>ПРОСТАЯ УПАКОВКА</h2>
           <p className={styles.card__description}>
-            Прдлагаем все виды и типы упаковки из различных видов картона
+            Предлагаем все виды и типы упаковки из различных видов картона
           </p>
           <Link to="/simple-package">
             <Button
@@ -67,7 +67,7 @@ const PackagesBlock = () => {
           className={styles.card}
         >
           <img src={Complex} className={styles.card__image}></img>
-          <h2 className={styles.card__title}>Премиум упаковка</h2>
+          <h2 className={styles.card__title}>ПРЕМИУМ УПАКОВКА</h2>
           <p className={styles.card__description}>
             Подарочные упаковки с использованием фурнитуры высокого качества
           </p>
