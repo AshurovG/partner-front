@@ -1,12 +1,11 @@
 import { useEffect, useLayoutEffect, useState } from "react"
 import styles from "./ItemPage.module.scss"
-import Slider from "components/Slider"
-// import wineImage from "../../assets/images/wine.jpg"
-// import glassImage from "../../assets/images/glass.jpg"
 import { useParams } from "react-router"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { Response } from "types"
-
+import Slider from "components/Slider"
+import Button from "components/Button"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
 
@@ -54,10 +53,11 @@ type Item = {
 }
 const ItemPage = () => {
   const { itemId } = useParams()
+  const { categoryKey } = useParams()
+  const navigate = useNavigate()
   const [item, setItem] = useState<Item>()
   const [images, setImages] = useState<Image[]>([])
-  const [isLoading, setIsLoading] = useState<boolean>(true) // Добавляем состояние для отслеживания загрузки
-
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const getItem = async () => {
     try {
       const response: Response = await axios(
@@ -77,10 +77,8 @@ const ItemPage = () => {
       setTimeout(() => {
         setIsLoading(false)
       }, 300)
-      // setIsLoading(false) // Устанавливаем состояние загрузки в false после получения данных
     } catch (error) {
       console.log(error)
-      // setIsLoading(false) // Также устанавливаем состояние загрузки в false в случае ошибки
     }
   }
 
@@ -92,10 +90,20 @@ const ItemPage = () => {
     window.scrollTo(0, 0)
   }, [])
 
-  // Рендерим Slider только после загрузки данных
   return (
     <div className={styles["item-page"]}>
       <div className={styles["item-page__inner"]}>
+        <div className={styles["item-page__inner_back"]}>
+          <Button
+            onClick={() => navigate(`/${categoryKey}`)}
+            className={styles["item-page__inner_back-btn"]}
+            mode="inverse"
+            isRedirecting={false}
+          >
+            Назад
+          </Button>
+        </div>
+
         <div className={styles["item-page__content"]}>
           {!isLoading ? (
             <h1 className={styles["item-page__content_adapt-title"]}>

@@ -3,13 +3,24 @@
 
 .item-page {
   //   background-color: aqua;
-  margin-top: 250px;
+  margin-top: 200px;
   margin-bottom: 100px;
 
   &__inner {
     max-width: $content-width;
     width: 85vw;
     margin: 0 auto;
+
+    &_back {
+      display: flex;
+      justify-content: end;
+      width: 100%;
+
+      &-btn {
+        font-size: 20px;
+        height: 60px;
+      }
+    }
   }
 
   &__content {
@@ -81,6 +92,10 @@
 }
 
 @include mediumTablet {
+  .item-page__inner_back-btn {
+    font-size: 18px;
+    height: 55px;
+  }
   .item-page {
     margin-top: 200px;
     margin-bottom: 60px;
@@ -99,6 +114,10 @@
 }
 
 @include smallTablet {
+  .item-page__inner_back-btn {
+    font-size: 18px;
+    height: 50px;
+  }
   .item-page {
     &__content {
       gap: 20px;
@@ -115,6 +134,10 @@
 }
 
 @include mobileLandscape {
+  .item-page__inner_back-btn {
+    font-size: 16px;
+    height: 40px;
+  }
   .item-page {
     margin-top: 160px;
     &__content {

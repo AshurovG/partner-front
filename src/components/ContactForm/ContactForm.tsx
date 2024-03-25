@@ -1,8 +1,9 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import styles from "./ContactForm.module.scss"
 import { useLocation } from "react-router-dom"
 import { useForm, FieldValues } from "react-hook-form"
 import Button from "components/Button"
+import ReCAPTCHA from "react-google-recaptcha"
 
 const ContactForm = () => {
   const location = useLocation()
@@ -15,6 +16,8 @@ const ContactForm = () => {
       "/admin",
     ].includes(location.pathname) && !location.pathname.includes("/products")
   const form = useRef<HTMLFormElement>(null)
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null)
+  const [isCompactMode, _] = useState(window.innerWidth <= 460)
 
   const forma = useForm({
     mode: "onChange",
@@ -92,11 +95,18 @@ const ContactForm = () => {
                   </div>
                 )}
               </div>
+              <div style={{ position: "relative", width: `100%` }}>
+                <ReCAPTCHA
+                  size={isCompactMode ? "compact" : "normal"}
+                  sitekey="6LcOm6QpAAAAACiSyHhAWnNHd9pl_aQJjd5NHZYx"
+                  onChange={(value) => setCaptchaValue(value)}
+                />
+              </div>
               <Button
                 isRedirecting={false}
                 mode="light"
                 className={styles.form__submit}
-                disabled={!isValid}
+                disabled={!isValid || !captchaValue}
                 type="submit"
               >
                 Отправить
