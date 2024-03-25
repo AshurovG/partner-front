@@ -112,10 +112,19 @@ const ItemPage = () => {
           )}
 
           {!isLoading ? (
-            <Slider
-              className={styles["item-page__content_slider"]}
-              images={images}
-            />
+            images.length <= 1 ? (
+              <div
+                style={{ color: "red" }}
+                className={styles["item-page__content_slider"]}
+              >
+                aslk;d;lsad;lksad;k
+              </div>
+            ) : (
+              <Slider
+                className={styles["item-page__content_slider"]}
+                images={images}
+              />
+            )
           ) : (
             <div className={styles["item-page__content_slider"]}>
               <Skeleton

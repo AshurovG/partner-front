@@ -84,8 +84,9 @@ const GlassesBlock = () => {
             showPlayButton={false}
             showFullscreenButton={false}
             autoPlay={true}
-            slideInterval={2000}
+            slideInterval={2500}
             showNav={false}
+            slideDuration={1000}
           />
         </div>
         {/* <img src={Glasses} className={styles.block__inner_image}></img> */}
