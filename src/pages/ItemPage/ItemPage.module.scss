@@ -24,6 +24,12 @@
 
     &_slider {
       width: 50%;
+
+      img {
+        display: block;
+        margin: 0 auto;
+        width: 80%;
+      }
     }
     &_text {
       width: 50%;

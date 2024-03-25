@@ -112,12 +112,12 @@ const ItemPage = () => {
           )}
 
           {!isLoading ? (
-            images.length <= 1 ? (
+            images.length == 1 ? (
               <div
                 style={{ color: "red" }}
                 className={styles["item-page__content_slider"]}
               >
-                aslk;d;lsad;lksad;k
+                <img src={images[0].original} />
               </div>
             ) : (
               <Slider
@@ -143,13 +143,13 @@ const ItemPage = () => {
                   {item?.title}
                 </h1>
                 <p className={styles["item-page__content_text_description"]}>
-                  {/* {item?.description} */}
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam
+                  {item?.description}
+                  {/* Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam
                   dolorum animi molestias quae? Nihil libero iste dicta
                   inventore aspernatur id, quae, asperiores, quas repudiandae
                   dolorem cumque corrupti esse vitae dignissimos? Lorem ipsum
                   dolor sit, amet consectetur adipisicing elit. Nam dolorum
-                  animi molestias quae?
+                  animi molestias quae? */}
                 </p>
               </>
             ) : (
