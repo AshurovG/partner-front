@@ -33,29 +33,19 @@ const CategoryPage = () => {
   const [isModalImageOpened, setIsModalImageOpened] = useState(false)
   const [itemClick, setItemClick] = useState<Card>()
 
-  const [isCardModal, setIsCardModal] = useState<boolean>(false)
+  // const [isCardModal, setIsCardModal] = useState<boolean>(false)
 
   useEffect(() => {
-    setIsCardModal(false)
     const categoryObject = Categories.find((cat) => cat.key === categoryKey)
     if (!categoryObject) {
       setCategoryExists(false)
     } else {
       getCategoryItems(categoryObject.id)
-      if (categoryObject.id == 4) {
-        console.log(categoryObject.id)
-        setIsCardModal(true)
-      }
     }
-    console.log(isCardModal)
-
     setIsItemsLoading(true)
   }, [categoryKey])
 
-  const onCardClick = (item: Card) => {
-    setIsModalImageOpened(true)
-    setItemClick(item)
-  }
+  // }
 
   const getCategoryItems = async (categoryId: number) => {
     try {
@@ -131,22 +121,11 @@ const CategoryPage = () => {
                 <div style={{ color: "red" }}>пусто</div>
               ) : (
                 cards.map((item: Card) => {
-                  if (isCardModal) {
-                    return (
-                      <Card
-                        onCardClick={() => onCardClick(item)}
-                        title={item.title}
-                        image={item.url}
-                        key={item.product_id}
-                      />
-                    )
-                  } else {
-                    return (
-                      <Link to={`${item.product_id}`} key={item.product_id}>
-                        <Card title={item.title} image={item.url} />
-                      </Link>
-                    )
-                  }
+                  return (
+                    <Link to={`${item.product_id}`} key={item.product_id}>
+                      <Card title={item.title} image={item.url} />
+                    </Link>
+                  )
                 })
               )}
             </div>
