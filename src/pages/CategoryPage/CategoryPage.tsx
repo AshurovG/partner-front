@@ -1,49 +1,50 @@
-import { useEffect, useLayoutEffect, useState } from "react"
-import styles from "./CategoryPage.module.scss"
-import { Link, Navigate, useParams } from "react-router-dom"
-import { Categories } from "../../consts"
-import axios from "axios"
-import { Response } from "../../types"
-import Card from "components/Card"
+import { useEffect, useLayoutEffect, useState } from "react";
+import styles from "./CategoryPage.module.scss";
+import { Link, Navigate, useParams } from "react-router-dom";
+import { Categories } from "../../consts";
+import axios from "axios";
+import { Response } from "../../types";
+import Card from "components/Card";
 
-import Skeleton from "react-loading-skeleton"
-import "react-loading-skeleton/dist/skeleton.css"
-import ModalWindow from "components/ModalWindow"
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import ModalWindow from "components/ModalWindow";
 
 type Card = {
-  product_id: number
-  title: string
-  url: string
-  description: string
-  category_id: number
-}
+  product_id: number;
+  title: string;
+  url: string;
+  description: string;
+  category_id: number;
+};
 
 type Category = {
-  category_id: number
-  title: string
-  description: string
-}
+  category_id: number;
+  title: string;
+  description: string;
+};
 
 const CategoryPage = () => {
-  const { categoryKey } = useParams()
-  const [category, setCategory] = useState<Category>()
-  const [cards, setCards] = useState<Card[]>([])
-  const [categoryExists, setCategoryExists] = useState<boolean>(true)
-  const [isItemsLoading, setIsItemsLoading] = useState<boolean>(true)
-  const [isModalImageOpened, setIsModalImageOpened] = useState(false)
-  const [itemClick, setItemClick] = useState<Card>()
+  const { categoryKey } = useParams();
+  const [category, setCategory] = useState<Category>();
+  const [cards, setCards] = useState<Card[]>([]);
+  const [categoryExists, setCategoryExists] = useState<boolean>(true);
+  const [isItemsLoading, setIsItemsLoading] = useState<boolean>(true);
+  const [isModalImageOpened, setIsModalImageOpened] = useState(false);
+  // const [itemClick, setItemClick] = useState<Card>()
+  const [itemClick, _] = useState<Card>();
 
   // const [isCardModal, setIsCardModal] = useState<boolean>(false)
 
   useEffect(() => {
-    const categoryObject = Categories.find((cat) => cat.key === categoryKey)
+    const categoryObject = Categories.find((cat) => cat.key === categoryKey);
     if (!categoryObject) {
-      setCategoryExists(false)
+      setCategoryExists(false);
     } else {
-      getCategoryItems(categoryObject.id)
+      getCategoryItems(categoryObject.id);
     }
-    setIsItemsLoading(true)
-  }, [categoryKey])
+    setIsItemsLoading(true);
+  }, [categoryKey]);
 
   // }
 
@@ -54,20 +55,20 @@ const CategoryPage = () => {
         {
           method: "GET",
         }
-      )
-      setCards(response.data.products)
-      setCategory(response.data)
+      );
+      setCards(response.data.products);
+      setCategory(response.data);
       setTimeout(() => {
-        setIsItemsLoading(false)
-      }, 300)
+        setIsItemsLoading(false);
+      }, 300);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useLayoutEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className={styles["category-page"]}>
@@ -125,7 +126,7 @@ const CategoryPage = () => {
                     <Link to={`${item.product_id}`} key={item.product_id}>
                       <Card title={item.title} image={item.url} />
                     </Link>
-                  )
+                  );
                 })
               )}
             </div>
@@ -134,14 +135,14 @@ const CategoryPage = () => {
       </div>
       <ModalWindow
         handleBackdropClick={() => {
-          setIsModalImageOpened(false)
+          setIsModalImageOpened(false);
         }}
         active={isModalImageOpened}
       >
         <img className={styles.modal_image} src={itemClick?.url}></img>
       </ModalWindow>
     </div>
-  )
-}
+  );
+};
 
-export default CategoryPage
+export default CategoryPage;
