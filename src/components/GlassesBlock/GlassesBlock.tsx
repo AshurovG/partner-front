@@ -59,7 +59,7 @@ const GlassesBlock = () => {
       >
         <div className={styles.block__inner_content}>
           <h2 className={styles.block__inner_content_title}>
-            СТЕКЛЯННАЯ ПОСУДА <br /> БОКАЛЫ & РЮМКИ
+            СТЕКЛЯННАЯ ПОСУДА
           </h2>
           <p className={styles.block__inner_content_description}>
             Возможно изготовление по вашим чертежам или разбработка с нуля

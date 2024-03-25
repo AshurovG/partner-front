@@ -1,55 +1,55 @@
-import { useEffect, useState } from "react"
-import axios from "axios"
-import { toast } from "react-toastify"
-import { Link } from "react-router-dom"
-import styles from "./AdminPage.module.scss"
-import CategoriesList from "components/CategoriesList"
-import Card from "components/Card"
-import AddButton from "components/Icons/AddButton"
-import ModalWindow from "components/ModalWindow"
-import ProductForm from "components/PorductForm/PorductForm"
-import { useNavigate } from "react-router-dom"
-import { useSearchParams } from "react-router-dom"
-import CategoriesIcon from "components/Icons/CategoriesIcon"
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import styles from "./AdminPage.module.scss";
+import CategoriesList from "components/CategoriesList";
+import Card from "components/Card";
+import AddButton from "components/Icons/AddButton";
+import ModalWindow from "components/ModalWindow";
+import ProductForm from "components/PorductForm/PorductForm";
+import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import CategoriesIcon from "components/Icons/CategoriesIcon";
 
-import Skeleton from "react-loading-skeleton"
-import "react-loading-skeleton/dist/skeleton.css"
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 type Card = {
-  product_id: number
-  title: string
-  url: string
-  description: string
-  category_id: number
-}
+  product_id: number;
+  title: string;
+  url: string;
+  description: string;
+  category_id: number;
+};
 
 const AdminPage = () => {
-  const [searchParams] = useSearchParams()
-  const categoryId = searchParams.get("category_id")
-  const [cards, setCards] = useState<Card[]>([])
-  const [isCreateWindowOpened, setIsCreateWindowOpened] = useState(false)
+  const [searchParams] = useSearchParams();
+  const categoryId = searchParams.get("category_id");
+  const [cards, setCards] = useState<Card[]>([]);
+  const [isCreateWindowOpened, setIsCreateWindowOpened] = useState(false);
 
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedCategoryId, setSelectedCategoryId] = useState(
     Number(categoryId)
-  )
+  );
   const [isCategoriesWindowOpened, setIsCategoriesWindowOpened] =
-    useState(false)
-  const navigate = useNavigate()
+    useState(false);
+  const navigate = useNavigate();
 
   const getProducts = async (id: number) => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      const response = await axios(`https://partnerev.ru/api/categories/${id}`)
-      setCards(response.data.products)
-      setSelectedCategoryId(id)
-      setTimeout(() => {
-        setIsLoading(false)
-      }, 10000)
+      const response = await axios(`https://partnerev.ru/api/categories/${id}`);
+      setCards(response.data.products);
+      setSelectedCategoryId(id);
+      // setTimeout(() => {
+      setIsLoading(false);
+      // }, 10000)
     } catch (error) {
-      throw error
+      throw error;
     }
-  }
+  };
 
   const postProduct = async (
     title: string,
@@ -57,18 +57,18 @@ const AdminPage = () => {
     file: File | null
   ) => {
     try {
-      const formData = new FormData()
+      const formData = new FormData();
       //   if (token) {
       //     formData.append("jwt", token)
       //   }
-      formData.append("title", title)
-      formData.append("description", description)
-      formData.append("category_id", selectedCategoryId.toString())
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("category_id", selectedCategoryId.toString());
       if (file && file.size > 5 * 1024 * 1024) {
-        toast.error("Размер фотографии должен не превышать  5 МБ")
-        return
+        toast.error("Размер фотографии должен не превышать  5 МБ");
+        return;
       } else if (file) {
-        formData.append("file", file)
+        formData.append("file", file);
       }
       await axios("https://partnerev.ru/api/products/", {
         method: "POST",
@@ -76,30 +76,30 @@ const AdminPage = () => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      })
+      });
       //   setIsCardsLoading(true)
-      toast.success("Объект создан успешно!")
-      getProducts(selectedCategoryId)
-      setIsCreateWindowOpened(false)
+      toast.success("Объект создан успешно!");
+      getProducts(selectedCategoryId);
+      setIsCreateWindowOpened(false);
     } catch (error) {
-      toast.error("Размер фотографии должен не превышать 5 МБ")
-      throw error
+      toast.error("Размер фотографии должен не превышать 5 МБ");
+      throw error;
     }
-  }
+  };
 
   const handleCategoryClick = (id: number) => {
-    navigate(`/admin?category_id=${id}`)
-    getProducts(id)
+    navigate(`/admin?category_id=${id}`);
+    getProducts(id);
     if (isCategoriesWindowOpened) {
-      setIsCategoriesWindowOpened(false)
+      setIsCategoriesWindowOpened(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (categoryId) {
-      getProducts(Number(categoryId))
+      getProducts(Number(categoryId));
     }
-  }, [categoryId])
+  }, [categoryId]);
 
   return (
     <div className={styles.admin__page}>
@@ -117,7 +117,7 @@ const AdminPage = () => {
           <h4 className={styles["admin__page-text"]}>Сменить категорию</h4>
           <CategoriesIcon
             onClick={() => {
-              setIsCategoriesWindowOpened(true)
+              setIsCategoriesWindowOpened(true);
             }}
           />
         </div>
@@ -128,7 +128,7 @@ const AdminPage = () => {
           </h4>
           <AddButton
             onClick={() => {
-              setIsCreateWindowOpened(true)
+              setIsCreateWindowOpened(true);
             }}
           />
         </div>
@@ -181,7 +181,7 @@ const AdminPage = () => {
         />
       </ModalWindow>
     </div>
-  )
-}
+  );
+};
 
-export default AdminPage
+export default AdminPage;
