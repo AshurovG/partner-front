@@ -1,17 +1,17 @@
-import styles from "./GlassesBlock.module.scss"
-import Button from "components/Button"
-import { Link } from "react-router-dom"
-import { motion } from "framer-motion"
-import wineImage from "../../assets/images/wine.jpg"
-import glassImage from "../../assets/images/glass.jpg"
-import ImageGallery from "react-image-gallery"
-import "react-image-gallery/styles/scss/image-gallery.scss"
+import styles from "./GlassesBlock.module.scss";
+import Button from "components/Button";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+// import wine Image from "../../assets/images/wine.jpg"
+// import glassImage from "../../assets/images/glass.jpg"
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/scss/image-gallery.scss";
 
-import glass1 from "../../assets/images/glasses_block_assets/glass1.png"
-import glass2 from "../../assets/images/glasses_block_assets/glass2.png"
-import glass3 from "../../assets/images/glasses_block_assets/glass3.png"
-import glass4 from "../../assets/images/glasses_block_assets/glass4.png"
-import glass5 from "../../assets/images/glasses_block_assets/glass5.png"
+import glass1 from "../../assets/images/glasses_block_assets/glass1.png";
+import glass2 from "../../assets/images/glasses_block_assets/glass2.png";
+import glass3 from "../../assets/images/glasses_block_assets/glass3.png";
+import glass4 from "../../assets/images/glasses_block_assets/glass4.png";
+import glass5 from "../../assets/images/glasses_block_assets/glass5.png";
 
 const mockImages = [
   {
@@ -34,7 +34,7 @@ const mockImages = [
     original: glass5,
     thumbnail: glass5,
   },
-]
+];
 
 const Animation = {
   hidden: { y: 100, opacity: 0 },
@@ -46,7 +46,7 @@ const Animation = {
       duration: 0.5,
     },
   },
-}
+};
 
 const GlassesBlock = () => {
   return (
@@ -91,7 +91,7 @@ const GlassesBlock = () => {
         {/* <img src={Glasses} className={styles.block__inner_image}></img> */}
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
-export default GlassesBlock
+export default GlassesBlock;
