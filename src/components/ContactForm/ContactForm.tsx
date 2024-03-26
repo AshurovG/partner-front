@@ -1,12 +1,12 @@
-import { useRef, useState } from "react"
-import styles from "./ContactForm.module.scss"
-import { useLocation } from "react-router-dom"
-import { useForm, FieldValues } from "react-hook-form"
-import Button from "components/Button"
-import ReCAPTCHA from "react-google-recaptcha"
+import { useRef, useState } from "react";
+import styles from "./ContactForm.module.scss";
+import { useLocation } from "react-router-dom";
+import { useForm, FieldValues } from "react-hook-form";
+import Button from "components/Button";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const ContactForm = () => {
-  const location = useLocation()
+  const location = useLocation();
   const showForm =
     ![
       "/ashurovvitaly",
@@ -14,21 +14,21 @@ const ContactForm = () => {
       "/derevitskayaevgenia",
       "/login",
       "/admin",
-    ].includes(location.pathname) && !location.pathname.includes("/products")
-  const form = useRef<HTMLFormElement>(null)
-  const [captchaValue, setCaptchaValue] = useState<string | null>(null)
-  const [isCompactMode, _] = useState(window.innerWidth <= 460)
+    ].includes(location.pathname) && !location.pathname.includes("/products");
+  const form = useRef<HTMLFormElement>(null);
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
+  const [isCompactMode, _] = useState(window.innerWidth <= 460);
 
   const forma = useForm({
     mode: "onChange",
-  })
+  });
 
-  const { register, handleSubmit, formState } = forma
-  const { isValid, touchedFields, errors } = formState
+  const { register, handleSubmit, formState } = forma;
+  const { isValid, touchedFields, errors } = formState;
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data.fio, data.phone, data.description)
-  }
+    console.log(data.fio, data.phone, data.description);
+  };
 
   return (
     <>
@@ -67,7 +67,7 @@ const ContactForm = () => {
                   {...register("phone", {
                     required: "Обязательное поле",
                     pattern: {
-                      value: /^8\d{10}$/,
+                      value: /^(8|\+7)\d{10}$/,
                       message: "Введите корректный номер телефона",
                     },
                   })}
@@ -116,7 +116,7 @@ const ContactForm = () => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;
