@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import styles from "./ContactForm.module.scss";
 import { useLocation } from "react-router-dom";
-import { useForm, FieldValues } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Button from "components/Button";
 import ReCAPTCHA from "react-google-recaptcha";
 import emailjs from "@emailjs/browser";
