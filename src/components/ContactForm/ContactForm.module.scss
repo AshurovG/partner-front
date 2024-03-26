@@ -43,7 +43,12 @@
     text-align: left;
     padding-left: 10px;
     width: 100%;
+    font-family: "Cormorant Infant", serif;
     font-size: 26px;
+
+    &::placeholder {
+      font-family: "Cormorant", "Nunito", sans-serif;
+    }
 
     &_message {
       font-size: 16px;
@@ -64,7 +69,7 @@
       border-radius: 5px;
 
       font-size: 26px;
-      font-family: "Cormorant", "Nunito", sans-serif;
+      font-family: "Cormorant Infant", serif;
 
       width: 100%;
       max-height: 150px;
@@ -73,6 +78,10 @@
       resize: none;
 
       padding: 10px;
+
+      &::placeholder {
+        font-family: "Cormorant", "Nunito", sans-serif;
+      }
 
       &:focus {
         border: 2px solid $brand-color;

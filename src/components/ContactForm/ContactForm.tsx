@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom"
 import { useForm, FieldValues } from "react-hook-form"
 import Button from "components/Button"
 import ReCAPTCHA from "react-google-recaptcha"
+import clsx from "clsx"
 
 const ContactForm = () => {
   const location = useLocation()
@@ -71,7 +72,7 @@ const ContactForm = () => {
                       message: "Введите корректный номер телефона",
                     },
                   })}
-                  className={styles.form__input}
+                  className={clsx(styles.form__input, styles.phone)}
                   type="tel"
                   placeholder="Введите номер телефона*"
                 />
