@@ -66,7 +66,7 @@ header {
   align-items: center;
 
   &__info {
-    font-size: 32px;
+    font-size: 24px;
     text-align: left;
 
     h2 {
@@ -159,7 +159,7 @@ header {
 @include extraLargeTablet {
   .submenu {
     &__info {
-      font-size: 26px;
+      font-size: 22px;
     }
     &__slider {
       width: 700px;
@@ -179,7 +179,7 @@ header {
 @include largeTablet {
   .submenu {
     &__info {
-      font-size: 24px;
+      font-size: 20px;
     }
     &__slider {
       width: 600px;
@@ -199,7 +199,7 @@ header {
 @include mediumTablet {
   .submenu {
     &__info {
-      font-size: 22px;
+      font-size: 18px;
     }
     &__slider {
       width: 500px;
@@ -257,7 +257,7 @@ header {
 
     &__info {
       width: 90%;
-      font-size: 20px;
+      font-size: 18px;
     }
     &__slider {
       width: 95%;
