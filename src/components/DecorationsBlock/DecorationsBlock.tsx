@@ -5,11 +5,6 @@ import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
-
-import Dec1 from "../../assets/images/decoration1.png"
-import Dec2 from "../../assets/images/decoration2.png"
-import Dec3 from "../../assets/images/decoration3.png"
-
 import np1 from "../../assets/images/nameplates/np1.png"
 import np2 from "../../assets/images/nameplates/np2.png"
 import np3 from "../../assets/images/nameplates/np3.png"
