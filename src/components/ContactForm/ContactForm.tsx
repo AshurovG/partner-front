@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import { useForm, FieldValues } from "react-hook-form";
 import Button from "components/Button";
 import ReCAPTCHA from "react-google-recaptcha";
+import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
 
 const ContactForm = () => {
   const location = useLocation();
@@ -23,11 +25,33 @@ const ContactForm = () => {
     mode: "onChange",
   });
 
-  const { register, handleSubmit, formState } = forma;
+  const { register, handleSubmit, formState, reset } = forma;
   const { isValid, touchedFields, errors } = formState;
 
-  const onSubmit = (data: FieldValues) => {
-    console.log(data.fio, data.phone, data.description);
+  const onSubmit = () => {
+    if (form.current !== null) {
+      emailjs
+        .sendForm(
+          "service_tqr0dxk",
+          "template_9v0h7qn",
+          form.current,
+          "Yr8QuQUIlXompjRBo"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+    }
+    toast.success("Ваше обращение принято! Мы скоро с вами свяжемся!");
+    reset({
+      fio: "",
+      phone: "",
+      description: "",
+    });
   };
 
   return (
