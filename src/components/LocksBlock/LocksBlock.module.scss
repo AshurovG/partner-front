@@ -23,11 +23,24 @@
       width: 50%;
       height: 500px;
       overflow: hidden;
+      position: relative;
+
+      // text-align: center;
 
       img {
-        height: 100%;
+        // height: 100%;
+        // object-fit: cover;
+        // height: auto;
+
+        position: absolute; // Используйте absolute позиционирование
+        top: 50%; // Центрируйте вертикально
+        left: 50%; // Центрируйте горизонтально
+        transform: translate(
+          -50%,
+          -50%
+        ); // Смещайте изображение на половину его ширины и высоты вверх и влево
         object-fit: cover;
-        height: auto;
+        height: auto; // Установите высоту автоматически, чтобы сохранить пропорции изображения
       }
     }
 
@@ -103,10 +116,15 @@
       height: auto;
 
       &_image {
+        position: initial;
         height: auto;
         width: 100%;
 
         img {
+          position: initial;
+          top: 0;
+          left: 0;
+          transform: none;
           width: 100%;
         }
       }

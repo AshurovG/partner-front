@@ -9,27 +9,35 @@ import "slick-carousel/slick/slick.css"
 import Dec1 from "../../assets/images/decoration1.png"
 import Dec2 from "../../assets/images/decoration2.png"
 import Dec3 from "../../assets/images/decoration3.png"
+
+import np1 from "../../assets/images/nameplates/np1.png"
+import np2 from "../../assets/images/nameplates/np2.png"
+import np3 from "../../assets/images/nameplates/np3.png"
+import np4 from "../../assets/images/nameplates/np4.png"
+import np5 from "../../assets/images/nameplates/np5.png"
+import np6 from "../../assets/images/nameplates/np6.png"
+
 import ArrowLeftIcon from "components/Icons/ArrowLeftIcon"
 import ArrowRightIcon from "components/Icons/ArrowRightIcon"
 
 const dataTop = [
   {
-    url: Dec1,
+    url: np1,
   },
   {
-    url: Dec2,
+    url: np2,
   },
   {
-    url: Dec3,
+    url: np3,
   },
   {
-    url: Dec1,
+    url: np4,
   },
   {
-    url: Dec2,
+    url: np5,
   },
   {
-    url: Dec3,
+    url: np6,
   },
 ]
 

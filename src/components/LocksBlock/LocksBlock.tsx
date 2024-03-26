@@ -2,7 +2,7 @@ import styles from "./LocksBlock.module.scss"
 import { Link } from "react-router-dom"
 import Button from "components/Button"
 import { motion } from "framer-motion"
-import Bottles from "../../assets/images/bottles-block-background.png"
+import Locks from "../../assets/images/locks-block-background.jpg"
 
 const Animation = {
   hidden: { y: 100, opacity: 0 },
@@ -49,7 +49,7 @@ const LocksBlock = () => {
           </div>
         </motion.div>
         <div className={styles.block__inner_image}>
-          <img src={Bottles}></img>
+          <img src={Locks}></img>
         </div>
       </div>
     </div>
