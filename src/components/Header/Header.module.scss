@@ -283,7 +283,7 @@ header {
       }
     }
     &_contact {
-      font-size: 32px;
+      font-size: 28px; // было 32
     }
   }
   .submenu {
@@ -311,7 +311,7 @@ header {
 @include extraSmallMobile {
   .header__inner {
     &_contact {
-      font-size: 26px;
+      font-size: 20px;
     }
   }
   .submenu {

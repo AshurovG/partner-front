@@ -18,16 +18,16 @@
     gap: 20px;
 
     &_logo {
-      width: 200px;
+      width: 120px;
     }
 
     &_name {
       font-family: "Colus";
-      font-size: 80px;
+      font-size: 60px;
     }
     &_description {
       width: 80%;
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 800;
       display: block;
       text-align: center;
@@ -38,15 +38,15 @@
 @include mediumTablet {
   .block {
     &__inner {
-      &_logo {
-        width: 150px;
-      }
-      &_name {
-        font-size: 70px;
-      }
+      // &_logo {
+      //   width: 150px;
+      // }
+      // &_name {
+      //   font-size: 70px;
+      // }
       &_description {
         width: 90%;
-        font-size: 30px;
+        // font-size: 28px;
       }
     }
   }
@@ -57,40 +57,27 @@
     width: 90vw;
     &__inner {
       &_logo {
-        width: 100px;
+        width: 90px;
       }
       &_name {
-        font-size: 60px;
+        font-size: 40px;
       }
       &_description {
         width: 95%;
-        font-size: 28px;
+        font-size: 24px;
       }
     }
   }
 }
 
-@include mobileLandscape {
-  .block {
-    width: 95vw;
-    &__inner {
-      &_logo {
-        width: 100px;
-      }
-      &_name {
-        font-size: 45px;
-      }
-      &_description {
-        width: 95%;
-        font-size: 26px;
-      }
-    }
-  }
-}
 @include mobile {
   .block {
     padding-bottom: 32px;
     border-bottom: 1px solid #fff;
+
+    &__inner {
+      padding: 30px 0;
+    }
   }
 }
 
@@ -98,15 +85,35 @@
   .block {
     width: 95vw;
     &__inner {
+      gap: 10px;
       &_logo {
-        // width: 300px;
+        width: 70px;
       }
       &_name {
-        font-size: 40px;
+        font-size: 30px;
       }
       &_description {
         width: 100%;
-        font-size: 24px;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@include ultraSmallMobile {
+  .block {
+    width: 95vw;
+    &__inner {
+      gap: 7px;
+      // &_logo {
+      //   width: 75px;
+      // }
+      &_name {
+        font-size: 35px;
+      }
+      &_description {
+        width: 100%;
+        font-size: 22px;
       }
     }
   }

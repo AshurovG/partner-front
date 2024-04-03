@@ -1,19 +1,19 @@
 // import React from "react"
-import { useLocation } from "react-router-dom"
-import styles from "./Footer.module.scss"
+import { useLocation } from "react-router-dom";
+import styles from "./Footer.module.scss";
 
-import Logo from "assets/images/клубочек золотой.png"
-import TelegramIcon from "components/Icons/TelegramIcon"
-import WhatsAppIcon from "components/Icons/WhatsAppIcon"
-import MailIcon from "components/Icons/MailIcon"
+import Logo from "assets/images/клубочек золотой.png";
+import TelegramIcon from "components/Icons/TelegramIcon";
+import WhatsAppIcon from "components/Icons/WhatsAppIcon";
+import MailIcon from "components/Icons/MailIcon";
 
 const Footer = () => {
-  const location = useLocation()
+  const location = useLocation();
   const showFooter = ![
     "/ashurovvitaly",
     "/rasulovelshan",
     "/derevitskayaevgenia",
-  ].includes(location.pathname)
+  ].includes(location.pathname);
 
   return (
     <>
@@ -22,7 +22,7 @@ const Footer = () => {
           <div className={styles.footer__inner}>
             <div className={styles.footer__inner_left}>
               <img className={styles.footer__inner_left_logo} src={Logo}></img>
-              <h2 className={styles.footer__inner_left_name}>ПАРТНЕР</h2>
+              <h2 className={styles.footer__inner_left_name}>ПАРТНЁР</h2>
               <div className={styles.footer__inner_left_socials}>
                 <a>
                   <TelegramIcon />
@@ -49,9 +49,9 @@ const Footer = () => {
                   <a href="mailto:PARTNER.M2309@MAIL.RU">
                     partner.m2309@mail.ru
                   </a>
-                  <a href="mailto:PARTNER.M2309@MAIL.RU">
+                  {/* <a href="mailto:PARTNER.M2309@MAIL.RU">
                     partner.m2309@mail.ru
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
@@ -59,7 +59,7 @@ const Footer = () => {
         </footer>
       ) : null}
     </>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

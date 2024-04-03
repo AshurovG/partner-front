@@ -24,7 +24,8 @@
       align-items: center;
       gap: 15px;
       &_logo {
-        height: 50%;
+        // height: 50%;
+        width: 120px;
       }
       &_name {
         font-size: 50px;
@@ -108,9 +109,9 @@
       gap: 20px;
 
       &_left {
-        &_logo {
-          width: 130px;
-        }
+        // &_logo {
+        //   width: 130px;
+        // }
         &_socials {
           width: 65%;
           a {
@@ -130,15 +131,34 @@
   }
 }
 
-@include mobile {
+@include mobileLandscape {
   .footer {
     &__inner {
       &_left {
         &_logo {
-          width: 110px;
+          width: 90px;
+        }
+
+        &_name {
+          font-size: 55px;
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+  .footer {
+    &__inner {
+      &_left {
+        // &_logo {
+        //   width: 110px;
+        // }
+        &_name {
+          font-size: 40px;
         }
         &_socials {
-          width: 70%;
+          width: 80%;
           a {
             svg {
               width: 35px;
@@ -162,10 +182,13 @@
       &_left {
         gap: 5px;
         &_logo {
-          width: 100px;
+          width: 70px;
+        }
+        &_name {
+          font-size: 30px;
         }
         &_socials {
-          width: 60%;
+          // width: 60%;
           a {
             svg {
               width: 30px;
