@@ -1,14 +1,15 @@
-import { useRef, useState } from "react";
-import styles from "./ContactForm.module.scss";
-import { useLocation } from "react-router-dom";
-import { useForm, FieldValues } from "react-hook-form";
-import Button from "components/Button";
-import ReCAPTCHA from "react-google-recaptcha";
-import emailjs from "@emailjs/browser";
-import { toast } from "react-toastify";
+import { useRef, useState } from "react"
+import styles from "./ContactForm.module.scss"
+import { useLocation } from "react-router-dom"
+import { useForm } from "react-hook-form"
+import Button from "components/Button"
+import ReCAPTCHA from "react-google-recaptcha"
+import emailjs from "@emailjs/browser"
+import { toast } from "react-toastify"
+import clsx from "clsx"
 
 const ContactForm = () => {
-  const location = useLocation();
+  const location = useLocation()
   const showForm =
     ![
       "/ashurovvitaly",
@@ -16,17 +17,17 @@ const ContactForm = () => {
       "/derevitskayaevgenia",
       "/login",
       "/admin",
-    ].includes(location.pathname) && !location.pathname.includes("/products");
-  const form = useRef<HTMLFormElement>(null);
-  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
-  const [isCompactMode, _] = useState(window.innerWidth <= 460);
+    ].includes(location.pathname) && !location.pathname.includes("/products")
+  const form = useRef<HTMLFormElement>(null)
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null)
+  const [isCompactMode, _] = useState(window.innerWidth <= 460)
 
   const forma = useForm({
     mode: "onChange",
-  });
+  })
 
-  const { register, handleSubmit, formState, reset } = forma;
-  const { isValid, touchedFields, errors } = formState;
+  const { register, handleSubmit, formState, reset } = forma
+  const { isValid, touchedFields, errors } = formState
 
   const onSubmit = () => {
     if (form.current !== null) {
@@ -39,20 +40,20 @@ const ContactForm = () => {
         )
         .then(
           (result) => {
-            console.log(result.text);
+            console.log(result.text)
           },
           (error) => {
-            console.log(error.text);
+            console.log(error.text)
           }
-        );
+        )
     }
-    toast.success("Ваше обращение принято! Мы скоро с вами свяжемся!");
+    toast.success("Ваше обращение принято! Мы скоро с вами свяжемся!")
     reset({
       fio: "",
       phone: "",
       description: "",
-    });
-  };
+    })
+  }
 
   return (
     <>
@@ -95,7 +96,7 @@ const ContactForm = () => {
                       message: "Введите корректный номер телефона",
                     },
                   })}
-                  className={styles.form__input}
+                  className={clsx(styles.form__input, styles.phone)}
                   type="tel"
                   placeholder="Введите номер телефона*"
                 />
@@ -140,7 +141,7 @@ const ContactForm = () => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default ContactForm;
+export default ContactForm

@@ -31,7 +31,7 @@ const BottlesBlock = () => {
         >
           <div>
             <h2 className={styles.block__inner_content_title}>
-              СТЕКЛЯННАЯ ТАРА
+              ЭКСКЛЮЗИВНАЯ СТЕКЛЯННАЯ ТАРА
             </h2>
             <p className={styles.block__inner_content_description}>
               Изготовление и поставка стеклянной тары для ликеро-водочной и

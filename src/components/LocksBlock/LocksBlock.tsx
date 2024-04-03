@@ -28,7 +28,7 @@ const LocksBlock = () => {
         >
           <div>
             <h2 className={styles.block__inner_content_title}>
-              УКУПОРОЧНЫЕ УСТРОЙСТВА
+              ЭКСКЛЮЗИВНЫЕ УКУПОРОЧНЫЕ УСТРОЙСТВА
             </h2>
             <p className={styles.block__inner_content_description}>
               Cпециализируемся на поставках эксклюзивных укупорочных средств для
