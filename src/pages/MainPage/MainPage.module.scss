@@ -18,17 +18,17 @@
 }
 @include mobileLandscape {
   .main-page {
-    margin-top: 160px;
+    margin-top: 150px;
   }
 }
 @include mobile {
   .main-page {
-    margin-top: 150px;
+    margin-top: 140px;
   }
 }
 
 @include extraSmallMobile {
   .main-page {
-    margin-top: 140px;
+    margin-top: 110px;
   }
 }

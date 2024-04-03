@@ -135,7 +135,10 @@
     &__inner {
       &_left {
         &_logo {
-          width: 110px;
+          width: 100px;
+        }
+        &_name {
+          font-size: 45px;
         }
         &_socials {
           width: 70%;
@@ -162,7 +165,10 @@
       &_left {
         gap: 5px;
         &_logo {
-          width: 100px;
+          width: 85px;
+        }
+        &_name {
+          font-size: 40px;
         }
         &_socials {
           width: 60%;
@@ -176,6 +182,7 @@
 
       &_right {
         &_contacts {
+          font-size: 22px;
           align-items: center;
         }
       }
@@ -188,7 +195,7 @@
     &__inner {
       &_right {
         &_contacts {
-          font-size: 24px;
+          font-size: 20px;
         }
       }
     }

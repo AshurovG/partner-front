@@ -40,7 +40,7 @@ const PackagesBlock = () => {
           className={styles.card}
         >
           <img src={Simple} className={styles.card__image}></img>
-          <h2 className={styles.card__title}>ПРОСТАЯ УПАКОВКА</h2>
+          <h2 className={styles.card__title}>УПАКОВКА ИЗ КАРТОНА</h2>
           <p className={styles.card__description}>
             Предлагаем все виды и типы упаковки из различных видов картона
           </p>

@@ -134,3 +134,24 @@
     }
   }
 }
+
+@include extraSmallMobile {
+  .block {
+    &__inner {
+      &_content {
+        &_title {
+          font-size: 22px;
+          margin-bottom: 5px;
+        }
+        &_description {
+          font-size: 18px;
+        }
+        &_action {
+          margin-top: 0;
+
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
