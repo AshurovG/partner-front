@@ -22,7 +22,7 @@ const Footer = () => {
           <div className={styles.footer__inner}>
             <div className={styles.footer__inner_left}>
               <img className={styles.footer__inner_left_logo} src={Logo}></img>
-              <h2 className={styles.footer__inner_left_name}>ПАРТНЁР</h2>
+              <h2 className={styles.footer__inner_left_name}>ПАРТНЕР</h2>
               <div className={styles.footer__inner_left_socials}>
                 <a>
                   <TelegramIcon />
