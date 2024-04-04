@@ -5,7 +5,7 @@ import styles from "./Footer.module.scss";
 // import Logo from "assets/images/клубочек золотой.png";
 import TelegramIcon from "components/Icons/TelegramIcon";
 import WhatsAppIcon from "components/Icons/WhatsAppIcon";
-import MailIcon from "components/Icons/MailIcon";
+// import MailIcon from "components/Icons/MailIcon";
 import ContactForm from "components/ContactForm";
 
 const Footer = () => {
@@ -52,15 +52,15 @@ const Footer = () => {
                 </div>
 
                 <div className={styles.footer__inner_left_socials}>
-                  <a>
+                  <a href="https://t.me/Ziv1329">
                     <TelegramIcon />
                   </a>
-                  <a>
+                  <a href="https://wa.me/79693031111">
                     <WhatsAppIcon />
                   </a>
-                  <a>
+                  {/* <a>
                     <MailIcon />
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
