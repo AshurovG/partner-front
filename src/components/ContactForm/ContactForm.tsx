@@ -125,6 +125,7 @@ const ContactForm = () => {
                 size={isCompactMode ? "compact" : "normal"}
                 sitekey="6LcOm6QpAAAAACiSyHhAWnNHd9pl_aQJjd5NHZYx"
                 onChange={(value) => setCaptchaValue(value)}
+                theme="dark"
               />
             </div>
             <Button
