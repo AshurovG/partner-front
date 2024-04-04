@@ -2,22 +2,26 @@
 @import "../../styles/mixins.scss";
 
 .form {
-  background-image: url("../../assets/images/form-background.jpg");
-  background-color: $brand-color;
+  // background-image: url("../../assets/images/form-background.jpg");
+  // background-color: $brand-color;
   display: flex;
   align-items: center;
-  padding: 70px 0;
-  margin-top: 52px;
+  // padding: 70px 0;
+  // margin-top: 52px;
+  // width: 50vw;
+  height: auto;
 
   &__inner {
+    max-width: 500px;
     margin: 0 auto;
-    background-color: #ffffff;
-    max-width: 700px;
-    width: 90vw;
+    background-color: $background-form;
+    // max-width: 50vw;
+    // width: 90vw;
     height: auto;
     padding: 30px 30px;
     box-sizing: border-box;
-    border-radius: 10px;
+    // border-radius: 10px;
+    border: 3px solid $border-form;
 
     &_fields {
       display: flex;
@@ -28,7 +32,7 @@
     }
 
     &_title {
-      font-size: 32px;
+      font-size: 20px;
       font-weight: 800;
 
       margin-bottom: 15px;
@@ -36,15 +40,14 @@
   }
 
   &__input {
-    border-radius: 5px;
-    border: 1px solid $brand-color;
+    border: 1px solid $border-form;
     height: 50px;
     max-height: 50px;
     text-align: left;
     padding-left: 10px;
     width: 100%;
     font-family: "Cormorant Infant", serif;
-    font-size: 26px;
+    font-size: 20px;
 
     &::placeholder {
       font-family: "Cormorant", "Nunito", sans-serif;
@@ -60,15 +63,16 @@
     }
 
     &:focus {
-      border: 2px solid $brand-color;
+      border: 2px solid $border-form;
     }
     &_big {
+      background-color: inherit;
+      color: $brand-secondary;
       display: block;
-      border: 1px $brand-color solid;
+      border: 1px $border-form solid;
       box-sizing: border-box;
-      border-radius: 5px;
 
-      font-size: 26px;
+      font-size: 20px;
       font-family: "Cormorant Infant", serif;
 
       width: 100%;
@@ -84,13 +88,15 @@
       }
 
       &:focus {
-        border: 2px solid $brand-color;
+        border: 2px solid $border-form;
       }
     }
   }
 
   &__submit {
-    font-size: 28px;
+    font-size: 20px;
+    border-color: $border-form;
+    background: inherit;
   }
 }
 
@@ -98,17 +104,17 @@
   .form {
     &__inner {
       height: auto;
-      &_title {
-        font-size: 22px;
-      }
+      // &_title {
+      //   font-size: 22px;
+      // }
     }
     &__input {
-      font-size: 20px;
+      // font-size: 20px;
       height: 45px;
 
-      &_big {
-        font-size: 20px;
-      }
+      // &_big {
+      //   font-size: 20px;
+      // }
       &_message {
         font-size: 16px;
       }
@@ -123,8 +129,30 @@
   }
 }
 
+@include mobile {
+  .form {
+    &__inner {
+      width: 70vw;
+      &_title {
+        font-size: 16px;
+      }
+    }
+
+    &__input {
+      font-size: 16px;
+
+      &_big {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
 @include extraSmallMobile {
   .form {
+    &__inner {
+      padding: 20px 20px;
+    }
     &__submit {
       font-size: 16px;
     }
@@ -133,11 +161,15 @@
       margin-bottom: 10px;
     }
     &__input {
-      font-size: 20px;
-      height: 40px;
+      // font-size: 20px;
+
       &_big {
-        font-size: 20px;
+        height: 70px;
       }
+      height: 40px;
+      // &_big {
+      //   font-size: 20px;
+      // }
       &_message {
         font-size: 12px;
       }

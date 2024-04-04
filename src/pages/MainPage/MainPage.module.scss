@@ -23,12 +23,12 @@
 }
 @include mobile {
   .main-page {
-    margin-top: 140px;
+    margin-top: 120px;
   }
 }
 
 @include extraSmallMobile {
   .main-page {
-    margin-top: 110px;
+    // margin-top: 110px;
   }
 }
