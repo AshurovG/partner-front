@@ -14,6 +14,7 @@ const Footer = () => {
     "/ashurovvitaly",
     "/rasulovelshan",
     "/derevitskayaevgenia",
+    "/login",
   ].includes(location.pathname);
 
   return (
