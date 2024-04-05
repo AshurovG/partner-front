@@ -57,11 +57,12 @@ const ContactForm = () => {
 
   return (
     <>
-      {showForm && (
+      {
         // <div className={styles.form}>
         <div id="form" className={styles.form__inner}>
           <h2 className={styles.form__inner_title}>
-            Что-то заинтересовало или остались вопросы?
+            Что<span className="dash">-</span>то заинтересовало или остались
+            вопросы?
             <br /> Оставьте Ваши данные и мы с Вами свяжемся!
           </h2>
           <form
@@ -140,7 +141,7 @@ const ContactForm = () => {
           </form>
         </div>
         // </div>
-      )}
+      }
     </>
   );
 };

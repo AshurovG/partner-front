@@ -8,9 +8,11 @@ const AboutCompanyBlock = () => {
         <img src={Logo} className={styles.block__inner_logo}></img>
         <p className={styles.block__inner_name}>ПАРТНЕР</p>
         <p className={styles.block__inner_description}>
-          Группа компаний “Партнер” - ведущий поставщик эксклюзивных
-          комплектующих материалов, используемых в производстве килеро-водочной
-          и вино-коньячной продукции.
+          Группа компаний “Партнер” <span className={styles.dash}>-</span>{" "}
+          ведущий поставщик эксклюзивных комплектующих материалов, используемых
+          в производстве ликеро<span className={styles.dash}>-</span>водочной и
+          вино
+          <span className={styles.dash}>-</span>коньячной продукции.
         </p>
       </div>
     </div>

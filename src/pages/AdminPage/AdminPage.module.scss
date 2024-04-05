@@ -73,6 +73,10 @@
   padding: 30px;
   border: 1px solid $brand-color;
   border-radius: 10px;
+
+  &__categories {
+    max-width: 300px !important;
+  }
 }
 
 @include extraLargeTablet {

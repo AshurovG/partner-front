@@ -170,7 +170,7 @@ const AdminPage = () => {
       </ModalWindow>
 
       <ModalWindow
-        className={styles["modal"]}
+        className={`${styles["modal"]} ${styles.modal__categories}`}
         active={isCategoriesWindowOpened}
         handleBackdropClick={() => setIsCategoriesWindowOpened(false)}
       >

@@ -35,6 +35,10 @@
   }
 }
 
+.dash {
+  font-family: "serif" !important;
+}
+
 @include mediumTablet {
   .block {
     &__inner {

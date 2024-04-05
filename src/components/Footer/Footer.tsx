@@ -37,9 +37,14 @@ const Footer = () => {
                 </h2>
                 <div className={styles.footer__inner_right_contacts}>
                   <div>
-                    <a href="tel:+7-861-203-38-33">+7 (861) 203-38-33</a>
-                    <a href="tel:+7-928-402-23-09">+7 (928) 402-23-09</a>
-                    <a href="tel:+7-969-303-11-11">+7 (969) 303-11-11</a>
+                    <a href="tel:+7-861-203-38-33">
+                      +7 (861) 203<span className="dash">-</span>38
+                      <span className="dash">-</span>33
+                    </a>
+                    <a href="tel:+7-928-402-23-09">
+                      +7 (928) 402<span className="dash">-</span>23
+                      <span className="dash">-</span>09
+                    </a>
                   </div>
                   <div>
                     <a href="mailto:PARTNER.M2309@MAIL.RU">

@@ -1,8 +1,8 @@
-import styles from "./BottlesBlock.module.scss"
-import Button from "components/Button"
-import { Link } from "react-router-dom"
-import { motion } from "framer-motion"
-import Bottles from "../../assets/images/bottles-block-background.png"
+import styles from "./BottlesBlock.module.scss";
+import Button from "components/Button";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import Bottles from "../../assets/images/bottles-block-background.png";
 
 const Animation = {
   hidden: { y: 100, opacity: 0 },
@@ -14,7 +14,7 @@ const Animation = {
       duration: 0.5,
     },
   },
-}
+};
 
 const BottlesBlock = () => {
   return (
@@ -34,8 +34,9 @@ const BottlesBlock = () => {
               ЭКСКЛЮЗИВНАЯ СТЕКЛЯННАЯ ТАРА
             </h2>
             <p className={styles.block__inner_content_description}>
-              Изготовление и поставка стеклянной тары для ликеро-водочной и
-              вино-коньяной продукции
+              Изготовление и поставка стеклянной тары для ликеро
+              <span className="dash">-</span>водочной и вино
+              <span className="dash">-</span>коньяной продукции
             </p>
           </div>
 
@@ -53,7 +54,7 @@ const BottlesBlock = () => {
         </motion.div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BottlesBlock
+export default BottlesBlock;
