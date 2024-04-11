@@ -25,22 +25,13 @@
       overflow: hidden;
       position: relative;
 
-      // text-align: center;
-
       img {
-        // height: 100%;
-        // object-fit: cover;
-        // height: auto;
-
-        position: absolute; // Используйте absolute позиционирование
-        top: 50%; // Центрируйте вертикально
-        left: 50%; // Центрируйте горизонтально
-        transform: translate(
-          -50%,
-          -50%
-        ); // Смещайте изображение на половину его ширины и высоты вверх и влево
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         object-fit: cover;
-        height: auto; // Установите высоту автоматически, чтобы сохранить пропорции изображения
+        height: auto;
       }
     }
 
@@ -55,6 +46,7 @@
       &_title {
         font-size: 34px;
         font-weight: 800;
+        margin-bottom: 10px;
       }
       &_description {
         color: #fff;
@@ -108,11 +100,7 @@
   .block {
     margin-top: 32px;
     &__inner {
-      // height: 400px;
-      // background-image: $gradient-bottom-to-top,
-      //   url("../../assets/images/bottles-block-background.png");
       flex-direction: column-reverse;
-      // justify-content: end;
       height: auto;
 
       &_image {
