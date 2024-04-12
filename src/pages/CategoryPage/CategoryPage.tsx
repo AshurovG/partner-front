@@ -99,12 +99,7 @@ const CategoryPage = () => {
               />
             ) : (
               <div className={styles["category-page__inner_description"]}>
-                {/* {category?.description} */}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptate, magnam nemo? Tempore aspernatur neque vel laborum
-                molestias autem ipsam pariatur quod, sunt minima nesciunt illum
-                optio minus? Optio, magni impedit. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Voluptate, magnam nemo?
+                {category?.description}
               </div>
             )}
 
