@@ -1,26 +1,26 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useIsAuth, setIsAuthAction } from "slices/AuthSlice";
-import { toast } from "react-toastify";
-import styles from "./Header.module.scss";
-import useScrollDirection from "../../utils/HeaderHook";
-import BurgerIcon from "components/Icons/BurgerIcon";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { scroller } from "react-scroll";
+import { useEffect, useRef, useState } from "react"
+import { Link, useLocation } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { useIsAuth, setIsAuthAction } from "slices/AuthSlice"
+import { toast } from "react-toastify"
+import styles from "./Header.module.scss"
+import useScrollDirection from "../../utils/HeaderHook"
+import BurgerIcon from "components/Icons/BurgerIcon"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import { scroller } from "react-scroll"
 
-import { motion, AnimatePresence } from "framer-motion";
-import ArrowLeftIcon from "components/Icons/ArrowLeftIcon";
-import ArrowRightIcon from "components/Icons/ArrowRightIcon";
+import { motion, AnimatePresence } from "framer-motion"
+import ArrowLeftIcon from "components/Icons/ArrowLeftIcon"
+import ArrowRightIcon from "components/Icons/ArrowRightIcon"
 
-import Bottles from "../../assets/images/bottles-block-background.png";
-import Decorations from "../../assets/images/decs.png";
-import Simple from "../../assets/images/simple_package.png";
-import Complex from "../../assets/images/complex_package.png";
-import Glasses from "../../assets/images/gl.png";
-import Locks from "../../assets/images/locks-block-background.jpg";
+import Bottles from "../../assets/images/bottles_block_img.jpg"
+import Decorations from "../../assets/images/decs.png"
+import Simple from "../../assets/images/simple_package.png"
+import Complex from "../../assets/images/complex_package.png"
+import Glasses from "../../assets/images/glasses_block_img.jpg"
+import Locks from "../../assets/images/locks-block-background.jpg"
 
 const dataTop = [
   {
@@ -54,44 +54,44 @@ const dataTop = [
     title: "Стеклянная посуда",
     key: "glasses",
   },
-];
+]
 
 const Header = () => {
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const isAuth = useIsAuth();
+  const location = useLocation()
+  const dispatch = useDispatch()
+  const isAuth = useIsAuth()
   const showHeader = ![
     "/ashurovvitaly",
     "/rasulovelshan",
     "/derevitskayaevgenia",
-  ].includes(location.pathname);
+  ].includes(location.pathname)
 
   // const [showMainHeader, setShowMainHeader] = useState(true)
-  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
-  const scrollDirection = useScrollDirection();
-  const menuRef = useRef<HTMLDivElement>(null);
-  const sliderRef = useRef(null);
+  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
+  const scrollDirection = useScrollDirection()
+  const menuRef = useRef<HTMLDivElement>(null)
+  const sliderRef = useRef(null)
 
-  const [isBelow200, setIsBelow200] = useState(false);
+  const [isBelow200, setIsBelow200] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.pageYOffset;
-      setIsBelow200(scrollPosition > 100);
-    };
+      const scrollPosition = window.pageYOffset
+      setIsBelow200(scrollPosition > 100)
+    }
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll)
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   useEffect(() => {
     const checkIfClickedOutside = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const isLeftIconClicked = target.id === "left-icon";
-      const isRightIconClicked = target.id === "right-icon";
+      const target = e.target as HTMLElement
+      const isLeftIconClicked = target.id === "left-icon"
+      const isRightIconClicked = target.id === "right-icon"
 
       if (
         e.target &&
@@ -100,20 +100,18 @@ const Header = () => {
         !isLeftIconClicked &&
         !isRightIconClicked
       ) {
-        setIsSubmenuOpen(false);
+        setIsSubmenuOpen(false)
       }
-    };
+    }
 
-    document.addEventListener("mousedown", checkIfClickedOutside);
+    document.addEventListener("mousedown", checkIfClickedOutside)
     return () => {
-      document.removeEventListener("mousedown", checkIfClickedOutside);
-    };
-  }, []);
+      document.removeEventListener("mousedown", checkIfClickedOutside)
+    }
+  }, [])
 
   const headerClass =
-    scrollDirection !== "up" && isBelow200
-      ? styles.headerDown
-      : styles.headerUp;
+    scrollDirection !== "up" && isBelow200 ? styles.headerDown : styles.headerUp
 
   const submenuVariants = {
     open: {
@@ -132,7 +130,7 @@ const Header = () => {
         ease: "easeInOut",
       },
     },
-  };
+  }
 
   const settings = {
     dots: false,
@@ -169,7 +167,7 @@ const Header = () => {
         },
       },
     ],
-  };
+  }
 
   return (
     <>
@@ -218,7 +216,7 @@ const Header = () => {
                   <Link to="/">
                     <h2
                       onClick={() => {
-                        setIsSubmenuOpen(false);
+                        setIsSubmenuOpen(false)
                       }}
                     >
                       Главная
@@ -230,8 +228,8 @@ const Header = () => {
                       scroller.scrollTo("form", {
                         smooth: true,
                         duration: 1500,
-                      });
-                      setIsSubmenuOpen(false);
+                      })
+                      setIsSubmenuOpen(false)
                     }}
                   >
                     Задать вопрос
@@ -242,8 +240,8 @@ const Header = () => {
                       scroller.scrollTo("contacts", {
                         smooth: true,
                         duration: 1500,
-                      });
-                      setIsSubmenuOpen(false);
+                      })
+                      setIsSubmenuOpen(false)
                     }}
                   >
                     Контакты
@@ -252,7 +250,7 @@ const Header = () => {
                     <Link to="/admin?category_id=1">
                       <h2
                         onClick={() => {
-                          setIsSubmenuOpen(false);
+                          setIsSubmenuOpen(false)
                         }}
                       >
                         Управление сайтом
@@ -262,12 +260,12 @@ const Header = () => {
                   {isAuth && (
                     <h2
                       onClick={() => {
-                        localStorage.removeItem("token");
-                        dispatch(setIsAuthAction(false));
+                        localStorage.removeItem("token")
+                        dispatch(setIsAuthAction(false))
                         toast.success(
                           "Вы успешно вышли из режима администратора!"
-                        );
-                        setIsSubmenuOpen(false);
+                        )
+                        setIsSubmenuOpen(false)
                       }}
                     >
                       Выйти
@@ -285,7 +283,7 @@ const Header = () => {
                         <Link to={`/${item.key}`}>
                           <div
                             onClick={() => {
-                              setIsSubmenuOpen(false);
+                              setIsSubmenuOpen(false)
                             }}
                             className={styles["submenu__slider_inner--card"]}
                             key={index}
@@ -297,7 +295,7 @@ const Header = () => {
                             </h2>
                           </div>
                         </Link>
-                      );
+                      )
                     })}
                   </Slider>
                 </div>
@@ -307,7 +305,7 @@ const Header = () => {
         </header>
       ) : null}
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
