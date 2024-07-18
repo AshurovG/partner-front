@@ -28,6 +28,7 @@ const AdminPage = () => {
   const categoryId = searchParams.get("category_id");
   const [cards, setCards] = useState<Card[]>([]);
   const [isCreateWindowOpened, setIsCreateWindowOpened] = useState(false);
+  const [isPostProductLoading, setIsPostProductLoading] = useState(false);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedCategoryId, setSelectedCategoryId] = useState(
@@ -57,6 +58,8 @@ const AdminPage = () => {
     file: File | null
   ) => {
     try {
+      setIsPostProductLoading(true);
+      console.log(true);
       const formData = new FormData();
       //   if (token) {
       //     formData.append("jwt", token)
@@ -84,6 +87,9 @@ const AdminPage = () => {
     } catch (error) {
       toast.error("Размер фотографии должен не превышать 5 МБ");
       throw error;
+    } finally {
+      setIsPostProductLoading(false);
+      console.log(false);
     }
   };
 
@@ -166,6 +172,7 @@ const AdminPage = () => {
           isEditing={false}
           onSubmit={postProduct}
           active={isCreateWindowOpened}
+          isLoading={isPostProductLoading}
         />
       </ModalWindow>
 

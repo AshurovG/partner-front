@@ -9,6 +9,7 @@ type ProductFormProps = {
   onSubmit: (title: string, description: string, file: File | null) => void;
   isEditing?: boolean;
   active?: boolean;
+  isLoading: boolean;
 };
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
@@ -19,6 +20,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
   active,
   firstTitle,
   firstDescription,
+  isLoading,
 }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const form = useRef<HTMLFormElement>(null);
@@ -198,10 +200,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
             isRedirecting={false}
             mode="light"
             className={styles.form__submit}
-            disabled={!isValid}
+            disabled={!isValid || isLoading}
             type="submit"
           >
-            Сохранить
+            {isLoading ? "Загрузка..." : "Сохранить"}
           </Button>
         </form>
       </div>
